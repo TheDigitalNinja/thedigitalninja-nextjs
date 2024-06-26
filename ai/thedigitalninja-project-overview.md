@@ -16,7 +16,7 @@ A personal website and blog for the domain TheDigital.Ninja, showcasing technica
 
 ## Project Structure
 - Uses a `src/` directory for main code organization
-- Blog posts stored as Markdown files in `src/posts/`
+- Blog posts stored as Markdown files in `posts/`
 - Components organized by function (layout, blog, ui)
 
 ## Main Features
