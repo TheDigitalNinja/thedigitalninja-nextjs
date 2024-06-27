@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Dialog, Transition } from '@headlessui/react';
+import Link from 'next/link';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -35,7 +36,15 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         >
           <Dialog.Panel className="fixed inset-y-0 left-0 w-64 bg-white shadow-xl">
             <div className="p-4">
-              <p className="text-black">Menu</p>
+              <p className="text-black font-bold mb-4">Menu</p>
+              <nav className="space-y-2">
+                <Link href="/" className="block text-gray-800 hover:underline">
+                  Home
+                </Link>
+                <Link href="/blog/" className="block text-gray-800 hover:underline">
+                  Blog
+                </Link>
+              </nav>
             </div>
           </Dialog.Panel>
         </Transition.Child>

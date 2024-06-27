@@ -10,7 +10,7 @@ interface HeaderProps {
     <header className="bg-gray-800 text-white p-4 relative">
       <div className="container mx-auto flex items-center justify-between">
         <SidebarControls />
-        <h1 className="text-2xl font-bold">{title || 'BROKEN'}</h1>
+        <h1 className="text-2xl font-bold text-center flex-grow">{title}</h1>
         <div className="w-8"></div> {/* Empty div for spacing */}
       </div>
     </header>
