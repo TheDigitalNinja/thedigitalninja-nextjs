@@ -1,7 +1,7 @@
 import { getPostData, getSortedPostsData } from '../../../lib/posts'
 import { marked } from 'marked'
 import { Metadata } from 'next'
-import RootLayout from '../../layout'
+import Header from "../../../components/Header";
 
 interface PostPageProps {
   params: {
@@ -51,7 +51,8 @@ export default function PostPage({ params }: PostPageProps) {
   const contentHtml = marked(post.content)
 
   return (
-    <RootLayout title={post.title}>
+    <>
+      <Header title={post.title}/>
       <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
         <p className="text-gray-600 mb-8">{post.date}</p>
@@ -60,6 +61,6 @@ export default function PostPage({ params }: PostPageProps) {
           dangerouslySetInnerHTML={{ __html: contentHtml }} 
         />
       </article>
-    </RootLayout>
+    </>
   )
 }

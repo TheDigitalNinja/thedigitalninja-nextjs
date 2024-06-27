@@ -1,17 +1,17 @@
 import React from 'react';
-import { Bars3Icon } from '@heroicons/react/24/outline';
-import SidebarControls from "../components/SidebarControls";
+import SidebarControls from './SidebarControls';
 
 interface HeaderProps {
-  title: string;
-}
+    title?: string;
+  }
 
-const Header: React.FC<HeaderProps> = ({ title }) => {
+  const Header: React.FC<HeaderProps> = ({ title }) => {
   return (
     <header className="bg-gray-800 text-white p-4 relative">
-      <SidebarControls />
-      <div className="container mx-auto text-center">
-        <h1 className="text-2xl font-bold">{title}</h1>
+      <div className="container mx-auto flex items-center justify-between">
+        <SidebarControls />
+        <h1 className="text-2xl font-bold">{title || 'BROKEN'}</h1>
+        <div className="w-8"></div> {/* Empty div for spacing */}
       </div>
     </header>
   );

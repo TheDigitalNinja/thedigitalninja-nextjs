@@ -1,9 +1,12 @@
-import RootLayout from './layout'
+import Header from "../components/Header";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen items-center justify-center">
-      <h1 className="text-4xl font-bold">The Digital Ninja</h1>
-    </main>
+    <>
+      <Header title="The Digital Ninja"/>
+      <main className="flex min-h-screen items-center justify-center">
+        <h1 className="text-4xl font-bold">The Digital Ninja</h1>
+      </main>
+    </>
   );
 }
