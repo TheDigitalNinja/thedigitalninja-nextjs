@@ -11,7 +11,7 @@ export default function HelloPage() {
         <Header title={metadata.title}/>
         
         <h2>Hello, World!</h2>
-        <p>This is a simple page to test the hydration error.</p>
+        <p>This is a simple example page</p>
       </div>
   );
 }
