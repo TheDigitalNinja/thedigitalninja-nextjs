@@ -13,10 +13,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  title = "The Digital Ninja"
 }: Readonly<{
   children: React.ReactNode;
-  title?: string;
 }>) {
   return (
     <html lang="en">
