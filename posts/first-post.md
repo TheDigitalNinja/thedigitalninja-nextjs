@@ -1,40 +1,41 @@
 ---
-title: "Welcome to TheDigital.Ninja"
-date: "2024-06-26"
-author: "Your Name"
-excerpt: "Introducing my new blog about web development, AI, and all things tech."
-tags: ["webdev", "nextjs", "introduction"]
+title: "Hello World - Welcome to TheDigital.Ninja" 
+date: "2024-06-27"
+author: "Russell Perkins" 
+excerpt: "Kicking off my new tech blog with a classic Hello World. Join me as I explore app dev, architecture, AI and more."
+tags: ["appdev", "webdev", "mobile", "architecture", "ai", "introduction"]
 # OpenGraph metadata
 og:
-  title: "Welcome to TheDigital.Ninja: A Tech Journey Begins"
-  description: "Join me on a journey through web development, AI, and cutting-edge tech on my new blog, TheDigital.Ninja."
-  type: "article"
-  image: "/images/welcome-post-og.jpg"
-  url: "https://thedigital.ninja/blog/welcome-to-thedigital-ninja"
+  title: "Hello World - TheDigital.Ninja Begins"
+  description: "Embark on a technical journey through application development, software architecture, AI and emerging tech with me, Russell Perkins, on my new blog TheDigital.Ninja."
+  type: "article" 
+  image: "/images/hello-world-post-og.jpg"
+  url: "https://thedigital.ninja/blog/hello-world" 
 ---
 
-# Welcome to TheDigital.Ninja
-
-```Bash
-echo "hello world"
+```javascript
+console.log("Hello World!");
 ```
 
-Hello, tech enthusiasts and curious minds! Welcome to TheDigital.Ninja, a blog where we'll explore the fascinating world of web development, artificial intelligence, and emerging technologies.
+Hello fellow technologists and curious souls! Welcome to TheDigital.Ninja, a space where I, Russell Perkins, will dive deep into application development across web and mobile, software architecture, artificial intelligence, and the latest in tech.
 
-## What to Expect
+## What's in Store
 
-In this space, I'll be sharing:
+On this blog, expect to find:
 
-- Insights from my journey as a web developer
-- Tutorials on Next.js, React, and other modern web technologies
-- Explorations into the world of AI and machine learning
-- Reviews of the latest tech tools and frameworks
-- Thoughts on the future of digital technology
+- Technical articles on modern application development and architecture
+- Explorations of software design concepts, patterns and anti-patterns
+- Posts about AI, machine learning, and their practical applications 
+- A heavy use of code snippets to illustrate the concepts discussed
+- Small web apps and proofs-of-concept to demonstrate ideas in practice
+- Information about any public servers or game servers I'm hosting
+- Ways to connect with me on social media and other platforms
 
-## Why "TheDigital.Ninja"?
+## A Central Hub
 
-In the fast-paced world of technology, adaptability is key. Like a ninja, we must be agile, always learning, and ready to tackle new challenges. This blog is my dojo, a place to hone skills, share knowledge, and grow together as a community.
+Consider this blog your go-to place to stay up-to-date with my tech journey over the years. It's not just a blog, but a central hub where you can find all my online presences and stay connected.
 
-Stay tuned for regular posts, and don't hesitate to reach out if there are topics you'd like to see covered. Let's embark on this digital adventure together!
+I'm excited to embark on this journey with you all. Stay tuned for regular, technically-rich posts. And if there are topics you'd like me to cover, just give me a shout.
 
-Happy coding, and welcome aboard!
+Happy coding!
+
