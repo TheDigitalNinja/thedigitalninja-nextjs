@@ -39,7 +39,7 @@ export default function About() {
             <li>Managed Jenkins at scale with hundreds of jobs and dozens of developers</li>
             <li>Deploy Java-based, cloud-native microservices with Asguard and Spinnaker</li>
             <li>Troubleshoot and repair issues in IAM, EC2, Route53, VPC, S3, and SNS</li>
-            <li>Automate the creation of AMI's with Ansible, Packer, BASH, and Python</li>
+            <li>Automate the creation of AMI&apos;s with Ansible, Packer, BASH, and Python</li>
             <li>Automate provisioning, deployment, and platform configuration tasks</li>
             <li>Client Support with Linux Administration and troubleshooting</li>
           </ul>
@@ -52,7 +52,7 @@ export default function About() {
           Built over 31 and custom websites in WordPress from the ground up. No purchased themes.
           </p>
           <ul>
-            <li>Architected entire company's infrastructure, from in wall networking, dev servers, to aws cloud infrastructure.</li>
+            <li>Architected entire company&apos;s infrastructure, from in wall networking, dev servers, to aws cloud infrastructure.</li>
             <li>Handled all deployments to both our aws systems and various client systems.</li>
             <li>Managed nightly backups to an onsite nas and offsite with S3 and glacier.</li>
             <li>Maintained developer tools such as grunt and built multiple in house tools for developers and sales staff.</li>
