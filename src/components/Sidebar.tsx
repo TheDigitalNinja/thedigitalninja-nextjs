@@ -41,8 +41,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                 <Link href="/" className="block text-gray-800 hover:underline">
                   Home
                 </Link>
-                <Link href="/blog/" className="block text-gray-800 hover:underline">
+                <Link href="/blog" className="block text-gray-800 hover:underline">
                   Blog
+                </Link>
+                <Link href="/resume" className="block text-gray-800 hover:underline">
+                  Resume
                 </Link>
               </nav>
             </div>
