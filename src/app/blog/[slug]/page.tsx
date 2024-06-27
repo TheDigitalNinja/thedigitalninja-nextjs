@@ -57,7 +57,7 @@ export default function PostPage({ params }: PostPageProps) {
         <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
         <p className="text-gray-600 mb-8">{post.date}</p>
         <div 
-          className="prose lg:prose-xl"
+          className="prose dark:prose-invert lg:prose-xl"
           dangerouslySetInnerHTML={{ __html: contentHtml }} 
         />
       </article>

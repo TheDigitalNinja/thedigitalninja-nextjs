@@ -5,7 +5,7 @@ export default function About() {
     <>
       <Header title="Resume" />
       <main className="container mx-auto py-8">
-        <div className="prose mx-auto max-w-3xl">
+        <div className="prose dark:prose-invert mx-auto max-w-3xl">
           <h2>Russell Perkins</h2>
           <p>Principal Technical Consultant Lead - Denver, Colorado</p>
 
