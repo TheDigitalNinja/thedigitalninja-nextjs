@@ -1,9 +1,10 @@
 import { getPostData, getSortedPostsData } from '../../../lib/posts'
+import { OpenGraphType } from '../../../lib/openGraphType';
 import { marked } from 'marked'
 import { Metadata } from 'next'
+import Head from 'next/head';
 import Header from "../../../components/Header";
 import Sidebar from "../../../components/Sidebar";
-import Head from 'next/head';
 
 // Syntax Highlighting by prismjs
 import Prism from 'prismjs';
@@ -18,9 +19,6 @@ interface PostPageProps {
     slug: string
   }
 }
-
-type OpenGraphType = 'article' | 'website' | 'book' | 'profile' | 'music.song' | 'music.album' | 'music.playlist' | 'music.radio_station' | 'video.movie' | 'video.episode' | 'video.tv_show' | 'video.other';
-
 
 // Generate metadata for the post page
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
