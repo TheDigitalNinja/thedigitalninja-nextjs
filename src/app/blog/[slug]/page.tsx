@@ -3,7 +3,7 @@
  * @fileoverview Individual blog post page component for The Digital Ninja website
  * @description This file contains the logic for rendering individual blog posts,
  *              including metadata generation, static path generation, and content rendering
- *              with syntax highlighting.
+ *              with syntax highlighting. It also includes Schema.org structured data.
  * 
  * @component PostPage
  * @returns {JSX.Element} The rendered blog post page
@@ -14,6 +14,7 @@ import { OpenGraphType } from '../../../lib/openGraphType';
 import { marked } from 'marked'
 import { Metadata } from 'next'
 import Head from 'next/head';
+import Script from 'next/script';
 import Header from "../../../components/Header";
 import Sidebar from "../../../components/Sidebar";
 
@@ -77,11 +78,38 @@ export default function PostPage({ params }: PostPageProps) {
   };
   const contentHtml = marked(post.content, { renderer })
 
+  // Schema.org structured data
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "datePublished": post.date,
+    "dateModified": post.date, // Assuming the publish date is also the last modified date
+    "author": {
+      "@type": "Person",
+      "name": "Russell Perkins",
+      "url": "https://TheDigital.Ninja"
+    },
+    "image": post.og.image,
+    "url": `https://TheDigital.Ninja/blog/${post.slug}`,
+    "description": post.excerpt,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://TheDigital.Ninja/blog/${post.slug}`
+    }
+  };
+
   return (
     <>
       <Head>
         <link rel="canonical" href={`https://TheDigital.Ninja/blog/${post.slug}`} />
       </Head>
+
+      <Script
+        id="schema-org-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+      />
 
       <div className="min-h-screen flex flex-col">
         <Header title="The Digital Ninja" useH1={false}/>
