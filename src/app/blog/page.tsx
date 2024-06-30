@@ -11,7 +11,7 @@ export default function BlogPage() {
       <Header title="Blog"/>
       <div className="flex flex-1">
         <Sidebar />
-        <main className="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <h2 className="text-3xl font-bold mb-8">Blog Posts</h2>
           <ul className="space-y-6">
             {posts.map((post) => (

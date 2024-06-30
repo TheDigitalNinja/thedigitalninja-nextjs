@@ -2,6 +2,7 @@ import { getPostData, getSortedPostsData } from '../../../lib/posts'
 import { marked } from 'marked'
 import { Metadata } from 'next'
 import Header from "../../../components/Header";
+import Sidebar from "../../../components/Sidebar";
 
 // Syntax Highlighting by prismjs
 import Prism from 'prismjs';
@@ -67,16 +68,21 @@ export default function PostPage({ params }: PostPageProps) {
   const contentHtml = marked(post.content, { renderer })
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Header title="The Digital Ninja" useH1={false}/>
-      <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-        <p className="text-gray-600 mb-8">{post.date}</p>
-        <div 
-          className="prose dark:prose-invert lg:prose-xl"
-          dangerouslySetInnerHTML={{ __html: contentHtml }} 
-        />
-      </article>
-    </>
+      <div className="flex flex-1">
+        <Sidebar />
+        <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <article>
+            <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
+            <p className="text-gray-600 mb-8">{post.date}</p>
+            <div 
+              className="prose dark:prose-invert lg:prose-xl"
+              dangerouslySetInnerHTML={{ __html: contentHtml }} 
+            />
+          </article>
+        </main>
+      </div>
+    </div>
   )
 }
