@@ -3,6 +3,14 @@ import { marked } from 'marked'
 import { Metadata } from 'next'
 import Header from "../../../components/Header";
 
+// Syntax Highlighting by prismjs
+import Prism from 'prismjs';
+import 'prismjs/themes/prism-tomorrow.css'; // Syntax Highlighting theme
+import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-typescript';
+import 'prismjs/components/prism-bash';
+import 'prismjs/components/prism-jsx';
+
 interface PostPageProps {
   params: {
     slug: string
@@ -48,7 +56,15 @@ export async function generateStaticParams() {
 // Render the post page
 export default function PostPage({ params }: PostPageProps) {
   const post = getPostData(params.slug)
-  const contentHtml = marked(post.content)
+
+  // Use Prism.js to highlight code blocks
+  const renderer = new marked.Renderer();
+  renderer.code = ({ text, lang, escaped }) => {
+    const language = lang || 'plaintext';
+    const highlightedCode = Prism.highlight(text, Prism.languages[language], language);
+    return `<pre><code class="language-${language}">${highlightedCode}</code></pre>`;
+  };
+  const contentHtml = marked(post.content, { renderer })
 
   return (
     <>
