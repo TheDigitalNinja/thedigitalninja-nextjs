@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import Sidebar from './Sidebar';
+import Sidebar from './SidebarMobile';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 
 const SidebarControls: React.FC = () => {

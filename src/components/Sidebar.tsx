@@ -1,58 +1,43 @@
-'use client';
-
-import React from 'react';
-import { Dialog, DialogPanel, Transition, TransitionChild } from '@headlessui/react';
 import Link from 'next/link';
+import { getSortedPostsData } from '../lib/posts';
 
-interface SidebarProps {
-  isOpen: boolean;
-  onClose: () => void;
+interface PostData {
+  slug: string;
+  date: string;
+  title: string;
+  excerpt: string;
+  og: Record<string, string>;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
-  return (
-    <Transition show={isOpen} as={React.Fragment}>
-      <Dialog onClose={onClose} className="relative z-50">
-        <TransitionChild
-          as={React.Fragment}
-          enter="ease-out duration-300"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="ease-in duration-200"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <div className="fixed inset-0 bg-black/30" />
-        </TransitionChild>
+const Sidebar: React.FC = () => {
+  const recentPosts = getSortedPostsData(8);
 
-        <TransitionChild
-          as={React.Fragment}
-          enter="ease-out duration-300"
-          enterFrom="opacity-0 -translate-x-full"
-          enterTo="opacity-100 translate-x-0"
-          leave="ease-in duration-200"
-          leaveFrom="opacity-100 translate-x-0"
-          leaveTo="opacity-0 -translate-x-full"
-        >
-          <DialogPanel className="fixed inset-y-0 left-0 w-64 bg-white shadow-xl">
-            <div className="p-4">
-              <p className="text-black font-bold mb-4">Menu</p>
-              <nav className="space-y-2">
-                <Link href="/" className="block text-gray-800 hover:underline">
-                  Home
-                </Link>
-                <Link href="/blog" className="block text-gray-800 hover:underline">
-                  Blog
-                </Link>
-                <Link href="/resume" className="block text-gray-800 hover:underline">
-                  Resume
-                </Link>
-              </nav>
-            </div>
-          </DialogPanel>
-        </TransitionChild>
-      </Dialog>
-    </Transition>
+  return (
+    <aside className="sidebar w-64 dark:prose-invert shadow-md p-4 hidden md:block">
+      {/* Navigation */}
+      <nav>
+        <ul>
+          <li>
+            <Link href="/">Home</Link>
+          </li>
+          <li>
+            <Link href="/blog">Blog</Link>
+          </li>
+        </ul>
+      </nav>
+
+      {/* Recent Blog Posts */}
+      <section className="recent-posts mt-8">
+        <h3>Recent Posts</h3>
+        <ul>
+          {recentPosts.map((post) => (
+            <li key={post.slug}>
+              <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </aside>
   );
 };
 
