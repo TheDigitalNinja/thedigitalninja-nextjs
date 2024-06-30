@@ -68,7 +68,7 @@ export default function PostPage({ params }: PostPageProps) {
 
   return (
     <>
-      <Header title={post.title}/>
+      <Header title="The Digital Ninja" useH1={false}/>
       <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
         <p className="text-gray-600 mb-8">{post.date}</p>
