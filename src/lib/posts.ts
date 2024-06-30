@@ -4,7 +4,7 @@ import matter from 'gray-matter'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
 
-export function getSortedPostsData() {
+export function getSortedPostsData(limit?: number) {
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory)
   const allPostsData = fileNames.map(fileName => {
@@ -25,13 +25,16 @@ export function getSortedPostsData() {
     }
   })
   // Sort posts by date
-  return allPostsData.sort((a, b) => {
+  const sortedPosts = allPostsData.sort((a, b) => {
     if (a.date < b.date) {
       return 1
     } else {
       return -1
     }
   })
+
+  // Return limited number of posts if limit is provided
+  return limit ? sortedPosts.slice(0, limit) : sortedPosts
 }
 
 export function getPostData(slug: string) {
