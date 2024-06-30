@@ -1,3 +1,13 @@
+/**
+ * @file src/app/page.tsx
+ * @fileoverview Home page component for The Digital Ninja website
+ * @description This file contains the main layout and content for the home page,
+ *              including the header, sidebar, and main content area.
+ * 
+ * @component Home
+ * @returns {JSX.Element} The rendered home page
+ */
+
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import Head from 'next/head';
@@ -19,7 +29,7 @@ export default function Home() {
               <h1 className="text-4xl font-bold">The Digital Ninja</h1>
             </div>
           </main>
-          
+
         </div>
       </div>
     </>

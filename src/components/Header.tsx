@@ -1,3 +1,16 @@
+/**
+ * @file src/components/Header.tsx
+ * @fileoverview Header component for The Digital Ninja website
+ * @description This file defines a reusable Header component that includes
+ *              a title and sidebar controls. It allows for flexible title rendering
+ *              as either an h1 or p element.
+ * 
+ * @component Header
+ * @param {string} [props.title] - The title to display in the header
+ * @param {boolean} [props.useH1=true] - Whether to render the title as an h1 (true) or p (false)
+ * @returns {JSX.Element} The rendered header component
+ */
+
 import React from 'react';
 import SidebarControls from './SidebarControls';
 

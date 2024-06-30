@@ -1,3 +1,14 @@
+/**
+ * @file src/components/Sidebar.tsx
+ * @fileoverview Sidebar component for The Digital Ninja website
+ * @description This file defines a Sidebar component that displays navigation links
+ *              and recent blog posts. It uses Next.js Link for client-side navigation
+ *              and fetches recent post data using a custom function.
+ * 
+ * @component Sidebar
+ * @returns {JSX.Element} The rendered sidebar component with navigation and recent posts
+ */
+
 import Link from 'next/link';
 import { getSortedPostsData } from '../lib/posts';
 

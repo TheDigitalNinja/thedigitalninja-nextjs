@@ -1,3 +1,14 @@
+/**
+ * @file src/components/Footer.tsx
+ * @fileoverview Footer component for The Digital Ninja website
+ * @description This file defines a reusable Footer component that displays
+ *              social media links and copyright information. It uses react-icons
+ *              for social media icons and dynamically updates the copyright year.
+ * 
+ * @component Footer
+ * @returns {JSX.Element} The rendered footer component with social links and copyright
+ */
+
 import { FaGithub, FaLinkedin, FaFacebook, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {

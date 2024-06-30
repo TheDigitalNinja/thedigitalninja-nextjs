@@ -1,6 +1,17 @@
+/**
+ * @file src/app/resume/page.tsx
+ * @fileoverview Resume page component for The Digital Ninja website
+ * @description This file defines the Resume page, displaying Russell Perkins'
+ *              professional experience, skills, and education. It uses the Header
+ *              component and Tailwind CSS classes for styling.
+ * 
+ * @component Resume
+ * @returns {JSX.Element} The rendered resume page with professional information
+ */
+
 import Header from "../../components/Header";
 
-export default function About() {
+export default function Resume() {
   return (
     <>
       <Header title="Resume" />

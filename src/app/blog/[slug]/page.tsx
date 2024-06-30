@@ -1,3 +1,14 @@
+/**
+ * @file src/app/blog/[slug]/page.tsx
+ * @fileoverview Individual blog post page component for The Digital Ninja website
+ * @description This file contains the logic for rendering individual blog posts,
+ *              including metadata generation, static path generation, and content rendering
+ *              with syntax highlighting.
+ * 
+ * @component PostPage
+ * @returns {JSX.Element} The rendered blog post page
+ */
+
 import { getPostData, getSortedPostsData } from '../../../lib/posts'
 import { OpenGraphType } from '../../../lib/openGraphType';
 import { marked } from 'marked'

@@ -1,3 +1,13 @@
+/**
+ * @file src/app/blog/page.tsx
+ * @fileoverview Blog posts page component for The Digital Ninja website
+ * @description This file contains the main layout and content for the blog posts page,
+ *              including the header, sidebar, and a list of blog posts.
+ * 
+ * @component BlogPage
+ * @returns {JSX.Element} The rendered blog page
+ */
+
 import Link from 'next/link'
 import { getSortedPostsData } from '../../lib/posts'
 import Header from "../../components/Header";
