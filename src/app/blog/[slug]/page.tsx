@@ -3,6 +3,7 @@ import { marked } from 'marked'
 import { Metadata } from 'next'
 import Header from "../../../components/Header";
 import Sidebar from "../../../components/Sidebar";
+import Head from 'next/head';
 
 // Syntax Highlighting by prismjs
 import Prism from 'prismjs';
@@ -68,21 +69,27 @@ export default function PostPage({ params }: PostPageProps) {
   const contentHtml = marked(post.content, { renderer })
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header title="The Digital Ninja" useH1={false}/>
-      <div className="flex flex-1">
-        <Sidebar />
-        <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <article>
-            <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-            <p className="text-gray-600 mb-8">{post.date}</p>
-            <div 
-              className="prose dark:prose-invert lg:prose-xl"
-              dangerouslySetInnerHTML={{ __html: contentHtml }} 
-            />
-          </article>
-        </main>
+    <>
+      <Head>
+        <link rel="canonical" href={`https://TheDigital.Ninja/blog/${post.slug}`} />
+      </Head>
+
+      <div className="min-h-screen flex flex-col">
+        <Header title="The Digital Ninja" useH1={false}/>
+        <div className="flex flex-1">
+          <Sidebar />
+          <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <article>
+              <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
+              <p className="text-gray-600 mb-8">{post.date}</p>
+              <div 
+                className="prose dark:prose-invert lg:prose-xl"
+                dangerouslySetInnerHTML={{ __html: contentHtml }} 
+              />
+            </article>
+          </main>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
