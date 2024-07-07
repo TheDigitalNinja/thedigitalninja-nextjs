@@ -10,6 +10,7 @@
 
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
+import RecentBlogPosts from '../components/RecentBlogPosts';
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -34,17 +35,24 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <div className="flex flex-col min-h-screen">
-        <Header title="The Digital Ninja" useH1={false}/>
+      <div className="min-h-screen flex flex-col">
+        <Header title="The Digital Ninja" useH1={true}/>
         <div className="flex flex-1">
           <Sidebar />
+          <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <article className="prose dark:prose-invert lg:prose-xl mb-12">
+              <h2 className="text-3xl font-bold mb-6">Hey there,</h2>
+              <p className="mb-6">
+                Looks like you&apos;ve stumbled upon TheDigital.Ninja - welcome to my corner of the web! 
+                I&apos;m Russell Perkins, a Solutions Architect with a passion for all things tech. 
+                Feel free to dive into my blog posts for insights on software architecture, AI, and 
+                the latest in tech innovations. Or, if you&apos;re feeling social, check out my links 
+                and let&apos;s connect in the digital realm!
+              </p>
+            </article>
 
-          <main className="flex-1 p-4">
-            <div className="flex items-center justify-center h-full">
-              <h1 className="text-4xl font-bold">The Digital Ninja</h1>
-            </div>
+            <RecentBlogPosts limit={4} />
           </main>
-
         </div>
       </div>
     </>
