@@ -13,6 +13,9 @@ A personal website and blog for the domain TheDigital.Ninja, showcasing technica
 - Headless UI
 - gray-matter (for parsing Markdown front matter)
 - marked (for rendering Markdown)
+- Cloudinary (for image hosting) 
+    - Cloud Name: `TheDigitalNinja`
+- Vercel (for hosting)
 
 ## Project Structure
 - Uses a `src/` directory for main code organization
