@@ -11,6 +11,7 @@
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import { Metadata } from 'next'
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'About Russell Perkins - The Digital Ninja',
@@ -32,15 +33,31 @@ export const metadata: Metadata = {
 }
 
 export default function About() {
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Russell Perkins",
+    "description": "Learn about Russell Perkins, a seasoned Solutions Architect and IT consultant.",
+    "url": "https://TheDigital.Ninja/about",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Russell Perkins",
+      "jobTitle": "Solutions Architect",
+      "description": "Russell Perkins is a seasoned Solutions Architect and IT consultant...",
+      "url": "https://TheDigital.Ninja"
+    }
+  };
+
   return (
     <>
-      <div className="flex flex-col min-h-screen">
-        <Header title="About" useH1={false}/>
-        <div className="flex flex-1">
-          <Sidebar />
+      <Script id="schema-org-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
 
-          <main className="flex-1 p-4 overflow-y-auto">
-            <article className="max-w-4xl mx-auto prose lg:prose-xl dark:prose-invert">
+      <Header title="About" useH1={false}/>
+
+      <div className="flex">
+        <Sidebar />
+        <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <article className="prose dark:prose-invert lg:prose-xl">
               <h1 className="text-3xl font-bold mb-6">About Russell Perkins</h1>
               
               <p className="mb-6">
@@ -87,8 +104,7 @@ export default function About() {
                 Whether you&apos;re a fellow tech enthusiast, a potential collaborator, or simply curious about the intersection of rural upbringings and high-tech careers, Russell&apos;s journey offers insights into the power of curiosity, adaptability, and perseverance in the ever-evolving world of technology.
               </p>
             </article>
-          </main>
-        </div>
+        </main>
       </div>
     </>
   );
