@@ -35,7 +35,7 @@ export default function Home() {
   return (
     <>
       <div className="flex flex-col min-h-screen">
-        <Header title="The Digital Ninja"/>
+        <Header title="The Digital Ninja" useH1={false}/>
         <div className="flex flex-1">
           <Sidebar />
 
