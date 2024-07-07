@@ -10,15 +10,30 @@
 
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
-import Head from 'next/head';
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'About Russell Perkins - The Digital Ninja',
+  description: 'Learn about Russell Perkins, a seasoned Solutions Architect and IT consultant with a journey from rural Missouri to the forefront of technology.',
+  openGraph: {
+    title: 'About Russell Perkins - The Digital Ninja',
+    description: 'Discover the journey of Russell Perkins, from rural Missouri to Solutions Architect, showcasing innovation and adaptability in tech.',
+    type: 'website',
+    url: 'https://TheDigital.Ninja/about',
+    images: [
+      {
+        url: 'https://res.cloudinary.com/TheDigitalNinja/image/upload/v1720627500/profile_qxup8e.jpg',
+        width: 1080,
+        height: 1080,
+        alt: 'Russell Perkins - Solutions Architect',
+      },
+    ],
+  },
+}
 
 export default function About() {
   return (
     <>
-      <Head>
-        <link rel="canonical" href="https://TheDigital.Ninja/about" />
-      </Head>
-
       <div className="flex flex-col min-h-screen">
         <Header title="About" useH1={false}/>
         <div className="flex flex-1">
