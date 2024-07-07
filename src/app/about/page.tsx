@@ -34,12 +34,12 @@ export default function About() {
 
               <h2 className="text-2xl font-semibold mt-8 mb-4">Early Beginnings</h2>
               <p className="mb-6">
-                Born in Steelville, Missouri, a small town of 1,300 residents, Russell's fascination with technology began in the early 1990s. While his peers were enjoying the outdoors along the Meramec River, Russell discovered QBasic, sparking a lifelong interest in coding and technology.
+                Born in Steelville, Missouri, a small town of 1,300 residents, Russell&apos;s fascination with technology began in the early 1990s. While his peers were enjoying the outdoors along the Meramec River, Russell discovered QBasic, sparking a lifelong interest in coding and technology.
               </p>
 
               <h2 className="text-2xl font-semibold mt-8 mb-4">From Hobbyist to Innovator</h2>
               <p className="mb-6">
-                Russell's early experiments were remarkable for their ingenuity. As a teenager, he built a Beowulf cluster from salvaged PCs, initially aiming for distributed computing but ultimately repurposing it as an advanced CD ripping system. This project showcased Russell's ability to adapt and find practical solutions, a skill that would define his later career.
+                Russell&apos;s early experiments were remarkable for their ingenuity. As a teenager, he built a Beowulf cluster from salvaged PCs, initially aiming for distributed computing but ultimately repurposing it as an advanced CD ripping system. This project showcased Russell&apos;s ability to adapt and find practical solutions, a skill that would define his later career.
               </p>
 
               <h2 className="text-2xl font-semibold mt-8 mb-4">Entrepreneurial Spirit</h2>
@@ -49,7 +49,7 @@ export default function About() {
 
               <h2 className="text-2xl font-semibold mt-8 mb-4">Professional Evolution</h2>
               <p className="mb-6">
-                Russell's career has spanned various roles in the tech industry, from automation engineering to DevOps, culminating in his current position as a Solutions Architect. His experience includes collaborations with industry leaders like Netflix and Google, particularly on projects such as Spinnaker, a CI/CD deployment tool.
+                Russell&apos;s career has spanned various roles in the tech industry, from automation engineering to DevOps, culminating in his current position as a Solutions Architect. His experience includes collaborations with industry leaders like Netflix and Google, particularly on projects such as Spinnaker, a CI/CD deployment tool.
               </p>
               <p className="mb-6">
                 Throughout his career, Russell has maintained a pragmatic approach to technology challenges. He views complex systems as manipulable components, with the real challenge often lying in aligning stakeholders and making informed decisions amidst competing interests.
@@ -57,7 +57,7 @@ export default function About() {
 
               <h2 className="text-2xl font-semibold mt-8 mb-4">Personal Philosophy</h2>
               <p className="mb-6">
-                Shaped by personal challenges, including the early loss of his parents, Russell developed a resilient worldview. He often shares his guiding principle: "The first rule of any game is knowing that you're playing it." This philosophy reflects his approach to both life and technology – always staying aware and adaptable.
+                Shaped by personal challenges, including the early loss of his parents, Russell developed a resilient worldview. He often shares his guiding principle: &quot;The first rule of any game is knowing that you&apos;re playing it.&quot; This philosophy reflects his approach to both life and technology – always staying aware and adaptable.
               </p>
 
               <h2 className="text-2xl font-semibold mt-8 mb-4">Current Focus</h2>
@@ -69,7 +69,7 @@ export default function About() {
               </p>
 
               <p className="mt-8 italic">
-                Whether you're a fellow tech enthusiast, a potential collaborator, or simply curious about the intersection of rural upbringings and high-tech careers, Russell's journey offers insights into the power of curiosity, adaptability, and perseverance in the ever-evolving world of technology.
+                Whether you&apos;re a fellow tech enthusiast, a potential collaborator, or simply curious about the intersection of rural upbringings and high-tech careers, Russell&apos;s journey offers insights into the power of curiosity, adaptability, and perseverance in the ever-evolving world of technology.
               </p>
             </article>
           </main>
