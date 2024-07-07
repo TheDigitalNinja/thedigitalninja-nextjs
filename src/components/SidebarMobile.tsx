@@ -44,6 +44,9 @@ const SidebarMobile: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                 <Link href="/blog" className="block text-gray-800 hover:underline">
                   Blog
                 </Link>
+                <Link href="/blog" className="block text-gray-800 hover:underline">
+                  About
+                </Link>
                 <Link href="/resume" className="block text-gray-800 hover:underline">
                   Resume
                 </Link>

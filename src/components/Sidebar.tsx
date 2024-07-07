@@ -34,6 +34,9 @@ const Sidebar: React.FC = () => {
           <li>
             <Link href="/blog" className="text-lg font-semibold hover:text-blue-600 transition-colors duration-200">Blog</Link>
           </li>
+          <li>
+            <Link href="/about" className="text-lg font-semibold hover:text-blue-600 transition-colors duration-200">About</Link>
+          </li>
         </ul>
       </nav>
 
