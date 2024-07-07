@@ -9,7 +9,7 @@ og:
   title: "Hello World - TheDigital.Ninja Begins"
   description: "Embark on a technical journey through application development, software architecture, AI and emerging tech with me, Russell Perkins, on my new blog TheDigital.Ninja."
   type: "article" 
-  image: "/images/hello-world-post-og.jpg"
+  image: "https://res.cloudinary.com/TheDigitalNinja/image/upload/c_scale,w_1200/2647cb92-3d10-493d-aae5-8eea215e5f1b_yehrh3"
   url: "https://thedigital.ninja/blog/hello-world" 
 ---
 
