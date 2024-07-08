@@ -1,17 +1,3 @@
-/**
- * @file src/components/SidebarMobile.tsx
- * @fileoverview Mobile sidebar component for The Digital Ninja website
- * @description This file contains the mobile sidebar layout and functionality,
- *              including navigation links and the login/logout button.
- * 
- * @component SidebarMobile
- * @param {boolean} isOpen - Whether the sidebar is open
- * @param {() => void} onClose - Function to close the sidebar
- * @returns {JSX.Element} The rendered mobile sidebar
- */
-
-'use client';
-
 import React from 'react';
 import { Dialog, DialogPanel, Transition, TransitionChild } from '@headlessui/react';
 import { LoginLogoutButton } from './LoginLogoutButton';
@@ -47,22 +33,25 @@ const SidebarMobile: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           leaveFrom="opacity-100 translate-x-0"
           leaveTo="opacity-0 -translate-x-full"
         >
-          <DialogPanel className="fixed inset-y-0 left-0 w-64 bg-white shadow-xl flex flex-col">
-            <div className="p-4 flex-grow">
-              <p className="text-black font-bold mb-4">Menu</p>
-              <nav className="space-y-2">
-                <Link href="/" className="block text-gray-800 hover:underline">
-                  Home
-                </Link>
-                <Link href="/blog" className="block text-gray-800 hover:underline">
-                  Blog
-                </Link>
-                <Link href="/blog" className="block text-gray-800 hover:underline">
-                  About
-                </Link>
+          <DialogPanel className="fixed inset-y-0 left-0 w-64 bg-gray-100 dark:bg-gray-800 shadow-xl flex flex-col overflow-y-auto">
+            <div className="p-6 flex-grow">
+              <nav className="mb-8">
+                <ul className="space-y-2">
+                  {['Home', 'Blog', 'About'].map((item) => (
+                    <li key={item}>
+                      <Link 
+                        href={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
+                        className="block py-2 px-4 text-lg text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors duration-200"
+                        onClick={onClose}
+                      >
+                        {item}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </nav>
             </div>
-            <div className="p-4 border-t">
+            <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 p-6">
               <LoginLogoutButton />
             </div>
           </DialogPanel>
