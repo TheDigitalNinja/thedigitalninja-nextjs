@@ -38,6 +38,9 @@ Welcome to TheDigital.Ninja project! This is a personal website and blog for Rus
 ## Getting Started
 
 1. Clone the repository
+   ```
+   git clone https://github.com/TheDigitalNinja/thedigitalninja-nextjs.git
+   ```
 2. Install dependencies:
    ```
    npm ci
