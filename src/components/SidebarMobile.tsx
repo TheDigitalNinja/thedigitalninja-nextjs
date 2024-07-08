@@ -1,3 +1,15 @@
+/**
+ * @file src/components/SidebarMobile.tsx
+ * @fileoverview Mobile sidebar component for The Digital Ninja website
+ * @description This file contains the mobile sidebar layout and functionality,
+ *              including navigation links and the login/logout button.
+ * 
+ * @component SidebarMobile
+ * @param {boolean} isOpen - Whether the sidebar is open
+ * @param {() => void} onClose - Function to close the sidebar
+ * @returns {JSX.Element} The rendered mobile sidebar
+ */
+
 'use client';
 
 import React from 'react';

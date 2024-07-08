@@ -1,3 +1,13 @@
+/**
+ * @file src/components/LoginLogoutButton.tsx
+ * @fileoverview Login/Logout button component for The Digital Ninja website
+ * @description This component displays either a login or logout button based on the user's
+ *              authentication status. It includes user profile picture display for logged-in users.
+ * 
+ * @component LoginLogoutButton
+ * @returns {JSX.Element} The rendered login/logout button
+ */
+
 'use client';
 
 import { useAuth } from '../hooks/useAuth';

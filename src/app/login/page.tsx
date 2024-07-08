@@ -1,3 +1,13 @@
+/**
+ * @file src/app/login/page.tsx
+ * @fileoverview Login page component for The Digital Ninja website
+ * @description This file contains the layout and functionality for the login page,
+ *              including Google sign-in and redirection logic.
+ * 
+ * @component LoginPage
+ * @returns {JSX.Element} The rendered login page
+ */
+
 'use client';
 
 import { useAuth } from '../../hooks/useAuth';

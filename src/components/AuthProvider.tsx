@@ -1,3 +1,19 @@
+/**
+ * @file src/components/AuthProvider.tsx
+ * @fileoverview Authentication context provider for The Digital Ninja website
+ * @description This file defines the AuthProvider component and useAuthContext hook,
+ *              which manage and provide access to authentication state throughout the application.
+ * 
+ * @component AuthProvider
+ * @param {React.ReactNode} children - Child components to be wrapped by the AuthProvider
+ * 
+ * @hook useAuthContext
+ * @returns {ReturnType<typeof useAuth>} The authentication context
+ * 
+ * @exports AuthProvider - Component to provide authentication context
+ * @exports useAuthContext - Hook to access authentication context
+ */
+
 'use client';
 
 import { useAuth } from '../hooks/useAuth';

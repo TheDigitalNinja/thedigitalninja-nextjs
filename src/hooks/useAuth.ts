@@ -1,3 +1,13 @@
+/**
+ * @file src/hooks/useAuth.ts
+ * @fileoverview Authentication hook for The Digital Ninja website
+ * @description This custom hook manages user authentication state and provides
+ *              functions for signing in and out using Firebase Auth.
+ * 
+ * @hook useAuth
+ * @returns {Object} Authentication state and functions
+ */
+
 'use client';
 
 import { useState, useEffect } from 'react';

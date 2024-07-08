@@ -1,3 +1,12 @@
+/**
+ * @file src/lib/firebase.ts
+ * @fileoverview Firebase configuration and initialization for The Digital Ninja website
+ * @description This file initializes the Firebase app and exports the authentication instance
+ *              for use throughout the application.
+ * 
+ * @exports auth - The Firebase Auth instance
+ */
+
 'use client';
 
 import { initializeApp, getApps, FirebaseApp } from "firebase/app";
