@@ -56,20 +56,24 @@ export default function Home() {
   return (
     <>
       <Script id="schema-org-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
-      <div className="min-h-screen flex flex-col">
-        <Header title="The Digital Ninja" useH1={true}/>
-        <div className="flex flex-1">
-          <Sidebar />
+      
+      <div className="min-h-screen md:flex">
+        <Sidebar />
+        <div className="flex flex-col w-full md:pl-64">
+          <Header title="The Digital Ninja" useH1={true}/>
           <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <article className="prose dark:prose-invert lg:prose-xl mb-12">
-              <h2 className="text-3xl font-bold mb-6">Hey there,</h2>
-              <p className="mb-6">
-                Looks like you&apos;ve stumbled upon TheDigital.Ninja - welcome to my corner of the web! 
-                I&apos;m Russell Perkins, a Solutions Architect with a passion for all things tech. 
-                Feel free to dive into my blog posts for insights on software architecture, AI, and 
-                the latest in tech innovations. Or, if you&apos;re feeling social, check out my links 
-                and let&apos;s connect in the digital realm!
-              </p>
+            <article className="mb-12 prose dark:prose-invert lg:prose-xl">
+              <h2 className="text-4xl font-bold mb-6">Hey there,</h2>
+              <div className="">
+                <p>
+                  Looks like you&apos;ve stumbled upon TheDigital.Ninja - welcome to my corner of the web! 
+                  I&apos;m Russell Perkins, a Solutions Architect with a passion for all things tech. 
+                  Feel free to dive into my blog posts for insights on software architecture, AI, and 
+                  the latest in tech innovations. Or, if you&apos;re feeling social, check out my links 
+                  and let&apos;s connect in the digital realm!
+                </p>
+              </div>
+
             </article>
 
             <RecentBlogPosts limit={4} />

@@ -22,7 +22,7 @@ export function LoginLogoutButton() {
     return (
       <button 
         onClick={signOutUser}
-        className="flex items-center space-x-2 text-gray-800 hover:underline"
+        className="flex items-center space-x-2 text-gray-800 dark:text-gray-200 hover:underline"
       >
         {user.photoURL ? (
           <Image 
@@ -40,7 +40,7 @@ export function LoginLogoutButton() {
     );
   } else {
     return (
-      <Link href="/login" className="flex items-center space-x-2 text-gray-800 hover:underline">
+      <Link href="/login" className="flex items-center space-x-2 text-gray-800 dark:text-gray-200 hover:underline">
         <UserIcon className="h-6 w-6" />
         <span>Login</span>
       </Link>

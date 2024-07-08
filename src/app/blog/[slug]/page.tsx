@@ -104,21 +104,17 @@ export default function PostPage({ params }: PostPageProps) {
       <Head>
         <link rel="canonical" href={`https://TheDigital.Ninja/blog/${post.slug}`} />
       </Head>
-
-      <Script
-        id="schema-org-data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-      />
-
-      <div className="min-h-screen flex flex-col">
-        <Header title="The Digital Ninja" useH1={false}/>
-        <div className="flex flex-1">
-          <Sidebar />
+  
+      <Script id="schema-org-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
+  
+      <div className="min-h-screen md:flex">
+        <Sidebar />
+        <div className="flex flex-col w-full md:pl-64">
+          <Header title="The Digital Ninja" useH1={false}/>
           <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <article>
               <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-              <p className="text-gray-600 mb-8">{post.date}</p>
+              <p className="text-gray-600 dark:text-gray-400 mb-8">{post.date}</p>
               <div 
                 className="prose dark:prose-invert lg:prose-xl"
                 dangerouslySetInnerHTML={{ __html: contentHtml }} 

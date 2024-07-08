@@ -1,7 +1,16 @@
+/**
+ * @file src/components/SidebarControls.tsx
+ * @fileoverview SidebarControls component for The Digital Ninja website
+ * @description This component renders the sidebar toggle button for mobile views
+ * 
+ * @component SidebarControls
+ * @returns {JSX.Element} The rendered sidebar controls
+ */
+
 'use client';
 
 import React, { useState } from 'react';
-import Sidebar from './SidebarMobile';
+import SidebarMobile from './SidebarMobile';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 
 const SidebarControls: React.FC = () => {
@@ -11,11 +20,11 @@ const SidebarControls: React.FC = () => {
     <>
       <button 
         onClick={() => setIsSidebarOpen(true)}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white"
+        className="md:hidden text-white" // Hide on md screens and up
       >
        <Bars3Icon className="h-6 w-6" aria-hidden="true" />
       </button>
-      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+      <SidebarMobile isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
     </>
   );
 };
