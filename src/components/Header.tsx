@@ -13,7 +13,6 @@
 
 import React from 'react';
 import SidebarControls from './SidebarControls';
-import { AuthButton } from './AuthButton';
 
 interface HeaderProps {
   title?: string;
@@ -28,7 +27,6 @@ const Header: React.FC<HeaderProps> = ({ title, useH1 = true }) => {
       <div className="container mx-auto flex items-center justify-between">
         <SidebarControls />
         <TitleComponent className="text-2xl font-bold text-center flex-grow">{title}</TitleComponent>
-        <AuthButton />
         <div className="w-8"></div> {/* Empty div for spacing */}
       </div>
     </header>

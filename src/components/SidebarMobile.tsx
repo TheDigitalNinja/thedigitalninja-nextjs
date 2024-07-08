@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Dialog, DialogPanel, Transition, TransitionChild } from '@headlessui/react';
+import { LoginLogoutButton } from './LoginLogoutButton';
 import Link from 'next/link';
 
 interface SidebarProps {
@@ -34,8 +35,8 @@ const SidebarMobile: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           leaveFrom="opacity-100 translate-x-0"
           leaveTo="opacity-0 -translate-x-full"
         >
-          <DialogPanel className="fixed inset-y-0 left-0 w-64 bg-white shadow-xl">
-            <div className="p-4">
+          <DialogPanel className="fixed inset-y-0 left-0 w-64 bg-white shadow-xl flex flex-col">
+            <div className="p-4 flex-grow">
               <p className="text-black font-bold mb-4">Menu</p>
               <nav className="space-y-2">
                 <Link href="/" className="block text-gray-800 hover:underline">
@@ -48,6 +49,9 @@ const SidebarMobile: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                   About
                 </Link>
               </nav>
+            </div>
+            <div className="p-4 border-t">
+              <LoginLogoutButton />
             </div>
           </DialogPanel>
         </TransitionChild>
