@@ -34,10 +34,33 @@ A personal website and blog for the domain TheDigital.Ninja, showcasing technica
 - UI components (Button, Card)
 
 ## Hosting
-Intended to be hosted on Vercel (standard for Next.js applications)
+Is hosted on vercel at https://TheDigital.Ninja 
 
 ## Authentication
-Planned implementation of Firebase Authentication for admin features
+- Implemented using Firebase Authentication
+- Google Sign-In method enabled
+- Key components:
+  1. `src/lib/firebase.ts`: Firebase initialization and auth instance export
+  2. `src/hooks/useAuth.ts`: Custom hook for managing auth state and operations
+  3. `src/components/AuthProvider.tsx`: Context provider for app-wide auth state
+  4. `src/components/LoginLogoutButton.tsx`: UI component for login/logout actions
+  5. `src/app/login/page.tsx`: Dedicated login page
+
+- Usage:
+  - Wrap root component with `AuthProvider`
+  - Use `useAuthContext()` hook to access auth state and functions
+  - `LoginLogoutButton` component for UI interactions
+  - Redirect to '/login' for authentication
+  - Protected routes should check `user` object from `useAuthContext()`
+
+- Configuration:
+  - Firebase project: "TheDigitalNinja"
+  - Google Cloud Console: OAuth consent screen and scopes set up
+  - `next.config.js`: Configured for Google user profile images
+
+- Future plans:
+  - Implement email/password authentication
+  - Add admin-only features using Firebase security rules
 
 ## Additional Notes
 - The project aims to showcase technical skills and serve as a platform for tech-related blog posts
