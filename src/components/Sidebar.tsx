@@ -32,10 +32,10 @@ const Sidebar: React.FC = () => {
             <Link href="/" className="text-lg font-semibold hover:text-blue-600 transition-colors duration-200">Home</Link>
           </li>
           <li>
-            <Link href="/blog" className="text-lg font-semibold hover:text-blue-600 transition-colors duration-200">Blog</Link>
+            <Link href="/blog" className="text-lg hover:text-blue-600 transition-colors duration-200">Blog</Link>
           </li>
           <li>
-            <Link href="/about" className="text-lg font-semibold hover:text-blue-600 transition-colors duration-200">About</Link>
+            <Link href="/about" className="text-lg hover:text-blue-600 transition-colors duration-200">About</Link>
           </li>
         </ul>
       </nav>
