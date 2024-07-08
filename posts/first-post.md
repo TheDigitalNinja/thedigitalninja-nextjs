@@ -3,6 +3,7 @@ title: "Hello World - Welcome to TheDigital.Ninja"
 date: "2024-06-27"
 author: "Russell Perkins" 
 excerpt: "Kicking off my new tech blog with a classic Hello World. Join me as I explore app dev, architecture, AI and more."
+cloudinaryImageId: "2647cb92-3d10-493d-aae5-8eea215e5f1b_yehrh3"
 tags: ["appdev", "webdev", "mobile", "architecture", "ai", "introduction"]
 # OpenGraph metadata
 og:

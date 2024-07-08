@@ -9,6 +9,10 @@ interface RecentBlogPostsProps {
 const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ limit = 3 }) => {
   const posts = getSortedPostsData(limit);
 
+  const getCloudinaryUrl = (publicId: string) => {
+    return `https://res.cloudinary.com/TheDigitalNinja/image/upload/c_fill,w_327,h_192,q_auto,f_auto/${publicId}`;
+  };
+
   return (
     <section className="my-8">
       <h2 className="text-2xl font-bold mb-4">Recent Blog Posts</h2>
@@ -17,12 +21,18 @@ const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ limit = 3 }) => {
           <Link href={`/blog/${post.slug}`} key={post.slug} className="block">
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105">
               <div className="relative h-48">
-                <Image
-                  src={post.og?.image || '/images/default-cover.jpg'}
-                  alt={post.title}
-                  layout="fill"
-                  objectFit="cover"
-                />
+                {post.cloudinaryImageId ? (
+                  <Image
+                    src={getCloudinaryUrl(post.cloudinaryImageId)}
+                    alt={post.title}
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center">
+                    <span className="text-gray-500 dark:text-gray-400">No image</span>
+                  </div>
+                )}
               </div>
               <div className="p-4">
                 <h3 className="text-lg font-semibold mb-2">{post.title}</h3>
