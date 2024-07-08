@@ -40,7 +40,10 @@ export function LoginLogoutButton() {
     );
   } else {
     return (
-      <Link href="/login" className="flex items-center space-x-2 text-gray-800 dark:text-gray-200 hover:underline">
+      <Link 
+        href="/login" 
+        className="flex space-x-2 py-2 text-md hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors duration-200"
+      >
         <UserIcon className="h-6 w-6" />
         <span>Login</span>
       </Link>

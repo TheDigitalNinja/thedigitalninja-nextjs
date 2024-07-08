@@ -38,7 +38,7 @@ const SidebarMobile: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
             <div className="p-6 flex-grow">
               <nav className="mb-8">
                 <ul className="space-y-2">
-
+                  
                   {['Home', 'Blog', 'About'].map((item) => (
                     <li key={item}>
                       <Link 
@@ -50,15 +50,16 @@ const SidebarMobile: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                       </Link>
                     </li>
                   ))}
-                  
                 </ul>
               </nav>
             </div>
 
-            <Socials />
-
-            <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 p-6">
+            <div className="mt-4 pt-4 px-4">
               <LoginLogoutButton />
+            </div>
+
+            <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700 p-6">
+              <Socials />
             </div>
           </DialogPanel>
         </TransitionChild>

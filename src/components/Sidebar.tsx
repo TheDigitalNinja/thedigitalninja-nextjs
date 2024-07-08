@@ -62,11 +62,14 @@ const Sidebar: React.FC = () => {
         </section>
       </div>
 
-      <Socials />
-
       {/* Login/Logout Button */}
-      <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+      <div className="mt-4 pt-4">
         <LoginLogoutButton />
+      </div>
+
+      {/* Socials */}
+      <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+        <Socials />
       </div>
 
     </aside>
