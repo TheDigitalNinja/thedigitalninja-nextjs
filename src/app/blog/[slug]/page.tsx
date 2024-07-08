@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
       title: post.og.title,
       description: post.og.description,
       type: ogType,
-      url: post.og.url,
+      url: `https://TheDigital.Ninja/blog/${post.slug}`,
       images: [
         {
           url: post.og.image,
