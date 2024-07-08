@@ -12,6 +12,7 @@ import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import RecentBlogPosts from '../components/RecentBlogPosts';
 import { Metadata } from 'next'
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'The Digital Ninja - Russell Perkins',
@@ -33,8 +34,28 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "The Digital Ninja",
+    "alternateName": "Russell Perkins' Tech Blog",
+    "url": "https://TheDigital.Ninja",
+    "description": "Explore tech insights, software architecture, and AI with Russell Perkins, a seasoned Solutions Architect and IT consultant.",
+    "author": {
+      "@type": "Person",
+      "name": "Russell Perkins",
+      "jobTitle": "Solutions Architect",
+      "url": "https://TheDigital.Ninja/about"
+    },
+    "mainEntity": {
+      "@type": "WebPage",
+      "@id": "https://TheDigital.Ninja"
+    }
+  };
+
   return (
     <>
+      <Script id="schema-org-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
       <div className="min-h-screen flex flex-col">
         <Header title="The Digital Ninja" useH1={true}/>
         <div className="flex flex-1">
