@@ -54,11 +54,11 @@ const SidebarMobile: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
               </nav>
             </div>
 
-            <div className="mt-4 pt-4 px-4">
+            <div className="px-4">
               <LoginLogoutButton />
             </div>
 
-            <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700 p-6">
+            <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 p-6">
               <Socials />
             </div>
           </DialogPanel>
