@@ -25,8 +25,9 @@ const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ limit = 3 }) => {
                   <Image
                     src={getCloudinaryUrl(post.cloudinaryImageId)}
                     alt={post.title}
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    className="object-cover"
                   />
                 ) : (
                   <div className="w-full h-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center">
