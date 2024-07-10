@@ -25,6 +25,11 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Cypress
+cypress/videos
+cypress/screenshots
+cypress/downloads
+
 # Ai files to upload
 /ai/upload
 
