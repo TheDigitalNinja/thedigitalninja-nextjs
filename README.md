@@ -57,8 +57,24 @@ Welcome to TheDigital.Ninja project! This is a personal website and blog for Rus
 - `npm run build`: Build the production application
 - `npm start`: Start the production server
 - `npm run lint`: Run ESLint
-- `npm run test`: Run linting and build, do this before pushing to the main branch
+- `npm run test`: Start dev server and run Cypress end-to-end tests
+- `npm run cypress:run`: Run Cypress end-to-end tests (assuming you have the dev server already running)
+- `npm run cypress:dev`: Open Cypress in development mode
+- `npm run cypress:open`: Open Cypress run tests interactively (assuming the development server is already running).
 - `npm run package-code`: Create a copy of the code to be uploaded to a Claude ai project
+
+## Cypress End-to-End Tests
+
+The project includes comprehensive end-to-end tests using Cypress to ensure the functionality and reliability of the website. The tests are located in the `cypress/e2e/` directory and are configured in `cypress.config.ts`.
+
+### Running Tests
+
+To run the Cypress tests, use the following scripts:
+
+- `npm run test`: Start the development server and run all Cypress end-to-end tests.
+- `npm run cypress:run`: Run all Cypress end-to-end tests (assuming the development server is already running).
+- `npm run cypress:dev`: Open Cypress in development mode to run tests interactively.
+- `npm run cypress:open`: Open Cypress run tests interactively (assuming the development server is already running).
 
 ## Deployment
 

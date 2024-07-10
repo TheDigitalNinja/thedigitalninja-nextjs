@@ -23,6 +23,12 @@
           "uriFormat": "%s",
           "action": "debugWithChrome"
         }
+      },
+      {
+        "name": "Next.js and Cypress",
+        "type": "node-terminal",
+        "request": "launch",
+        "command": "npm run cypress:dev"
       }
     ]
   }
