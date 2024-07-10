@@ -57,7 +57,8 @@ Welcome to TheDigital.Ninja project! This is a personal website and blog for Rus
 - `npm run build`: Build the production application
 - `npm start`: Start the production server
 - `npm run lint`: Run ESLint
-- `npm run prep`: Run linting and build, do this before pushing to the main branch
+- `npm run test`: Run linting and build, do this before pushing to the main branch
+- `npm run package-code`: Create a copy of the code to be uploaded to a Claude ai project
 
 ## Deployment
 

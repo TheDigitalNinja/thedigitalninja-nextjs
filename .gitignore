@@ -25,6 +25,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Ai files to upload
+/ai/upload
+
 # sitemaps
 sitemap*.xml
 

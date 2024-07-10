@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prep": "next lint && next build",
+    "test": "next lint && next build",
+    "package-code": "node ai/package-code.js",
     "postbuild": "next-sitemap"
   },
   "dependencies": {
