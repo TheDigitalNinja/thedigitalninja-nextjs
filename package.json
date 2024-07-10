@@ -9,6 +9,7 @@
     "lint": "next lint",
     "test": "start-server-and-test dev http://localhost:3000 cypress:run",
     "cypress:run": "cypress run",
+    "cypress:open": "cypress open",
     "package-code": "node ai/package-code.js",
     "postbuild": "next-sitemap"
   },
