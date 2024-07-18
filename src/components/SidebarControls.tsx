@@ -21,6 +21,7 @@ const SidebarControls: React.FC = () => {
       <button 
         onClick={() => setIsSidebarOpen(true)}
         className="md:hidden text-white" // Hide on md screens and up
+        aria-label="Open sidebar"
       >
        <Bars3Icon className="h-6 w-6" aria-hidden="true" />
       </button>
