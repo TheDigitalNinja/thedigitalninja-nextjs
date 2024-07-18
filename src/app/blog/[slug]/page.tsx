@@ -17,6 +17,7 @@ import Head from 'next/head';
 import Script from 'next/script';
 import Header from "../../../components/Header";
 import Sidebar from "../../../components/Sidebar";
+import FollowMeWidget from "../../../components/FollowMeWidget";
 
 // Syntax Highlighting by prismjs
 import Prism from 'prismjs';
@@ -123,6 +124,7 @@ export default function PostPage({ params }: PostPageProps) {
           </main>
         </div>
       </div>
+      <FollowMeWidget />
     </>
   )
 }
