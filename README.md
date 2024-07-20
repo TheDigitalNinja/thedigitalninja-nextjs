@@ -95,7 +95,7 @@ The project is automatically deployed to Vercel upon pushes to the main branch.
 
 ## IndexNow CLI
 
-This project includes a simple CLI tool for submitting URLs to the IndexNow API, allowing quick indexing of new or updated content.
+This project includes a simple CLI tool for submitting URLs to the [IndexNow API](https://www.bing.com/indexnow/), allowing quick indexing of new or updated content.
 
 Usage:
 ```Bash
