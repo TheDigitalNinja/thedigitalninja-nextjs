@@ -1,5 +1,5 @@
 ---
-title: "Escaping the AI Feedback Loop: Tips for Developers"
+title: "Escaping the AI Feedback Loop: Tips for Devs"
 date: "2024-07-17"
 author: "Russell Perkins"
 excerpt: "Discover strategies to break free from repetitive AI coding loops and learn when to leverage traditional resources for efficient problem-solving."
