@@ -21,7 +21,7 @@ export function getSortedPostsData(limit?: number) {
     // Combine the data with the slug
     return {
       slug,
-      ...(matterResult.data as { date: string; title: string; excerpt: string; cloudinaryImageId: string; og: Record<string, string> })
+      ...(matterResult.data as { date: string; title: string; excerpt: string; cloudinaryImageId: string; og: Record<string, string>; tags: string[] })
     }
   })
   // Sort posts by date
