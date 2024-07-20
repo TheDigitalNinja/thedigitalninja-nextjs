@@ -85,20 +85,39 @@ export default function PostPage({ params }: PostPageProps) {
     "@type": "BlogPosting",
     "headline": post.title,
     "datePublished": post.date,
-    "dateModified": post.date, // Assuming the publish date is also the last modified date
+    "dateModified": post.date,
     "author": {
       "@type": "Person",
       "name": "Russell Perkins",
-      "url": "https://TheDigital.Ninja"
+      "jobTitle": "Principal Technical Consultant",
+      "image": "https://res.cloudinary.com/thedigitalninja/image/upload/v1720386353/profile_qxup8e.jpg",
+      "url": "https://TheDigital.Ninja/about",
+      "sameAs": [
+        "https://linkedin.com/in/russellperkins/",
+        "https://github.com/TheDigitalNinja",
+        "https://twitter.com/TheDigitalNinja",
+        "https://instagram.com/perkinsrussell/",
+        "https://facebook.com/RussellPerkinsDenver",
+        "https://youtube.com/TheDigitalNinja"
+      ]
     },
-    "image": post.og.image,
+    "image": `https://res.cloudinary.com/TheDigitalNinja/image/upload/${post.cloudinaryImageId}`,
     "url": `https://TheDigital.Ninja/blog/${post.slug}`,
     "description": post.excerpt,
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": `https://TheDigital.Ninja/blog/${post.slug}`
-    }
-  };
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "The Digital Ninja",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://res.cloudinary.com/TheDigitalNinja/image/upload/logo-white-bg_uk6pkk"
+      }
+    },
+    "articleBody": post.content
+  }
 
   return (
     <>

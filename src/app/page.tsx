@@ -44,8 +44,17 @@ export default function Home() {
     "author": {
       "@type": "Person",
       "name": "Russell Perkins",
-      "jobTitle": "Solutions Architect",
-      "url": "https://TheDigital.Ninja/about"
+      "jobTitle": "Principal Technical Consultant",
+      "image": "https://res.cloudinary.com/thedigitalninja/image/upload/v1720386353/profile_qxup8e.jpg",
+      "url": "https://TheDigital.Ninja/about",
+      "sameAs": [
+        "https://linkedin.com/in/russellperkins/",
+        "https://github.com/TheDigitalNinja",
+        "https://twitter.com/TheDigitalNinja",
+        "https://instagram.com/perkinsrussell/",
+        "https://facebook.com/RussellPerkinsDenver",
+        "https://youtube.com/TheDigitalNinja"
+      ]
     },
     "mainEntity": {
       "@type": "WebPage",
