@@ -31,9 +31,12 @@ Welcome to TheDigital.Ninja project! This is a personal website and blog for Rus
 ## Project Structure
 
 - `src/`: Main application code
+- `src/app/`: Next.js app router pages
+- `src/components/`: React components
 - `posts/`: Markdown files for blog posts
 - `public/`: Static assets
 - `styles/`: Global CSS styles
+- `src/lib/`: Utility functions and hooks
 
 ## Getting Started
 
@@ -53,15 +56,17 @@ Welcome to TheDigital.Ninja project! This is a personal website and blog for Rus
 
 ## Scripts
 
-- `npm run dev`: Start development server
-- `npm run build`: Build the production application
-- `npm start`: Start the production server
-- `npm run lint`: Run ESLint
-- `npm run test`: Start dev server and run Cypress end-to-end tests
-- `npm run cypress:run`: Run Cypress end-to-end tests (assuming you have the dev server already running)
-- `npm run cypress:dev`: Open Cypress in development mode
-- `npm run cypress:open`: Open Cypress run tests interactively (assuming the development server is already running).
-- `npm run package-code`: Create a copy of the code to be uploaded to a Claude ai project
+| Script                  | Description                                                                 |
+|-------------------------|-----------------------------------------------------------------------------|
+| `npm run dev`           | Start development server                                                    |
+| `npm run build`         | Build the production application                                            |
+| `npm start`             | Start the production server                                                 |
+| `npm run lint`          | Run ESLint                                                                  |
+| `npm run test`          | Start dev server and run Cypress end-to-end tests                           |
+| `npm run cypress:run`   | Run Cypress end-to-end tests (assuming you have the dev server already running) |
+| `npm run cypress:dev`   | Open Cypress in development mode                                            |
+| `npm run cypress:open`  | Open Cypress run tests interactively (assuming the development server is already running) |
+| `npm run package-code`  | Create a copy of the code to be uploaded to a Claude ai project             |
 
 ## Cypress End-to-End Tests
 
