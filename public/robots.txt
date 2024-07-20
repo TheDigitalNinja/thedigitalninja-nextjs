@@ -3,3 +3,4 @@ Allow: /
 
 # Sitemaps
 Sitemap: https://TheDigital.Ninja/sitemap.xml
+Sitemap: https://thedigital.ninja/sitemap-0.xml
