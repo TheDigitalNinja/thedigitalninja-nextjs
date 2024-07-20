@@ -18,6 +18,7 @@ import Script from 'next/script';
 import Header from "../../../components/Header";
 import Sidebar from "../../../components/Sidebar";
 import FollowMeWidget from "../../../components/FollowMeWidget";
+import { FiClock, FiCalendar } from 'react-icons/fi'
 
 // Syntax Highlighting by prismjs
 import Prism from 'prismjs';
@@ -134,7 +135,27 @@ export default function PostPage({ params }: PostPageProps) {
           <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <article>
               <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-              <p className="text-gray-600 dark:text-gray-400 mb-8">{post.date}</p>
+              
+              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 text-sm">
+                <div className="flex items-center mb-4 sm:mb-0">
+                  <span className="flex items-center mr-4 text-gray-500 dark:text-gray-400">
+                    <FiCalendar className="mr-1" />
+                    {post.date}
+                  </span>
+                  <span className="flex items-center text-gray-500 dark:text-gray-400">
+                    <FiClock className="mr-1" />
+                    5 min read
+                  </span>
+                </div>
+                <div className="flex flex-wrap">
+                  {post.tags.map((tag, index) => (
+                    <span key={index} className="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded-full mr-2 mb-2">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
               <div 
                 className="prose dark:prose-invert lg:prose-xl"
                 dangerouslySetInnerHTML={{ __html: contentHtml }} 

@@ -46,7 +46,7 @@ export default function BlogPage() {
                       <FiClock className="mr-1" />
                       <span className="mr-4">5 min read</span>
                       <FiTag className="mr-1" />
-                      <span>{post.tags[0]}</span>
+                      <span>{post.tags.join(', ')}</span>
                     </div>
                   </div>
                 </article>
