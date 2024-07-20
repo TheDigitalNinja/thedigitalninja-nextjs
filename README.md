@@ -49,15 +49,15 @@ Welcome to TheDigital.Ninja! This is a personal website and blog for Russell Per
 ## Getting Started
 
 1. Clone the repository
-   ```
+   ```Bash
    git clone https://github.com/TheDigitalNinja/thedigitalninja-nextjs.git
    ```
 2. Install dependencies:
-   ```
+   ```Bash
    npm ci
    ```
 3. Run the development server:
-   ```
+   ```Bash
    npm run dev
    ```
 4. Open [http://localhost:3000](http://localhost:3000) in your browser
@@ -92,6 +92,20 @@ To run the Cypress tests, use the following scripts:
 ## Deployment
 
 The project is automatically deployed to Vercel upon pushes to the main branch.
+
+## IndexNow CLI
+
+This project includes a simple CLI tool for submitting URLs to the IndexNow API, allowing quick indexing of new or updated content.
+
+Usage:
+```Bash
+node index-now.js <url>
+```
+
+Example:
+```Bash
+node index-now.js https://TheDigital.Ninja/blog/your-new-post
+```
 
 ## Contributing
 
