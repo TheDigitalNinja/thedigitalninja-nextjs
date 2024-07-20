@@ -54,10 +54,13 @@ async function submitUrl(url) {
       headers: { 'Content-Type': 'application/json; charset=utf-8' }
     });
 
-    if (response.status === 200) {
-      console.log(`Successfully submitted ${url} to IndexNow`);
+    if (response.status === 200 || response.status === 202) {
+        console.log(`Successfully submitted ${url} to IndexNow. Status: ${response.status}`);
+        if (response.status === 202) {
+            console.log('The submission was accepted and will be processed soon.');
+        }
     } else {
-      console.error(`Failed to submit ${url}. Status: ${response.status}`);
+        console.error(`Unexpected response when submitting ${url}. Status: ${response.status}`);
     }
   } catch (error) {
     console.error(`Error submitting URL: ${error.message}`);
