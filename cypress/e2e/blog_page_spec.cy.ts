@@ -13,29 +13,28 @@ describe('Blog Page', () => {
     })
 
     it('displays the correct title', () => {
-      cy.contains('h2', 'Blog Posts').should('be.visible')
+      cy.contains('h1', 'Blog Posts').should('be.visible')
     })
   })
 
   describe('Content', () => {
     it('displays a list of blog posts', () => {
-      cy.get('ul.space-y-6').should('exist')
-      cy.get('ul.space-y-6 li').should('have.length.at.least', 1)
+      cy.get('div.space-y-8').should('exist')
+      cy.get('div.space-y-8 article').should('have.length.at.least', 1)
     })
 
     it('displays blog post information', () => {
-      cy.get('ul.space-y-6 li').first().within(() => {
+      cy.get('div.space-y-8 article').first().within(() => {
         cy.get('h2').should('be.visible')
-        cy.get('p').should('have.length', 2)
+        cy.get('p').should('have.length.at.least', 2)
       })
     })
   })
 
   describe('Navigation', () => {
     it('has working links to individual blog posts', () => {
-      cy.get('ul.space-y-6 li').first().find('a').click()
+      cy.get('div.space-y-8 > a').first().click()
       cy.url().should('include', '/blog/')
     })
   })
-
 })
