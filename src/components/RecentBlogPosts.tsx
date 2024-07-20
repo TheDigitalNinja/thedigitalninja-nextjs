@@ -33,8 +33,9 @@ const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ limit = 3 }) => {
                 <Image
                   src={`https://res.cloudinary.com/TheDigitalNinja/image/upload/c_scale,w_600/${post.cloudinaryImageId}`}
                   alt={post.title}
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  style={{ objectFit: 'cover' }}
                 />
               </div>
               <div className="p-4">

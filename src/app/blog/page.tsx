@@ -33,8 +33,9 @@ export default function BlogPage() {
                     <Image
                       src={`https://res.cloudinary.com/TheDigitalNinja/image/upload/c_scale,w_400/${post.cloudinaryImageId}`}
                       alt={post.title}
-                      layout="fill"
-                      objectFit="cover"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      style={{ objectFit: 'cover' }}
                     />
                   </div>
                   <div className="md:w-2/3 p-4 md:p-6">
