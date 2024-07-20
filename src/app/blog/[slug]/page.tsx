@@ -144,7 +144,7 @@ export default function PostPage({ params }: PostPageProps) {
                   </span>
                   <span className="flex items-center text-gray-500 dark:text-gray-400">
                     <FiClock className="mr-1" />
-                    5 min read
+                    {post.readTime} min read
                   </span>
                 </div>
                 <div className="flex flex-wrap">

@@ -1,10 +1,36 @@
+/**
+ * @file src/lib/posts.ts
+ * @fileoverview Provides functions to retrieve and sort blog post data from markdown files.
+ * @description This module includes utilities for reading post metadata, sorting posts,
+ *              and retrieving individual post content.
+ */
+
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
 
-export function getSortedPostsData(limit?: number) {
+// Define a type for the post metadata
+type PostMetadata = {
+  date: string;
+  title: string;
+  excerpt: string;
+  cloudinaryImageId: string;
+  tags: string[];
+  readTime: number;
+  og: Record<string, string>;
+}
+
+type PostData = PostMetadata & {
+  slug: string;
+}
+
+type FullPostData = PostData & {
+  content: string;
+}
+
+export function getSortedPostsData(limit?: number): PostData[] {
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory)
   const allPostsData = fileNames.map(fileName => {
@@ -21,7 +47,7 @@ export function getSortedPostsData(limit?: number) {
     // Combine the data with the slug
     return {
       slug,
-      ...(matterResult.data as { date: string; title: string; excerpt: string; cloudinaryImageId: string; og: Record<string, string>; tags: string[] })
+      ...(matterResult.data as PostMetadata)
     }
   })
   // Sort posts by date
@@ -37,17 +63,17 @@ export function getSortedPostsData(limit?: number) {
   return limit ? sortedPosts.slice(0, limit) : sortedPosts
 }
 
-export function getPostData(slug: string) {
+export function getPostData(slug: string): FullPostData {
   const fullPath = path.join(postsDirectory, `${slug}.md`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
 
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents)
 
-  // Combine the data with the slug and contentHtml
+  // Combine the data with the slug and content
   return {
     slug,
     content: matterResult.content,
-    ...(matterResult.data as { date: string; title: string; cloudinaryImageId: string; tags: string[]; excerpt: string; og: Record<string, string> })
+    ...(matterResult.data as PostMetadata)
   }
 }

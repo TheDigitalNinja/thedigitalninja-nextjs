@@ -44,7 +44,7 @@ const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ limit = 3 }) => {
                 <p className="text-gray-800 dark:text-gray-200 mb-4">{post.excerpt}</p>
                 <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
                   <FiClock className="mr-1" />
-                  <span className="mr-4">5 min read</span>
+                  <span className="mr-4">{post.readTime} min read</span>
                   <FiTag className="mr-1" />
                   <span>{post.tags[0]}</span>
                 </div>

@@ -4,6 +4,7 @@ date: "2024-07-17"
 author: "Russell Perkins"
 excerpt: "Discover strategies to break free from repetitive AI coding loops and learn when to leverage traditional resources for efficient problem-solving."
 cloudinaryImageId: "Claude_AI_edit_message_c1xfbu"
+readTime: 5
 tags: ["ai", "coding", "troubleshooting", "best-practices", "programming"]
 og:
   title: "Escaping the AI Feedback Loop: Tips for Developers"
