@@ -1,9 +1,5 @@
-# *
 User-agent: *
 Allow: /
-
-# Host
-Host: https://TheDigital.Ninja
 
 # Sitemaps
 Sitemap: https://TheDigital.Ninja/sitemap.xml
