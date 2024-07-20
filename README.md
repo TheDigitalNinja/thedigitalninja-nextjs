@@ -83,3 +83,7 @@ The project is automatically deployed to Vercel upon pushes to the main branch.
 ## Contributing
 
 This is a personal project, but if you notice any issues or have suggestions, please feel free to open an issue or submit a pull request.
+
+## License
+
+This project is released under the Unlicense. See the [LICENSE](LICENSE) file for details.
