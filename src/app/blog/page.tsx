@@ -23,7 +23,7 @@ export default function BlogPage() {
       <Sidebar />
       <div className="flex flex-col w-full md:pl-64">
         <Header title="Blog"/>
-        <main className="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <h1 className="text-4xl font-bold mb-8">Blog Posts</h1>
           <div className="space-y-8">
             {posts.map((post) => (
