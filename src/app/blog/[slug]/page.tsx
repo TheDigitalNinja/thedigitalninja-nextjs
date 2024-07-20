@@ -141,9 +141,9 @@ export default function PostPage({ params }: PostPageProps) {
               />
             </article>
           </main>
+          <FollowMeWidget />
         </div>
       </div>
-      <FollowMeWidget />
     </>
   )
 }
