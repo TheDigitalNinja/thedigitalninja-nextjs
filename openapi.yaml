@@ -1,0 +1,58 @@
+openapi: 3.0.0
+info:
+  title: TheDigital.Ninja API
+  description: API for TheDigital.Ninja, a personal website and blog showcasing technical skills and hosting blog posts on various tech topics including software architecture, AI, and tech innovations.
+  version: 1.0.0
+  contact:
+    name: The Digital Ninja
+    url: https://TheDigital.Ninja
+servers:
+  - url: https://TheDigital.Ninja/api
+    description: Production server
+  - url: http://localhost:3000/api
+    description: Local development server
+paths:
+  /healthcheck:
+    get:
+      summary: Perform a health check
+      description: Returns the current health status of the application
+      operationId: getHealthCheck
+      tags:
+        - Health
+      responses:
+        '200':
+          description: Successful health check
+          content:
+            application/json:    
+              schema:
+                $ref: '#/components/schemas/HealthCheck'
+              example:
+                status: "OK"
+                timestamp: 1625097600000
+        '503':
+          description: Service unavailable
+          content:
+            application/json:    
+              schema:
+                $ref: '#/components/schemas/HealthCheck'
+              example:
+                status: "Database connection failed"
+                timestamp: 1625097600000
+components:
+  schemas:
+    HealthCheck:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Status message, "OK" if healthy, error message if not
+        timestamp:
+          type: integer
+          format: int64
+          description: Unix timestamp of when the health check was performed
+      required:
+        - status
+        - timestamp
+tags:
+  - name: Health
+    description: Health check operations
