@@ -4,6 +4,9 @@ const path = require('path');
 const filesToCopy = [
     { dest: 'home-page.tsx',        src: 'src/app/page.tsx' },
     { dest: 'blog-post-page.tsx',   src: 'src/app/blog/[slug]/page.tsx' },
+    { dest: 'blog-posts-page.tsx',  src: 'src/app/blog/page.tsx' },
+    { dest: 'FollowMeWidget.tsx',   src: 'src/components/FollowMeWidget.tsx' },
+    { dest: 'RecentBlogPosts.tsx', src: 'src/components/RecentBlogPosts.tsx' },
     { dest: 'Sidebar.tsx',          src: 'src/components/Sidebar.tsx' },
     { dest: 'posts.ts',             src: 'src/lib/posts.ts' },
     { dest: 'useAuth.ts',           src: 'src/hooks/useAuth.ts' },
