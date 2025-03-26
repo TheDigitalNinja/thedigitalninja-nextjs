@@ -6,7 +6,7 @@ import RecentBlogPosts from '../components/RecentBlogPosts';
 
 export const metadata: Metadata = {
   title: '404 - Page Not Found | The Digital Ninja',
-  description: "The page you\'re looking for doesn\'t exist. But don\'t worry, there\'s plenty more to explore!",
+  description: "The page you&apos;re looking for doesn&apos;t exist. But don&apos;t worry, there&apos;s plenty more to explore!",
 }
 
 export default function NotFound() {
@@ -20,8 +20,8 @@ export default function NotFound() {
             <h1 className="text-4xl font-bold mb-6">404 - Page Not Found</h1>
             <div className="">
               <p>
-                Oops! It looks like you've ventured into uncharted territory. 
-                The page you're looking for doesn't exist.
+                Oops! It looks like you&apos;ve ventured into uncharted territory. 
+                The page you&apos;re looking for doesn&apos;t exist.
               </p>
               <p>
                 Why not check out some of my recent blog posts or head back to the &nbsp;
