@@ -11,6 +11,7 @@
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import RecentBlogPosts from '../components/RecentBlogPosts';
+import RecentMicroposts from '../components/RecentMicroposts';
 import { Metadata } from 'next'
 import Script from 'next/script';
 
@@ -86,6 +87,7 @@ export default function Home() {
             </article>
 
             <RecentBlogPosts limit={4} />
+            <RecentMicroposts />
           </main>
         </div>
       </div>

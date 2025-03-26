@@ -1,0 +1,27 @@
+# The Digital Ninja - Next.js Project Guidelines
+
+## Commands
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run lint` - Run ESLint
+- `npm test` - Run all Cypress tests
+- `npm run cypress:open` - Open Cypress test runner
+- `npx cypress run --spec cypress/e2e/specific_test.cy.ts` - Run single test
+
+## Code Style
+- **TypeScript**: Use strict typing with proper interfaces/types
+- **Imports**: Use path aliases (e.g., `@/components/*`)
+- **Formatting**: Follow Next.js/React conventions with consistent indentation
+- **Components**: 
+  - Functional components with TypeScript interfaces for props
+  - Use hooks for state management
+- **Error Handling**: Implement proper error boundaries and type checking
+- **Naming**:
+  - Components: PascalCase (e.g., `LoginButton.tsx`)
+  - Functions/variables: camelCase
+  - Files: lowercase with hyphens for multi-word
+
+## Architecture
+- Follow Next.js App Router conventions
+- Keep components modular and reusable
+- Use Tailwind CSS for styling
