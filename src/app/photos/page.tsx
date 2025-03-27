@@ -7,7 +7,7 @@ import { Metadata } from 'next';
 import Header from "../../components/Header";
 import Sidebar from "../../components/Sidebar";
 import AlbumGrid from "../../components/AlbumGrid";
-import { getAlbums } from "../../lib/cloudinary";
+import { getAlbums } from "../../lib/sanity";
 
 export const metadata: Metadata = {
   title: 'Photos - The Digital Ninja',

@@ -8,7 +8,7 @@ import { notFound } from 'next/navigation';
 import Header from "../../../components/Header";
 import Sidebar from "../../../components/Sidebar";
 import PhotoGrid from "../../../components/PhotoGrid";
-import { getAlbumPhotos, getAlbums } from "../../../lib/cloudinary";
+import { getAlbumPhotos, getAlbums } from "../../../lib/sanity";
 
 interface AlbumPageProps {
   params: {
@@ -17,17 +17,24 @@ interface AlbumPageProps {
 }
 
 export async function generateMetadata({ params }: AlbumPageProps): Promise<Metadata> {
-  const album = params.album;
-  const formattedName = album.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  const albumSlug = params.album;
+  const albums = await getAlbums();
+  const album = albums.find(a => a.slug.current === albumSlug);
+  
+  if (!album) {
+    return {
+      title: 'Album Not Found - The Digital Ninja',
+    };
+  }
 
   return {
-    title: `${formattedName} Photos - The Digital Ninja`,
-    description: `Browse ${formattedName} photos by Russell Perkins.`,
+    title: `${album.title} Photos - The Digital Ninja`,
+    description: album.description || `Browse ${album.title} photos by Russell Perkins.`,
     openGraph: {
-      title: `${formattedName} Photos - The Digital Ninja`,
-      description: `Browse ${formattedName} photos by Russell Perkins.`,
+      title: `${album.title} Photos - The Digital Ninja`,
+      description: album.description || `Browse ${album.title} photos by Russell Perkins.`,
       type: 'website',
-      url: `https://TheDigital.Ninja/photos/${album}`,
+      url: `https://TheDigital.Ninja/photos/${albumSlug}`,
       images: [
         {
           url: 'https://res.cloudinary.com/TheDigitalNinja/image/upload/logo-white-bg_uk6pkk.jpg',
@@ -43,35 +50,46 @@ export async function generateMetadata({ params }: AlbumPageProps): Promise<Meta
 export async function generateStaticParams() {
   const albums = await getAlbums();
   return albums.map((album) => ({
-    album: album.path,
+    album: album.slug.current,
   }));
 }
 
 export default async function AlbumPage({ params }: AlbumPageProps) {
-  const { album } = params;
-  // Fetch photos
-  let photos;
-  try {
-    photos = await getAlbumPhotos(album);
-    
-    if (photos.length === 0) {
-      notFound();
-    }
-  } catch (error) {
+  const { album: albumSlug } = params;
+  
+  // Fetch albums to get the current album name
+  const albums = await getAlbums();
+  const album = albums.find(a => a.slug.current === albumSlug);
+  
+  if (!album) {
     notFound();
   }
 
-  const albumName = album.split('-').map(word => 
-    word.charAt(0).toUpperCase() + word.slice(1)
-  ).join(' ');
+  // Fetch photos
+  const photos = await getAlbumPhotos(albumSlug);
+  
+  if (photos.length === 0) {
+    // Show empty album state instead of 404
+    return (
+      <div className="min-h-screen md:flex">
+        <Sidebar />
+        <div className="flex flex-col w-full md:pl-64">
+          <Header title={album.title} />
+          <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">          
+            <PhotoGrid photos={[]} albumName={album.title} />
+          </main>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen md:flex">
       <Sidebar />
       <div className="flex flex-col w-full md:pl-64">
-        <Header title={`${albumName}`} />
+        <Header title={album.title} />
         <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">          
-          <PhotoGrid photos={photos} albumName={albumName} />
+          <PhotoGrid photos={photos} albumName={album.title} />
         </main>
       </div>
     </div>

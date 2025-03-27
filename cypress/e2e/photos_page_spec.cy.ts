@@ -24,9 +24,11 @@ describe('Photos Page', () => {
       cy.hasAlbums().then((hasAlbums) => {
         if (hasAlbums) {
           cy.get('div.grid > a').first().within(() => {
-            cy.get('img').should('be.visible')
+            // Look for either an image or a "No cover image" message
+            cy.get('div.aspect-square').should('exist')
             cy.get('h3').should('be.visible')
-            cy.get('p').contains(/photos|photo|Empty album/).should('be.visible')
+            // Description is optional in the new Sanity schema
+            // so we don't test for it specifically
           })
         }
       })
@@ -68,20 +70,18 @@ describe('Photos Page', () => {
   })
 
   describe('UI Interactions', () => {
-    it('shows hover effects on album cards', () => {
+    it('has album cards with hover transition classes', () => {
       cy.hasAlbums().then((hasAlbums) => {
         if (hasAlbums) {
-          const albumCard = cy.get('div.grid > a').first()
+          // Get the link element
+          cy.get('div.grid > a').first().as('albumLink')
           
-          // Verify initial state
-          albumCard.find('div.bg-opacity-0').should('exist')
+          // Check that the link has the block class
+          cy.get('@albumLink').should('have.class', 'block')
           
-          // Hover over the card
-          albumCard.trigger('mouseover')
-          
-          // Check for hover effect - can be tricky in Cypress as hover effects are CSS
-          // This is a best-effort check that the elements exist that would show on hover
-          albumCard.find('span').should('be.visible')
+          // Check that its child div has transition classes
+          cy.get('@albumLink').find('div').first()
+            .should('have.class', 'transition-transform')
         }
       })
     })

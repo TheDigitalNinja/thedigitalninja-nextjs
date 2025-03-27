@@ -8,23 +8,22 @@
 import { useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { XMarkIcon, ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
+import { urlFor } from '../lib/sanity';
 
-interface CloudinaryImage {
-  id: string;
-  title: string;
-  public_id: string;
-  format: string;
-  secure_url: string;
-  width: number;
-  height: number;
+interface SanityPhotoExtended {
+  _id: string;
+  title?: string;
+  image: any;
+  imageUrl: string;
 }
 
 interface PhotoModalProps {
-  photo: CloudinaryImage;
+  photo: SanityPhotoExtended;
   isOpen: boolean;
   onClose: () => void;
   onNavigate: (direction: 'prev' | 'next') => void;
   albumName?: string;
+  nextPhotos?: string[];
 }
 
 const PhotoModal: React.FC<PhotoModalProps> = ({ 
@@ -32,7 +31,8 @@ const PhotoModal: React.FC<PhotoModalProps> = ({
   isOpen, 
   onClose, 
   onNavigate, 
-  albumName 
+  albumName,
+  nextPhotos = []
 }) => {
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
     if (!isOpen) return;
@@ -68,14 +68,23 @@ const PhotoModal: React.FC<PhotoModalProps> = ({
 
   if (!isOpen) return null;
 
+  // Use optimized size for the modal view while preserving aspect ratio
+  const largeImageUrl = urlFor(photo.image)
+    .width(1920)
+    .quality(90)
+    .auto('format')
+    .url();
+
   return (
-    <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center">
+    <div className="fixed inset-0 z-50 bg-black bg-opacity-90 overflow-hidden">
+      {/* Remove Head component to fix infinite re-rendering */}
+      
       <div className="relative w-full h-full flex flex-col">
         {/* Header */}
-        <div className="p-4 flex justify-between items-center text-white absolute top-0 left-0 right-0 z-10 bg-gradient-to-b from-black/80 to-transparent">
+        <div className="p-4 flex justify-between items-center text-white fixed top-0 left-0 right-0 z-10 bg-gradient-to-b from-black/80 to-transparent">
           <div className="text-lg font-medium">
             {albumName && <span className="mr-2">{albumName} /</span>}
-            <span>{photo.title}</span>
+            <span>{photo.title || 'Untitled'}</span>
           </div>
           <button
             onClick={onClose}
@@ -86,32 +95,50 @@ const PhotoModal: React.FC<PhotoModalProps> = ({
           </button>
         </div>
         
-        {/* Main image */}
-        <div className="flex-grow flex items-center justify-center p-4 sm:p-8 md:p-12">
-          <Image
-            src={photo.secure_url}
-            alt={photo.title}
-            width={1200}
-            height={800}
-            className="max-h-full max-w-full object-contain"
-          />
+        {/* Main image - centered with constraints */}
+        <div className="absolute inset-0 flex items-center justify-center p-4 sm:p-8 md:p-12 overflow-hidden" style={{ top: '64px', bottom: '24px' }}>
+          <div className="relative max-h-full max-w-full">
+            <Image
+              src={largeImageUrl}
+              alt={photo.title || 'Photo'}
+              width={1920}
+              height={1080}
+              className="max-h-[80vh] max-w-full object-contain"
+              priority
+              unoptimized
+            />
+          </div>
         </div>
         
-        {/* Navigation controls */}
-        <div className="absolute inset-y-0 left-0 flex items-center">
+        {/* Hidden preloader divs for next and previous images */}
+        <div className="hidden">
+          {nextPhotos.map((url, index) => (
+            <Image 
+              key={`preload-${index}`} 
+              src={url} 
+              alt="Preloaded" 
+              width={1}
+              height={1}
+              unoptimized
+            />
+          ))}
+        </div>
+        
+        {/* Navigation controls - fixed position to avoid overlap issues */}
+        <div className="fixed top-1/2 left-4 transform -translate-y-1/2 z-20">
           <button
             onClick={() => onNavigate('prev')}
-            className="bg-black/30 hover:bg-black/50 p-2 rounded-r-lg text-white ml-2"
+            className="bg-black/50 hover:bg-black/70 p-2 rounded-full text-white"
             aria-label="Previous photo"
           >
             <ArrowLeftIcon className="h-8 w-8" />
           </button>
         </div>
         
-        <div className="absolute inset-y-0 right-0 flex items-center">
+        <div className="fixed top-1/2 right-4 transform -translate-y-1/2 z-20">
           <button
             onClick={() => onNavigate('next')}
-            className="bg-black/30 hover:bg-black/50 p-2 rounded-l-lg text-white mr-2"
+            className="bg-black/50 hover:bg-black/70 p-2 rounded-full text-white"
             aria-label="Next photo"
           >
             <ArrowRightIcon className="h-8 w-8" />
