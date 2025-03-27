@@ -24,6 +24,7 @@ Welcome to TheDigital.Ninja! This is a personal website and blog for Russell Per
 - Tailwind CSS 3.4.1
 - Headless UI 2.1.1
 - Firebase Authentication
+- Sanity.io (for photo gallery management)
 - gray-matter 4.0.3 (for parsing Markdown front matter)
 - marked 13.0.1 (for rendering Markdown)
 
@@ -31,10 +32,11 @@ Welcome to TheDigital.Ninja! This is a personal website and blog for Russell Per
 
 1. Home page with recent blog posts
 2. Blog with individual post pages
-3. Responsive design with mobile-friendly navigation
-4. Authentication using Firebase (Google Sign-In)
-5. About page with my background
-6. Resume page
+3. Photo gallery with Sanity.io integration
+4. Responsive design with mobile-friendly navigation
+5. Authentication using Firebase (Google Sign-In)
+6. About page with my background
+7. Resume page
 
 ## Project Structure
 
@@ -45,6 +47,7 @@ Welcome to TheDigital.Ninja! This is a personal website and blog for Russell Per
 - `public/`: Static assets
 - `styles/`: Global CSS styles
 - `src/lib/`: Utility functions and hooks
+- `sanity/`: Sanity.io schema and configuration
 
 ## Getting Started
 
@@ -56,11 +59,16 @@ Welcome to TheDigital.Ninja! This is a personal website and blog for Russell Per
    ```Bash
    npm ci
    ```
-3. Run the development server:
+3. Configure environment variables:
+   - Copy `.env.local.example` to `.env.local`
+   - Add your Firebase and Sanity credentials
+
+4. Run the development server:
    ```Bash
    npm run dev
    ```
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
+6. Access Sanity Studio at [http://localhost:3000/studio](http://localhost:3000/studio)
 
 ## Scripts
 
