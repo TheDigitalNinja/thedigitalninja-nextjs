@@ -78,7 +78,7 @@ export default function PostPage({ params }: PostPageProps) {
     const highlightedCode = Prism.highlight(text, Prism.languages[language], language);
     return `<pre><code class="language-${language}">${highlightedCode}</code></pre>`;
   };
-  const contentHtml = marked(post.content, { renderer })
+  const contentHtml = marked(post.content, { renderer }) as string
 
   // Schema.org structured data
   const schemaData = {

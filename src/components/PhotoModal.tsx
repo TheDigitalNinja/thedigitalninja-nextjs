@@ -113,10 +113,13 @@ const PhotoModal: React.FC<PhotoModalProps> = ({
         {/* Hidden preloader divs for next and previous images */}
         <div className="hidden">
           {nextPhotos.map((url, index) => (
-            <img 
+            <Image 
               key={`preload-${index}`} 
               src={url} 
               alt="Preloaded" 
+              width={1}
+              height={1}
+              unoptimized
             />
           ))}
         </div>
