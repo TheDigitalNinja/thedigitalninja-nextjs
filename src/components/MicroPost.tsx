@@ -15,7 +15,7 @@ export default function MicroPost({ post }: MicroPostProps) {
   });
 
   // Parse the markdown content
-  const htmlContent = marked.parse(post.content);
+  const htmlContent = marked.parse(post.content) as string;
 
   return (
     <article className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">

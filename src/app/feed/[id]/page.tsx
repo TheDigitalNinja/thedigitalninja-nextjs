@@ -52,7 +52,7 @@ export async function generateStaticParams() {
 // Render the micropost page
 export default function MicropostPage({ params }: MicropostPageProps) {
   const micropost = getMicropostData(params.id);
-  const contentHtml = marked.parse(micropost.content);
+  const contentHtml = marked.parse(micropost.content) as string;
   
   // Format date
   const formattedDate = new Date(micropost.date).toLocaleDateString('en-US', {
