@@ -1,5 +1,5 @@
 describe('Photo Modal Component', () => {
-  let albumUrl;
+  let albumUrl: string | null;
 
   before(() => {
     // Find an album with photos to test the modal
@@ -79,10 +79,10 @@ describe('Photo Modal Component', () => {
 
     it('displays the album name if provided', () => {
       cy.hasPhotos().then((hasPhotos) => {
-        if (hasPhotos) {
+        if (hasPhotos && albumUrl) {
           // The album name should be displayed somewhere in the modal
           cy.get('div.fixed.z-50').should('contain.text', 
-            albumUrl.split('/').pop().split('-').map(word => 
+            albumUrl.split('/').pop()!.split('-').map(word => 
               word.charAt(0).toUpperCase() + word.slice(1)
             ).join(' ')
           )

@@ -3,6 +3,16 @@
 // Custom commands for The Digital Ninja website
 // ***********************************************
 
+declare namespace Cypress {
+  interface Chainable {
+    hasAlbums(): Chainable<boolean>
+    hasPhotos(): Chainable<boolean>
+    getFirstAlbumUrl(): Chainable<string | null>
+    openPhotoModal(): Chainable<void>
+    closePhotoModal(): Chainable<void>
+  }
+}
+
 // Command to check if albums exist on the photos page
 Cypress.Commands.add('hasAlbums', () => {
   return cy.get('body').then(($body) => {
@@ -23,10 +33,10 @@ Cypress.Commands.add('hasPhotos', () => {
 Cypress.Commands.add('getFirstAlbumUrl', () => {
   return cy.hasAlbums().then((hasAlbums) => {
     if (hasAlbums) {
-      return cy.get('div.grid > a').first().invoke('attr', 'href')
+      return cy.get('div.grid > a').first().invoke('attr', 'href') as Cypress.Chainable<string>
     }
-    return null
-  })
+    return cy.wrap(null)
+  }) as unknown as Cypress.Chainable<string | null>
 })
 
 // Command to open a photo modal
@@ -47,15 +57,3 @@ Cypress.Commands.add('closePhotoModal', () => {
   cy.get('button[aria-label="Close modal"]').click()
   cy.get('div.fixed.z-50').should('not.exist')
 })
-
-declare global {
-  namespace Cypress {
-    interface Chainable {
-      hasAlbums(): Chainable<boolean>
-      hasPhotos(): Chainable<boolean>
-      getFirstAlbumUrl(): Chainable<string | null>
-      openPhotoModal(): Chainable<void>
-      closePhotoModal(): Chainable<void>
-    }
-  }
-}
