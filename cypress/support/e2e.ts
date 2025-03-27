@@ -16,5 +16,8 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 
+// Import type definitions for custom commands
+import './photoCommands.d.ts'
+
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

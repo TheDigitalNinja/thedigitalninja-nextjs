@@ -39,7 +39,7 @@ const SidebarMobile: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
               <nav className="mb-8">
                 <ul className="space-y-2">
                   
-                  {['Home', 'Blog', 'Feed', 'About'].map((item) => (
+                  {['Home', 'Blog', 'Feed', 'Photos', 'About'].map((item) => (
                     <li key={item}>
                       <Link 
                         href={item === 'Home' ? '/' : `/${item.toLowerCase()}`}

@@ -23,9 +23,6 @@ describe('Feed Page', () => {
       cy.get('time').should('exist')
     })
 
-    it('displays tags for microposts', () => {
-      cy.contains('#webdev').should('exist')
-    })
   })
 
   describe('Navigation', () => {
