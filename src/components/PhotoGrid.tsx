@@ -57,21 +57,27 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ photos, albumName }) => {
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {photos.map((photo) => (
-          <div 
-            key={photo.id} 
-            className="relative aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800 rounded-lg cursor-pointer transition-transform duration-300 hover:shadow-lg hover:-translate-y-1"
-            onClick={() => openModal(photo)}
-          >
-            <Image
-              src={photo.secure_url}
-              alt={photo.title}
-              width={400}
-              height={400}
-              className="object-cover w-full h-full"
-            />
+        {photos.length === 0 ? (
+          <div className="col-span-full py-12 text-center">
+            <p className="text-gray-500 dark:text-gray-400">No photos found in this album. Upload some photos to your Cloudinary account.</p>
           </div>
-        ))}
+        ) : (
+          photos.map((photo) => (
+            <div 
+              key={photo.id} 
+              className="relative aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800 rounded-lg cursor-pointer transition-transform duration-300 hover:shadow-lg hover:-translate-y-1"
+              onClick={() => openModal(photo)}
+            >
+              <Image
+                src={photo.secure_url}
+                alt={photo.title}
+                width={400}
+                height={400}
+                className="object-cover w-full h-full"
+              />
+            </div>
+          ))
+        )}
       </div>
 
       {selectedPhoto && (

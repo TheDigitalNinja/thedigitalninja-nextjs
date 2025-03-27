@@ -18,6 +18,7 @@
     "@headlessui/react": "^2.1.1",
     "@heroicons/react": "^2.1.4",
     "@tailwindcss/typography": "^0.5.13",
+    "cloudinary": "^2.6.0",
     "firebase": "^10.12.3",
     "gray-matter": "^4.0.3",
     "marked": "^13.0.1",

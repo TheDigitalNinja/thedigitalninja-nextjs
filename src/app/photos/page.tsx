@@ -39,9 +39,6 @@ export default async function PhotosPage() {
         <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="mb-8">
             <h2 className="text-3xl font-bold mb-4">Photo Albums</h2>
-            <p className="text-gray-600 dark:text-gray-300 mb-6">
-              Browse through my collection of photos organized by album. Click on any album to view its contents.
-            </p>
           </div>
           
           <AlbumGrid albums={albums} />

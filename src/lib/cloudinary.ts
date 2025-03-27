@@ -3,7 +3,17 @@
  * @fileoverview Utility functions for Cloudinary integration
  */
 
-interface CloudinaryImage {
+import { v2 as cloudinary } from 'cloudinary';
+
+// Configure Cloudinary
+cloudinary.config({
+  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true
+});
+
+export interface CloudinaryImage {
   id: string;
   title: string;
   public_id: string;
@@ -19,7 +29,7 @@ interface CloudinaryImage {
   secure_url: string;
 }
 
-interface Album {
+export interface Album {
   name: string;
   path: string;
   coverImage: string;
@@ -32,30 +42,55 @@ interface Album {
  */
 export async function getAlbums(): Promise<Album[]> {
   try {
-    // This is a placeholder implementation
-    // In a real implementation, you would make an API call to Cloudinary to get folders
-    // For now, we'll return mock data
+    // Get all root folders under 'Website Albums'
+    const { folders } = await cloudinary.api.root_folders();
+    const photosFolder = folders.find((f: any) => f.name === 'Website Albums');
     
-    return [
-      {
-        name: 'Nature',
-        path: 'nature',
-        coverImage: 'https://res.cloudinary.com/TheDigitalNinja/image/upload/v1720386353/profile_qxup8e.jpg',
-        imageCount: 12
-      },
-      {
-        name: 'Travel',
-        path: 'travel',
-        coverImage: 'https://res.cloudinary.com/TheDigitalNinja/image/upload/v1720386353/profile_qxup8e.jpg',
-        imageCount: 24
-      },
-      {
-        name: 'Family',
-        path: 'family',
-        coverImage: 'https://res.cloudinary.com/TheDigitalNinja/image/upload/v1720386353/profile_qxup8e.jpg',
-        imageCount: 36
-      }
-    ];
+    if (!photosFolder) {
+      console.log('Website Albums folder not found, creating one...');
+      await cloudinary.api.create_folder('Website Albums');
+      return [];
+    }
+    
+    // Get all subfolders under 'Website Albums'
+    const { folders: albumFolders } = await cloudinary.api.sub_folders('Website Albums');
+    
+    if (!albumFolders || albumFolders.length === 0) {
+      return [];
+    }
+    
+    // Get the image count and cover image for each album
+    const albumsWithMetadata = await Promise.all(
+      albumFolders.map(async (folder: any) => {
+        const path = folder.name.toLowerCase().replace(/\s+/g, '-');
+        
+        // Get the count and cover image in a single query
+        const { resources, total_count } = await cloudinary.search
+          .expression(`folder:"Website Albums/${folder.name}"`)
+          .sort_by('created_at', 'desc')
+          .max_results(1)
+          .execute();
+        
+        // Get cover image from results
+        let coverImage = '';
+        if (resources && resources.length > 0) {
+          coverImage = resources[0].secure_url;
+        }
+
+        // Default cover image if none found
+        if (!coverImage) { coverImage = `https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload/v1720386353/profile_qxup8e.jpg`; }
+
+        return {
+          name: folder.name,
+          path,
+          coverImage,
+          imageCount: total_count
+        };
+      })
+    );
+
+    // Sort albums alphabetically by name
+    return albumsWithMetadata.sort((a, b) => a.name.localeCompare(b.name));
   } catch (error) {
     console.error('Error fetching albums from Cloudinary:', error);
     return [];
@@ -69,24 +104,41 @@ export async function getAlbums(): Promise<Album[]> {
  */
 export async function getAlbumPhotos(album: string): Promise<CloudinaryImage[]> {
   try {
-    // This is a placeholder implementation
-    // In a real implementation, you would make an API call to Cloudinary to get images in a folder
-    // For now, we'll return mock data
+    // Get all albums first
+    const albums = await getAlbums();
     
-    return Array(12).fill(null).map((_, index) => ({
-      id: `photo-${index}`,
-      title: `Photo ${index + 1}`,
-      public_id: `photos/${album}/photo-${index}`,
-      format: 'jpg',
-      version: '1234567890',
-      resource_type: 'image',
-      type: 'upload',
-      created_at: new Date().toISOString(),
-      bytes: 1024 * 1024,
-      width: 1920,
-      height: 1080,
-      url: `https://res.cloudinary.com/TheDigitalNinja/image/upload/v1720386353/profile_qxup8e.jpg`,
-      secure_url: `https://res.cloudinary.com/TheDigitalNinja/image/upload/v1720386353/profile_qxup8e.jpg`
+    // Match case-insensitively since URLs are lowercase
+    const albumObj = albums.find(a => a.path.toLowerCase() === album.toLowerCase());
+    
+    if (!albumObj) {
+      throw new Error(`Album not found: ${album}`);
+    }
+    
+    // Get the actual folder name from the album name
+    const folderPath = `Website Albums/${albumObj.name}`;
+    
+    // Get images from the folder using quoted folder path which seems to work best with spaces
+    const { resources } = await cloudinary.search
+      .expression(`folder:"${folderPath}"`)
+      .sort_by('created_at', 'desc')
+      .max_results(100)
+      .execute();
+
+    // Transform resources to CloudinaryImage format
+    return resources.map((resource: any) => ({
+      id: resource.asset_id,
+      title: resource.filename || `Photo ${resource.asset_id}`,
+      public_id: resource.public_id,
+      format: resource.format,
+      version: resource.version,
+      resource_type: resource.resource_type,
+      type: resource.type,
+      created_at: resource.created_at,
+      bytes: resource.bytes,
+      width: resource.width,
+      height: resource.height,
+      url: resource.url,
+      secure_url: resource.secure_url
     }));
   } catch (error) {
     console.error(`Error fetching photos for album ${album}:`, error);
@@ -96,29 +148,53 @@ export async function getAlbumPhotos(album: string): Promise<CloudinaryImage[]> 
 
 /**
  * Get a single photo by ID from Cloudinary
- * @param {string} id - The photo ID
+ * @param {string} id - The photo ID or public_id
  * @returns {Promise<CloudinaryImage|null>} Image object or null if not found
  */
 export async function getPhoto(id: string): Promise<CloudinaryImage | null> {
   try {
-    // This is a placeholder implementation
-    // In a real implementation, you would make an API call to Cloudinary to get a specific image
-    // For now, we'll return mock data
+    let resources = [];
+    
+    // First try to find by asset_id
+    const assetResult = await cloudinary.search
+      .expression(`asset_id:${id}`)
+      .max_results(1)
+      .execute();
+      
+    if (assetResult.resources.length > 0) {
+      resources = assetResult.resources;
+    } else {
+      // If not found by asset_id, try to find by public_id
+      const publicIdResult = await cloudinary.search
+        .expression(`public_id:${id}`)
+        .max_results(1)
+        .execute();
+        
+      if (publicIdResult.resources.length > 0) {
+        resources = publicIdResult.resources;
+      }
+    }
+
+    if (resources.length === 0) {
+      return null;
+    }
+
+    const resource = resources[0];
     
     return {
-      id,
-      title: `Photo ${id}`,
-      public_id: `photos/photo-${id}`,
-      format: 'jpg',
-      version: '1234567890',
-      resource_type: 'image',
-      type: 'upload',
-      created_at: new Date().toISOString(),
-      bytes: 1024 * 1024,
-      width: 1920,
-      height: 1080,
-      url: `https://res.cloudinary.com/TheDigitalNinja/image/upload/v1720386353/profile_qxup8e.jpg`,
-      secure_url: `https://res.cloudinary.com/TheDigitalNinja/image/upload/v1720386353/profile_qxup8e.jpg`
+      id: resource.asset_id,
+      title: resource.filename || `Photo ${resource.asset_id}`,
+      public_id: resource.public_id,
+      format: resource.format,
+      version: resource.version,
+      resource_type: resource.resource_type,
+      type: resource.type,
+      created_at: resource.created_at,
+      bytes: resource.bytes,
+      width: resource.width,
+      height: resource.height,
+      url: resource.url,
+      secure_url: resource.secure_url
     };
   } catch (error) {
     console.error(`Error fetching photo ${id}:`, error);

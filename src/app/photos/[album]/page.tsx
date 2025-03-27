@@ -8,7 +8,7 @@ import { notFound } from 'next/navigation';
 import Header from "../../../components/Header";
 import Sidebar from "../../../components/Sidebar";
 import PhotoGrid from "../../../components/PhotoGrid";
-import { getAlbumPhotos } from "../../../lib/cloudinary";
+import { getAlbumPhotos, getAlbums } from "../../../lib/cloudinary";
 
 interface AlbumPageProps {
   params: {
@@ -40,11 +40,24 @@ export async function generateMetadata({ params }: AlbumPageProps): Promise<Meta
   };
 }
 
+export async function generateStaticParams() {
+  const albums = await getAlbums();
+  return albums.map((album) => ({
+    album: album.path,
+  }));
+}
+
 export default async function AlbumPage({ params }: AlbumPageProps) {
   const { album } = params;
-  const photos = await getAlbumPhotos(album);
-  
-  if (photos.length === 0) {
+  // Fetch photos
+  let photos;
+  try {
+    photos = await getAlbumPhotos(album);
+    
+    if (photos.length === 0) {
+      notFound();
+    }
+  } catch (error) {
     notFound();
   }
 
@@ -56,15 +69,8 @@ export default async function AlbumPage({ params }: AlbumPageProps) {
     <div className="min-h-screen md:flex">
       <Sidebar />
       <div className="flex flex-col w-full md:pl-64">
-        <Header title={`${albumName} Photos`} />
-        <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold mb-4">{albumName} Album</h2>
-            <p className="text-gray-600 dark:text-gray-300 mb-6">
-              Browse through my collection of {albumName.toLowerCase()} photos. Click on any photo to view it in full size.
-            </p>
-          </div>
-          
+        <Header title={`${albumName}`} />
+        <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">          
           <PhotoGrid photos={photos} albumName={albumName} />
         </main>
       </div>
