@@ -1,4 +1,4 @@
-import { getSortedMicropostsData } from '@/lib/microposts';
+import { getSortedMicropostsData } from '@/lib/sanity-microposts';
 import MicroPost from '@/components/MicroPost';
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
@@ -8,8 +8,11 @@ export const metadata = {
   description: 'Short thoughts and updates from The Digital Ninja',
 };
 
-export default function FeedPage() {
-  const microposts = getSortedMicropostsData();
+// Mark page as dynamic for data fetching - always render the page on the server
+export const dynamic = 'force-dynamic';
+
+export default async function FeedPage() {
+  const microposts = await getSortedMicropostsData();
   
   return (
     <div className="min-h-screen md:flex">
@@ -25,9 +28,11 @@ export default function FeedPage() {
               ))}
             </div>
           ) : (
-            <p className="text-lg text-gray-600 dark:text-gray-400">
-              No microposts yet. Check back soon!
-            </p>
+            <div>
+              <p className="text-lg text-gray-600 dark:text-gray-400">
+                No microposts yet. Check back soon!
+              </p>
+            </div>
           )}
         </main>
       </div>
