@@ -21,18 +21,10 @@ export const structure = (S: StructureBuilder) =>
             ])
         ),
       
-      // Social Media Section
+      // Microposts Section
       S.listItem()
-        .title('Social Media')
-        .child(
-          S.list()
-            .title('Social Media')
-            .items([
-              S.listItem()
-                .title('Microposts')
-                .child(S.documentTypeList('micropost')),
-            ])
-        ),
+        .title('Microposts')
+        .child(S.documentTypeList('micropost')),
       
       // Show all document types
       ...S.documentTypeListItems().filter(
