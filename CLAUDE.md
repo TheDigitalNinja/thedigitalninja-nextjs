@@ -15,6 +15,15 @@
 - `npm run cypress:open` - Open Cypress test runner
 - `npx cypress run --spec cypress/e2e/specific_test.cy.ts` - Run single test
 
+## Development Workflow
+1. Complete feature implementation
+2. Test manually to verify functionality 
+3. Run `npm run build` to ensure it builds successfully
+4. Run `npm test` to execute all Cypress tests
+5. Stage changes with `git add`
+6. Commit changes with descriptive message
+7. Never push directly - wait for manual review
+
 ## Code Style
 - **TypeScript**: Use strict typing with proper interfaces/types
 - **Imports**: Use path aliases (e.g., `@/components/*`)
