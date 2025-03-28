@@ -1,0 +1,2 @@
+// Open Graph Type
+export type OpenGraphType = 'article' | 'website' | 'book' | 'profile' | 'music.song' | 'music.album' | 'music.playlist' | 'music.radio_station' | 'video.movie' | 'video.episode' | 'video.tv_show' | 'video.other'; 

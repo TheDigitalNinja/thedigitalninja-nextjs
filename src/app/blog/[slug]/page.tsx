@@ -10,7 +10,7 @@
  */
 
 import { getPostData, getSortedPostsData } from '../../../lib/posts'
-import { OpenGraphType } from '../../../lib/openGraphType';
+import { OpenGraphType } from '../../../types/openGraphType';
 import { marked } from 'marked'
 import { Metadata } from 'next'
 import Head from 'next/head';
