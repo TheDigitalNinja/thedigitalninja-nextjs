@@ -1,13 +1,15 @@
-import { getMicropostData, getAllMicropostIds } from '@/lib/microposts';
-import { marked } from 'marked';
+import { getMicropostBySlug, getAllMicropostSlugs } from '@/lib/sanity-microposts';
 import { Metadata } from 'next';
-import Head from 'next/head';
 import Script from 'next/script';
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import Image from 'next/image';
-import { FiCalendar } from 'react-icons/fi';
+import { FiCalendar, FiMapPin } from 'react-icons/fi';
 import Link from 'next/link';
+import { notFound } from "next/navigation";
+
+// Mark page as dynamic for data fetching - always render the page on the server
+export const dynamic = 'force-dynamic';
 
 interface MicropostPageProps {
   params: {
@@ -17,7 +19,14 @@ interface MicropostPageProps {
 
 // Generate metadata for the micropost page
 export async function generateMetadata({ params }: MicropostPageProps): Promise<Metadata> {
-  const micropost = getMicropostData(params.id);
+  const micropost = await getMicropostBySlug(params.id);
+  
+  if (!micropost) {
+    return {
+      title: 'Post Not Found | The Digital Ninja',
+    };
+  }
+  
   // Get first line as title or use a default
   const title = micropost.content.split('\n')[0].replace(/#/g, '').trim() || 'Micropost';
   
@@ -28,31 +37,34 @@ export async function generateMetadata({ params }: MicropostPageProps): Promise<
       title: title,
       description: micropost.content.substring(0, 160),
       type: 'article',
-      url: `https://TheDigital.Ninja/feed/${micropost.id}`,
-      images: micropost.imageUrl ? [
+      url: `https://TheDigital.Ninja/feed/${micropost.slug}`,
+      images: micropost.images && micropost.images.length > 0 ? [
         {
-          url: micropost.imageUrl,
+          url: micropost.images[0],
           width: 1200,
           height: 630,
           alt: title,
         },
       ] : undefined,
     },
-  }
+  };
 }
 
 // Generate static paths for the micropost page
 export async function generateStaticParams() {
-  const microposts = getAllMicropostIds();
+  const microposts = await getAllMicropostSlugs();
   return microposts.map((micropost) => ({
     id: micropost.id,
-  }))
+  }));
 }
 
 // Render the micropost page
-export default function MicropostPage({ params }: MicropostPageProps) {
-  const micropost = getMicropostData(params.id);
-  const contentHtml = marked.parse(micropost.content) as string;
+export default async function MicropostPage({ params }: MicropostPageProps) {
+  const micropost = await getMicropostBySlug(params.id);
+  
+  if (!micropost) {
+    notFound();
+  }
   
   // Format date
   const formattedDate = new Date(micropost.date).toLocaleDateString('en-US', {
@@ -72,10 +84,10 @@ export default function MicropostPage({ params }: MicropostPageProps) {
       "name": "Russell Perkins",
       "url": "https://TheDigital.Ninja/about",
     },
-    "url": `https://TheDigital.Ninja/feed/${micropost.id}`,
+    "url": `https://TheDigital.Ninja/feed/${micropost.slug}`,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://TheDigital.Ninja/feed/${micropost.id}`
+      "@id": `https://TheDigital.Ninja/feed/${micropost.slug}`
     },
     "publisher": {
       "@type": "Organization",
@@ -85,15 +97,17 @@ export default function MicropostPage({ params }: MicropostPageProps) {
         "url": "https://res.cloudinary.com/TheDigitalNinja/image/upload/logo-white-bg_uk6pkk"
       }
     },
-    "articleBody": micropost.content
-  }
+    "articleBody": micropost.content,
+    ...(micropost.location?.name && {
+      "contentLocation": {
+        "@type": "Place",
+        "name": micropost.location.name
+      }
+    })
+  };
 
   return (
     <>
-      <Head>
-        <link rel="canonical" href={`https://TheDigital.Ninja/feed/${micropost.id}`} />
-      </Head>
-  
       <Script id="schema-org-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
   
       <div className="min-h-screen md:flex">
@@ -102,27 +116,41 @@ export default function MicropostPage({ params }: MicropostPageProps) {
           <Header title="The Digital Ninja" useH1={true}/>
           <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <article className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-              <div className="mb-6">                
+              <div className="mb-6 flex flex-wrap items-center gap-4">                
                 <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
                   <FiCalendar className="mr-1" />
                   <time dateTime={micropost.date}>{formattedDate}</time>
                 </div>
+                
+                {micropost.location?.name && (
+                  <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                    <FiMapPin className="mr-1" />
+                    <span>{micropost.location.name}</span>
+                  </div>
+                )}
               </div>
               
-              <div 
-                className="prose dark:prose-invert lg:prose-xl max-w-none"
-                dangerouslySetInnerHTML={{ __html: contentHtml }} 
-              />
+              <div className="text-lg whitespace-pre-wrap">
+                {micropost.content}
+              </div>
               
-              {micropost.imageUrl && (
-                <div className="mt-6">
-                  <Image 
-                    src={micropost.imageUrl}
-                    alt="Post image"
-                    width={800}
-                    height={500}
-                    className="rounded-md w-full h-auto"
-                  />
+              {/* Display multiple images if available */}
+              {micropost.images && micropost.images.length > 0 && (
+                <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  {micropost.images.map((imageUrl, index) => (
+                    <div key={index} className={micropost.images.length === 1 ? 'col-span-2' : ''}>
+                      <Image 
+                        src={imageUrl}
+                        alt={`Post image ${index + 1}`}
+                        width={1200}
+                        height={750}
+                        quality={90}
+                        loading={index === 0 ? "eager" : "lazy"}
+                        priority={index === 0}
+                        className="rounded-md w-full h-auto object-cover"
+                      />
+                    </div>
+                  ))}
                 </div>
               )}
               
@@ -149,5 +177,5 @@ export default function MicropostPage({ params }: MicropostPageProps) {
         </div>
       </div>
     </>
-  )
+  );
 }

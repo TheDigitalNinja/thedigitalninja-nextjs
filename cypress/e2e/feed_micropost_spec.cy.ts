@@ -24,7 +24,7 @@ describe('Individual Micropost Page', () => {
   describe('Content', () => {
     it('displays the post content', () => {
       cy.get('article').should('exist')
-      cy.get('article .prose').should('exist')
+      cy.get('article .text-lg').should('exist')
     })
 
     it('displays the date', () => {

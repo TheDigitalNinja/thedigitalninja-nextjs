@@ -3,6 +3,7 @@ import { deskTool } from 'sanity/desk'
 import { visionTool } from '@sanity/vision'
 import { media } from 'sanity-plugin-media'
 import { schema } from './schema'
+import { structure } from './desk-structure'
 
 export default defineConfig({
   name: 'default',
@@ -11,7 +12,11 @@ export default defineConfig({
   projectId: 'nx08bxy1', // Replace with your actual Sanity project ID
   dataset: 'production',
   
-  plugins: [deskTool(), visionTool(), media()],
+  plugins: [
+    deskTool({ structure }), 
+    visionTool(), 
+    media()
+  ],
   
   schema,
   
