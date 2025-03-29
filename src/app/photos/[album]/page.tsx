@@ -75,7 +75,12 @@ export default async function AlbumPage({ params }: AlbumPageProps) {
         <Sidebar />
         <div className="flex flex-col w-full md:pl-64">
           <Header title={album.title} />
-          <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">          
+          <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">  
+            {album.description && (
+              <div className="mb-6">
+                <p className="text-gray-700 dark:text-gray-300">{album.description}</p>
+              </div>
+            )}        
             <PhotoGrid photos={[]} albumName={album.title} />
           </main>
         </div>
@@ -88,7 +93,12 @@ export default async function AlbumPage({ params }: AlbumPageProps) {
       <Sidebar />
       <div className="flex flex-col w-full md:pl-64">
         <Header title={album.title} />
-        <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">          
+        <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">  
+          {album.description && (
+            <div className="mb-6">
+              <p className="text-gray-700 dark:text-gray-300">{album.description}</p>
+            </div>
+          )}        
           <PhotoGrid photos={photos} albumName={album.title} />
         </main>
       </div>

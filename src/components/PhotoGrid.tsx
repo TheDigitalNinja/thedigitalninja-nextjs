@@ -77,16 +77,16 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ photos, albumName }) => {
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full px-4 sm:px-0">
         {processedPhotos.length === 0 ? (
           <div className="col-span-full py-12 text-center">
             <p className="text-gray-500 dark:text-gray-400">No photos found in this album. Add some photos in your Sanity studio.</p>
           </div>
         ) : (
-          processedPhotos.map((photo) => (
+          processedPhotos.map((photo: SanityPhotoExtended) => (
             <div 
               key={photo._id} 
-              className="relative aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800 rounded-lg cursor-pointer transition-transform duration-300 hover:shadow-lg hover:-translate-y-1"
+              className="relative aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800 rounded-lg cursor-pointer transition-transform duration-300 hover:shadow-lg hover:-translate-y-1 w-full"
               onClick={() => openModal(photo)}
             >
               <Image
