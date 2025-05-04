@@ -3,13 +3,13 @@
 ## Project Overview
 - **Name**: thedigitalninja-nextjs
 - **Purpose**: Personal website and blog for TheDigital.Ninja ([https://TheDigital.Ninja](https://TheDigital.Ninja))
-- **Framework**: Next.js 14.2.4 with App Router
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS 3.4.1
-- **UI Components**: Headless UI 2.1.1
+- **Framework**: Next.js 15.3.1 with App Router
+- **Language**: TypeScript 5.5.2
+- **Styling**: Tailwind CSS 3.4.4
+- **UI Components**: Headless UI 2.2.2
 - **Authentication**: Firebase Authentication (Google Sign-In) - See `src/lib/firebase.ts` and `src/hooks/useAuth.ts`
 - **CMS (Photos)**: Sanity.io - See `sanity/` directory and `src/lib/sanity.ts`
-- **Blog Content**: Markdown files in `posts/` parsed with `gray-matter` and `marked`
+- **Blog Content**: Markdown files in `posts/` parsed with `gray-matter` (4.0.3) and `marked` (13.0.1)
 - **Microblog Content**: Sanity.io - See `src/lib/sanity-microposts.ts`
 - **Testing**: Cypress for E2E tests - See `cypress/` directory and `cypress.config.ts`
 

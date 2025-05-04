@@ -1,4 +1,4 @@
-import { getMicropostBySlug, getAllMicropostSlugs } from '@/lib/sanity-microposts';
+import { getMicropostBySlug, getAllMicropostSlugs } from '@/lib/sanity-microposts'; 
 import { Metadata } from 'next';
 import Script from 'next/script';
 import Header from "@/components/Header";
@@ -7,19 +7,19 @@ import Image from 'next/image';
 import { FiCalendar, FiMapPin } from 'react-icons/fi';
 import Link from 'next/link';
 import { notFound } from "next/navigation";
+import { use } from 'react';
 
 // Mark page as dynamic for data fetching - always render the page on the server
 export const dynamic = 'force-dynamic';
 
-interface MicropostPageProps {
-  params: {
-    id: string
-  }
-}
-
 // Generate metadata for the micropost page
-export async function generateMetadata({ params }: MicropostPageProps): Promise<Metadata> {
-  const micropost = await getMicropostBySlug(params.id);
+export async function generateMetadata({ 
+  params 
+}: { 
+  params: Promise<{ id: string }>; 
+}): Promise<Metadata> {
+  const resolvedParams = await params; 
+  const micropost = await getMicropostBySlug(resolvedParams.id); 
   
   if (!micropost) {
     return {
@@ -51,16 +51,21 @@ export async function generateMetadata({ params }: MicropostPageProps): Promise<
 }
 
 // Generate static paths for the micropost page
-export async function generateStaticParams() {
-  const microposts = await getAllMicropostSlugs();
-  return microposts.map((micropost) => ({
-    id: micropost.id,
+export async function generateStaticParams(): Promise<{ id: string }[]> {
+  const ids = await getAllMicropostSlugs(); // Correct function name
+  return ids.map((item) => ({
+    id: item.id,
   }));
 }
 
 // Render the micropost page
-export default async function MicropostPage({ params }: MicropostPageProps) {
-  const micropost = await getMicropostBySlug(params.id);
+export default function MicropostPage({ 
+  params 
+}: { 
+  params: Promise<{ id: string }>;
+}): JSX.Element {
+  const resolvedParams = use(params); 
+  const micropost = use(getMicropostBySlug(resolvedParams.id)); 
   
   if (!micropost) {
     notFound();

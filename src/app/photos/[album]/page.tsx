@@ -9,17 +9,16 @@ import Header from "../../../components/Header";
 import Sidebar from "../../../components/Sidebar";
 import PhotoGrid from "../../../components/PhotoGrid";
 import { getAlbumPhotos, getAlbums } from "../../../lib/sanity";
+import { use } from 'react'; 
 
-interface AlbumPageProps {
-  params: {
-    album: string;
-  };
-}
-
-export async function generateMetadata({ params }: AlbumPageProps): Promise<Metadata> {
-  const albumSlug = params.album;
+export async function generateMetadata({ 
+  params 
+}: { 
+  params: Promise<{ album: string }>; 
+}): Promise<Metadata> {
+  const resolvedParams = await params; 
   const albums = await getAlbums();
-  const album = albums.find(a => a.slug.current === albumSlug);
+  const album = albums.find(a => a.slug.current === resolvedParams.album);
   
   if (!album) {
     return {
@@ -34,7 +33,7 @@ export async function generateMetadata({ params }: AlbumPageProps): Promise<Meta
       title: `${album.title} Photos - The Digital Ninja`,
       description: album.description || `Browse ${album.title} photos by Russell Perkins.`,
       type: 'website',
-      url: `https://TheDigital.Ninja/photos/${albumSlug}`,
+      url: `https://TheDigital.Ninja/photos/${resolvedParams.album}`,
       images: [
         {
           url: 'https://res.cloudinary.com/TheDigitalNinja/image/upload/logo-white-bg_uk6pkk.jpg',
@@ -47,26 +46,27 @@ export async function generateMetadata({ params }: AlbumPageProps): Promise<Meta
   };
 }
 
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<{ album: string }[]> {
   const albums = await getAlbums();
   return albums.map((album) => ({
     album: album.slug.current,
   }));
 }
 
-export default async function AlbumPage({ params }: AlbumPageProps) {
-  const { album: albumSlug } = params;
-  
-  // Fetch albums to get the current album name
-  const albums = await getAlbums();
-  const album = albums.find(a => a.slug.current === albumSlug);
+export default function AlbumPage({ 
+  params 
+}: { 
+  params: Promise<{ album: string }>; 
+}): JSX.Element {
+  const resolvedParams = use(params); 
+  const albums = use(getAlbums()); // Use React.use() for async data fetching
+  const album = albums.find(a => a.slug.current === resolvedParams.album);
   
   if (!album) {
     notFound();
   }
 
-  // Fetch photos
-  const photos = await getAlbumPhotos(albumSlug);
+  const photos = use(getAlbumPhotos(resolvedParams.album)); // Use React.use() for async data fetching
   
   if (photos.length === 0) {
     // Show empty album state instead of 404
