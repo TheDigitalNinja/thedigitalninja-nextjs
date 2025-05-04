@@ -42,7 +42,7 @@
     "axios": "^1.9.0",
     "commander": "^12.1.0",
     "cypress": "^13.13.0",
-    "eslint": "^8.57.0",
+    "eslint": "^9.0.0",
     "eslint-config-next": "^15.3.1",
     "postcss": "^8",
     "start-server-and-test": "^2.0.4",
