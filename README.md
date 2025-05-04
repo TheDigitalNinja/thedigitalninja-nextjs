@@ -18,7 +18,7 @@ Welcome to TheDigital.Ninja! This is a personal website and blog for Russell Per
 
 ## Key Technologies
 
-- Next.js 14.2.4 with App Router
+- Next.js 14.2.28 with App Router
 - TypeScript
 - React 18
 - Tailwind CSS 3.4.1

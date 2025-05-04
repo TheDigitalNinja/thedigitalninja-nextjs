@@ -3,7 +3,7 @@
 ## Project Overview
 - **Name**: thedigitalninja-nextjs
 - **Purpose**: Personal website and blog for TheDigital.Ninja ([https://TheDigital.Ninja](https://TheDigital.Ninja))
-- **Framework**: Next.js 14.2.4 with App Router
+- **Framework**: Next.js 14.2.28 with App Router
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS 3.4.1
 - **UI Components**: Headless UI 2.1.1
