@@ -9,16 +9,17 @@
  * @returns {JSX.Element} The rendered blog post page
  */
 
-import { getPostData, getSortedPostsData } from '../../../lib/posts'
-import { OpenGraphType } from '../../../types/openGraphType';
+import { getPostData, getSortedPostsData } from '@/lib/posts'
+import { OpenGraphType } from '@/types/openGraphType';
 import { marked } from 'marked'
 import { Metadata } from 'next'
 import Head from 'next/head';
 import Script from 'next/script';
-import Header from "../../../components/Header";
-import Sidebar from "../../../components/Sidebar";
-import FollowMeWidget from "../../../components/FollowMeWidget";
+import Header from "@/components/Header";
+import Sidebar from "@/components/Sidebar";
+import FollowMeWidget from "@/components/FollowMeWidget";
 import { FiClock, FiCalendar } from 'react-icons/fi'
+import { use } from 'react'; 
 
 // Syntax Highlighting by prismjs
 import Prism from 'prismjs';
@@ -28,15 +29,14 @@ import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-jsx';
 
-interface PostPageProps {
-  params: {
-    slug: string
-  }
-}
-
 // Generate metadata for the post page
-export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {
-  const post = getPostData(params.slug)
+export async function generateMetadata({ 
+  params
+}: { 
+  params: Promise<{ slug: string }>; 
+}): Promise<Metadata> {
+  const resolvedParams = await params; 
+  const post = getPostData(resolvedParams.slug)
   const ogType: OpenGraphType = ['article', 'website', 'book', 'profile', 'music.song', 'music.album', 'music.playlist', 'music.radio_station', 'video.movie', 'video.episode', 'video.tv_show', 'video.other'].includes(post.og.type as OpenGraphType) ? (post.og.type as OpenGraphType) : 'article';
 
   return {
@@ -60,7 +60,7 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
 }
 
 // Generate static paths for the post page
-export async function generateStaticParams() {
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const posts = getSortedPostsData()
   return posts.map((post) => ({
     slug: post.slug,
@@ -68,14 +68,21 @@ export async function generateStaticParams() {
 }
 
 // Render the post page
-export default function PostPage({ params }: PostPageProps) {
-  const post = getPostData(params.slug)
+export default function PostPage({ 
+  params
+}: { 
+  params: Promise<{ slug: string }>; 
+}): JSX.Element {
+  const resolvedParams = use(params); 
+  const post = getPostData(resolvedParams.slug)
 
   // Use Prism.js to highlight code blocks
   const renderer = new marked.Renderer();
   renderer.code = ({ text, lang, escaped }) => {
     const language = lang || 'plaintext';
-    const highlightedCode = Prism.highlight(text, Prism.languages[language], language);
+    // Ensure Prism has the language loaded, fallback to plaintext
+    const grammar = Prism.languages[language] || Prism.languages.plaintext;
+    const highlightedCode = Prism.highlight(text, grammar, language);
     return `<pre><code class="language-${language}">${highlightedCode}</code></pre>`;
   };
   const contentHtml = marked(post.content, { renderer }) as string
