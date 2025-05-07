@@ -140,9 +140,9 @@ export default function PostPage({
         <Sidebar />
         <div className="flex flex-col w-full md:pl-64">
           <Header title="The Digital Ninja" useH1={false}/>
-          <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <main className="flex-grow w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             
-            <article className="prose dark:prose-invert lg:prose-xl mx-auto">
+            <article className="prose dark:prose-invert w-full max-w-none lg:prose-xl mx-auto">
               <h1 className='not-prose text-4xl font-bold mb-4'>{post.title}</h1>
               
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 text-sm">

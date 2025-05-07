@@ -15,7 +15,7 @@ og:
   url: "https://thedigital.ninja/blog/ai-clothing-assistant" 
 ---
 
-![Google Sheet on Laptop](https://res.cloudinary.com/TheDigitalNinja/image/upload/c_scale,w_750/PXL_20250503_210504645_ct7h8t)
+![Google Sheet on Laptop](https://res.cloudinary.com/TheDigitalNinja/image/upload/c_scale,w_1200/PXL_20250503_210504645_ct7h8t)
 
 ## The Idea
 So I have had an idea bouncing around in my head for a few months now. I moved recently and also rearranged my closet and both times I thought, man I really should catalog all this while I'm touching each one. But the time it would take to write all that down for very little reward other than I would have my wardrobe in a spreadsheet because I'm a nerd clearly wasn't worth it. 
