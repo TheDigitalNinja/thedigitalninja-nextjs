@@ -20,6 +20,7 @@ import Sidebar from "@/components/Sidebar";
 import FollowMeWidget from "@/components/FollowMeWidget";
 import { FiClock, FiCalendar } from 'react-icons/fi'
 import { use } from 'react'; 
+import AboutAuthor from '@/components/AboutAuthor';
 
 // Syntax Highlighting by prismjs
 import Prism from 'prismjs';
@@ -140,8 +141,9 @@ export default function PostPage({
         <div className="flex flex-col w-full md:pl-64">
           <Header title="The Digital Ninja" useH1={false}/>
           <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <article>
-              <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
+            
+            <article className="prose dark:prose-invert lg:prose-xl mx-auto">
+              <h1 className='not-prose text-4xl font-bold mb-4'>{post.title}</h1>
               
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 text-sm">
                 <div className="flex items-center mb-4 sm:mb-0">
@@ -163,10 +165,9 @@ export default function PostPage({
                 </div>
               </div>
 
-              <div 
-                className="prose dark:prose-invert lg:prose-xl"
-                dangerouslySetInnerHTML={{ __html: contentHtml }} 
-              />
+              <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
+
+              <AboutAuthor />
             </article>
           </main>
           <FollowMeWidget />
