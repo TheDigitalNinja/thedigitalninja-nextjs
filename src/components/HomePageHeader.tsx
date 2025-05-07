@@ -9,15 +9,18 @@
  */
 
 import React from 'react';
+import Image from 'next/image';
 
 export default function HomePageHeader() {
   return (
     <article className="mb-12 prose dark:prose-invert lg:prose-xl">
       <div className="flex md:flex-row gap-6 items-start">
         <div className="hidden md:block md:w-1/4 flex-shrink-0">
-          <img 
-            src="https://cdn.sanity.io/images/nx08bxy1/production/d0fec3e55f52e54353851f8129a986c384ee5baa-2048x3071.jpg?w=500&q=85&auto=format" 
-            alt="Russell Perkins" 
+          <Image
+            src="https://cdn.sanity.io/images/nx08bxy1/production/d0fec3e55f52e54353851f8129a986c384ee5baa-2048x3071.jpg?w=500&q=85&auto=format"
+            alt="Russell Perkins"
+            width={500}
+            height={500}
             className="rounded-full shadow-lg w-full aspect-square object-cover"
           />
         </div>
