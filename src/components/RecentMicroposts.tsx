@@ -11,15 +11,9 @@ export default async function RecentMicroposts() {
   }
   
   return (
-    <section className="mt-8">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold">Recent Updates</h2>
-        <Link 
-          href="/feed" 
-          className="text-blue-600 dark:text-blue-400 hover:underline"
-        >
-          View all
-        </Link>
+    <section className="mt-4">
+      <div className="flex justify-center items-center">
+        <h2 className="text-2xl font-bold md:hidden mb-8">The Feed</h2>
       </div>
       
       <div className="space-y-4">
@@ -90,6 +84,17 @@ export default async function RecentMicroposts() {
             </Link>
           );
         })}
+
+      <div className="flex justify-center items-center mt-4">
+        <Link 
+          href="/feed" 
+          className="text-blue-600 dark:text-blue-400 hover:underline"
+        >
+          View all
+        </Link>
+      </div>
+
+        
       </div>
     </section>
   );
