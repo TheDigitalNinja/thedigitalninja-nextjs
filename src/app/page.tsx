@@ -72,30 +72,40 @@ export default function Home() {
         <div className="flex flex-col w-full md:pl-64">
           <Header title="The Digital Ninja" useH1={true}/>
           <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <article className="mb-12 prose dark:prose-invert lg:prose-xl">
-              <div className="flex md:flex-row gap-6 items-start">
-                <div className="hidden md:block md:w-1/4 flex-shrink-0">
-                  <img 
-                    src="https://cdn.sanity.io/images/nx08bxy1/production/d0fec3e55f52e54353851f8129a986c384ee5baa-2048x3071.jpg?w=500&q=85&auto=format" 
-                    alt="Russell Perkins" 
-                    className="rounded-full shadow-lg w-full aspect-square object-cover"
-                  />
-                </div>
-                <div className="w-full md:w-3/4">
-                  <p>
-                    Looks like you&apos;ve stumbled upon TheDigital.Ninja - welcome to my corner of the web! 
-                    I&apos;m Russell Perkins, a Solutions Architect with a passion for all things tech. 
-                    Feel free to dive into my blog posts for insights on software architecture, AI, and 
-                    the latest in tech innovations. Or, if you&apos;re feeling social, check out my links 
-                    and let&apos;s connect in the digital realm!
-                  </p>
-                </div>
+            {/* Flex container for the columns */}
+            <div className="flex flex-col md:flex-row md:gap-8">
+              
+              {/* Left Column */}
+              <div className="w-full md:w-3/4"> 
+                <article className="mb-12 prose dark:prose-invert lg:prose-xl">
+                  <div className="flex md:flex-row gap-6 items-start">
+                    <div className="hidden md:block md:w-1/4 flex-shrink-0">
+                      <img 
+                        src="https://cdn.sanity.io/images/nx08bxy1/production/d0fec3e55f52e54353851f8129a986c384ee5baa-2048x3071.jpg?w=500&q=85&auto=format" 
+                        alt="Russell Perkins" 
+                        className="rounded-full shadow-lg w-full aspect-square object-cover"
+                      />
+                    </div>
+                    <div className="w-full md:w-3/4">
+                      <p>
+                        Looks like you&apos;ve stumbled upon TheDigital.Ninja - welcome to my corner of the web! 
+                        I&apos;m Russell Perkins, a Solutions Architect with a passion for all things tech. 
+                        Feel free to dive into my blog posts for insights on software architecture, AI, and 
+                        the latest in tech innovations. Or, if you&apos;re feeling social, check out my links 
+                        and let&apos;s connect in the digital realm!
+                      </p>
+                    </div>
+                  </div>
+                </article>
+                <RecentBlogPosts limit={4} />
               </div>
 
-            </article>
+              {/* Right Column */}
+              <div className="w-full md:w-1/4 mt-8 md:mt-0">
+                <RecentMicroposts />
+              </div>
 
-            <RecentBlogPosts limit={4} />
-            <RecentMicroposts />
+            </div>
           </main>
         </div>
       </div>

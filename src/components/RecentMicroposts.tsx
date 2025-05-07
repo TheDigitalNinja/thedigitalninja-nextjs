@@ -70,22 +70,22 @@ export default async function RecentMicroposts() {
                   )}
                 </div>
                 
-                <div className="flex flex-col sm:flex-row gap-3">
-                  {post.images && post.images.length > 0 && (
-                    <div className="flex-shrink-0">
-                      <Image 
-                        src={post.images[0]} 
-                        alt={`Thumbnail for post: ${post.content.substring(0, 30)}...`}
-                        width={80} 
-                        height={80}
-                        quality={80}
-                        loading="eager"
-                        className="rounded-lg object-cover w-full sm:w-20 h-20"
-                      />
-                    </div>
-                  )}
-                  <p className="text-sm flex-grow">{preview}</p>
-                </div>
+                {/* Image will be on top and full-width */}
+                {post.images && post.images.length > 0 && (
+                  <div className="mb-3"> {/* Margin below the image */}
+                    <Image 
+                      src={post.images[0]} 
+                      alt={`Thumbnail for post: ${post.content.substring(0, 30)}...`}
+                      width={232}
+                      height={80}
+                      quality={80}
+                      loading="eager"
+                      className="rounded-lg object-cover w-full h-auto"
+                    />
+                  </div>
+                )}
+                {/* Preview text below the image */}
+                <p className="text-sm">{preview}</p>
               </div>
             </Link>
           );
