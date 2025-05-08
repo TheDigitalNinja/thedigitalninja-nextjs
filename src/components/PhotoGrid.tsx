@@ -84,6 +84,7 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ photos, albumName }) => {
           </div>
         ) : (
           processedPhotos.map((photo: SanityPhotoExtended) => (
+            // Add hover effect to display Title and Description
             <div 
               key={photo._id} 
               className="relative aspect-square overflow-hidden bg-gray-100 dark:bg-gray-800 rounded-lg cursor-pointer transition-transform duration-300 hover:shadow-lg hover:-translate-y-1 w-full"
@@ -96,6 +97,10 @@ const PhotoGrid: React.FC<PhotoGridProps> = ({ photos, albumName }) => {
                 height={400}
                 className="object-cover w-full h-full"
               />
+              <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 hover:opacity-100 flex flex-col justify-center items-center text-white transition-opacity">
+                <h3 className="text-lg font-semibold">{photo.title}</h3>
+                {photo.description && <p className="text-sm mt-1">{photo.description}</p>}
+              </div>
             </div>
           ))
         )}

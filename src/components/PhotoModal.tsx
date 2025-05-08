@@ -15,6 +15,7 @@ interface SanityPhotoExtended {
   title?: string;
   image: any;
   imageUrl: string;
+  description?: string;
 }
 
 interface PhotoModalProps {
@@ -76,15 +77,21 @@ const PhotoModal: React.FC<PhotoModalProps> = ({
     .url();
 
   return (
-    <div className="fixed inset-0 z-50 bg-black bg-opacity-90 overflow-hidden">
-      {/* Remove Head component to fix infinite re-rendering */}
-      
-      <div className="relative w-full h-full flex flex-col">
+    // Ensure clicking outside the modal content closes the modal
+    <div 
+      className="fixed inset-0 z-50 bg-black bg-opacity-90 overflow-hidden flex items-center justify-center" 
+      onClick={onClose}
+    >
+      <div 
+        className="relative w-full h-full flex flex-col max-w-5xl max-h-[90vh] bg-black rounded-lg overflow-hidden" 
+        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal content
+      >
         {/* Header */}
         <div className="p-4 flex justify-between items-center text-white fixed top-0 left-0 right-0 z-10 bg-gradient-to-b from-black/80 to-transparent">
           <div className="text-lg font-medium">
-            {albumName && <span className="mr-2">{albumName} /</span>}
-            <span>{photo.title || 'Untitled'}</span>
+            {albumName && <span className="mr-2">{albumName}</span>}
+            {photo.title && <span> / {photo.title}</span>}
+            {photo.description && <span> - {photo.description}</span>}
           </div>
           <button
             onClick={onClose}
