@@ -78,7 +78,7 @@ export default function AlbumPage({
           <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">  
             {album.description && (
               <div className="mb-6">
-                <p className="text-gray-700 dark:text-gray-300">{album.description}</p>
+                <p className="text-lg text-gray-700 dark:text-gray-300">{album.description}</p>
               </div>
             )}        
             <PhotoGrid photos={[]} albumName={album.title} />
@@ -96,7 +96,7 @@ export default function AlbumPage({
         <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">  
           {album.description && (
             <div className="mb-6">
-              <p className="text-gray-700 dark:text-gray-300">{album.description}</p>
+              <p className="text-lg text-gray-700 dark:text-gray-300">{album.description}</p>
             </div>
           )}        
           <PhotoGrid photos={photos} albumName={album.title} />
