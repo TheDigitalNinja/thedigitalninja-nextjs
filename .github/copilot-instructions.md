@@ -32,16 +32,25 @@
 - **Run Cypress Interactively**: `npm run cypress:open` (Assumes dev server is running)
 - **Run Specific Test**: `npx cypress run --spec cypress/e2e/specific_test.cy.ts`
 
-Refer to `README.md` and `CLAUDE.md` for more detailed commands and workflow steps.
+The development workflow is as follows:
+1. Complete feature implementation.
+2. Test manually to verify functionality.
+3. Run `npm run build` to ensure it builds successfully.
+4. Run `npm test` to execute all Cypress tests.
+5. Stage changes with `git add`.
+6. Commit changes with a descriptive message.
+7. Never push directly - wait for manual review.
+Refer to `README.md` for more detailed commands and setup steps.
 
 ## Code Style & Conventions
-- Follow Next.js App Router conventions.
+- Follow Next.js App Router conventions and maintain consistent indentation.
 - Use TypeScript with strict typing. Define interfaces/types for props and data structures.
 - Use path aliases (e.g., `@/components/*`). Check `tsconfig.json`.
 - Functional components with hooks.
 - Use Tailwind CSS for styling.
 - Keep components modular and reusable.
 - Follow naming conventions (PascalCase for components/types, camelCase for functions/variables, kebab-case for filenames).
+- Implement proper error boundaries and type checking.
 
 ## Important Considerations
 - **Authentication**: Client-side Firebase auth is used. Check `AuthProvider.tsx` and `useAuth.ts`.
