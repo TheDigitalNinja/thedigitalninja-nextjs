@@ -23,7 +23,7 @@ const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ limit = 3 }) => {
   const posts = getSortedPostsData(limit);
 
   return (
-    <section className="my-8">
+    <section className="">
       <h2 className="text-2xl font-bold mb-4">Recent Blog Posts</h2>
       <div className="space-y-6">
         {posts.map((post) => (
