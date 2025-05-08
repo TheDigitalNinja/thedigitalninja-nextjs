@@ -30,7 +30,7 @@ export default function HomePageHeader() {
             I&apos;m Russell Perkins, a Solutions Architect with a passion for all things tech. 
             Feel free to dive into my blog posts for insights on software architecture, AI, and 
             the latest in tech innovations. Or, if you&apos;re feeling social, check out my links 
-            and let&apos;s connect in the digital realm!
+            and let&apos;s connect!
           </p>
         </div>
       </div>
