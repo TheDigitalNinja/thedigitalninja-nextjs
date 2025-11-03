@@ -1,8 +1,6 @@
 import { getMicropostBySlug, getAllMicropostSlugs } from '@/lib/sanity-microposts'; 
 import { Metadata } from 'next';
 import Script from 'next/script';
-import Header from "@/components/Header";
-import Sidebar from "@/components/Sidebar";
 import Image from 'next/image';
 import { FiCalendar, FiMapPin } from 'react-icons/fi';
 import Link from 'next/link';
@@ -115,12 +113,8 @@ export default function MicropostPage({
     <>
       <Script id="schema-org-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
   
-      <div className="min-h-screen md:flex">
-        <Sidebar />
-        <div className="flex flex-col w-full md:pl-64">
-          <Header title="The Digital Ninja" useH1={true}/>
-          <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <article className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+      <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <article className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
               <div className="mb-6 flex flex-wrap items-center gap-4">                
                 <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
                   <FiCalendar className="mr-1" />
@@ -178,9 +172,7 @@ export default function MicropostPage({
                 </Link>
               </div>
             </article>
-          </main>
-        </div>
-      </div>
+      </main>
     </>
   );
 }
