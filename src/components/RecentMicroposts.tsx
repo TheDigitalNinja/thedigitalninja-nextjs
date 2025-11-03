@@ -1,10 +1,48 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { getSortedMicropostsData } from '@/lib/sanity-microposts';
+import { MicropostData } from '@/lib/sanity-microposts';
 import Image from 'next/image';
 
-export default async function RecentMicroposts() {
-  // Get the 3 most recent microposts
-  const recentMicroposts = await getSortedMicropostsData(3);
+export default function RecentMicroposts() {
+  const [recentMicroposts, setRecentMicroposts] = useState<MicropostData[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchMicroposts() {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/microposts');
+        if (!response.ok) {
+          throw new Error('Failed to fetch microposts');
+        }
+        const data = await response.json();
+        // Get the 3 most recent microposts (limit on client side)
+        setRecentMicroposts(data.slice(0, 3));
+      } catch (err) {
+        console.error('Error fetching microposts:', err);
+        setRecentMicroposts([]);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchMicroposts();
+  }, []);
+  
+  if (loading) {
+    return (
+      <section className="mt-4">
+        <div className="flex justify-center items-center">
+          <h2 className="text-2xl font-bold md:hidden mb-8">The Feed</h2>
+        </div>
+        <div className="text-sm text-gray-500 dark:text-gray-400">
+          Loading...
+        </div>
+      </section>
+    );
+  }
   
   if (recentMicroposts.length === 0) {
     return null;
