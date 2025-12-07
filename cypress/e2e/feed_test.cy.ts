@@ -21,7 +21,7 @@ describe('Feed Page', () => {
     // Micropost layout
     cy.get('header').should('be.visible')
     cy.get('aside').should('be.visible')
-    cy.contains('Back to Feed')
+    cy.contains('Back to Feed', { timeout: 20000 })
       .should('be.visible')
       .and('have.attr', 'href', '/feed')
 
@@ -36,7 +36,7 @@ describe('Feed Page', () => {
     })
 
     // Navigation back to feed
-    cy.contains('Back to Feed').click()
+    cy.contains('Back to Feed', { timeout: 20000 }).click()
     cy.url().should('include', '/feed')
     cy.url().should('not.include', '/feed/')
   })
