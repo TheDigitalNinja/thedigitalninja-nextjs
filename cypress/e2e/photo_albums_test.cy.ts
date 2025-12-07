@@ -1,7 +1,7 @@
 describe('Photos and albums', () => {
-  let albumUrl: string | null = null
+  let albumUrl = ''
 
-  const formatAlbumName = (url: string | null) => {
+  const formatAlbumName = (url: string) => {
     if (!url) return ''
     const slug = url.split('/').pop()
     if (!slug) return ''
@@ -14,7 +14,8 @@ describe('Photos and albums', () => {
   before(() => {
     cy.visit('/photos')
     cy.getFirstAlbumUrl().then((url) => {
-      albumUrl = url || null
+      expect(url, 'first album url').to.be.a('string').and.not.be.empty
+      albumUrl = url as string
     })
   })
 
@@ -59,6 +60,8 @@ describe('Photos and albums', () => {
   })
 
   it('shows album content and photo modal interactions', function () {
+    expect(albumUrl, 'albumUrl from photos page').to.be.a('string').and.not.be.empty
+
     cy.visit(albumUrl)
 
     cy.get('header h1').should('be.visible').and('not.be.empty')
@@ -105,11 +108,9 @@ describe('Photos and albums', () => {
     cy.contains('a', 'Photos').click()
     cy.url().should('include', '/photos')
 
-    if (albumUrl) {
-      const albumSlug = albumUrl.split('/').pop()
-      if (albumSlug) {
-        cy.url().should('not.include', albumSlug)
-      }
+    const albumSlug = albumUrl.split('/').pop()
+    if (albumSlug) {
+      cy.url().should('not.include', albumSlug)
     }
 
     cy.contains('a', 'Home').click()
