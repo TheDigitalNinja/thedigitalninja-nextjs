@@ -4,10 +4,10 @@ Welcome to TheDigital.Ninja! This is a personal website and blog for Russell Per
 
 [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
 [![Cypress E2E Tests](https://github.com/TheDigitalNinja/thedigitalninja-nextjs/actions/workflows/cypress.yml/badge.svg)](https://github.com/TheDigitalNinja/thedigitalninja-nextjs/actions/workflows/cypress.yml)
-[![Next.js](https://img.shields.io/badge/Next.js-15.3.1-blueviolet)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19-blue)](https://reactjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-15.3.6-blueviolet)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.1.2-blue)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.4-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.1-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=thedigitalninja-nextjs)](https://thedigital.ninja)
 
 ## Project Overview
@@ -18,10 +18,10 @@ Welcome to TheDigital.Ninja! This is a personal website and blog for Russell Per
 
 ## Key Technologies
 
-- Next.js 15.3.1 with App Router
-- TypeScript 5.5.2
-- React 19.1.0
-- Tailwind CSS 3.4.4
+- Next.js 15.3.6 with App Router
+- TypeScript 5.x
+- React 19.1.2
+- Tailwind CSS 3.4.1
 - Headless UI 2.2.2
 - Firebase Authentication
 - Sanity.io (for photo gallery management)

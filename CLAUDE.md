@@ -3,9 +3,9 @@
 ## Project Overview
 - **Name**: thedigitalninja-nextjs
 - **Purpose**: Personal website and blog for TheDigital.Ninja ([https://TheDigital.Ninja](https://TheDigital.Ninja))
-- **Framework**: Next.js 15.3.1 with App Router
-- **Language**: TypeScript 5.5.2
-- **Styling**: Tailwind CSS 3.4.4
+- **Framework**: Next.js 15.3.6 with App Router
+- **Language**: TypeScript 5.x
+- **Styling**: Tailwind CSS 3.4.1
 - **UI Components**: Headless UI 2.2.2
 - **Authentication**: Firebase Authentication (Google Sign-In) - See `src/lib/firebase.ts` and `src/hooks/useAuth.ts`
 - **CMS (Photos)**: Sanity.io - See `sanity/` directory and `src/lib/sanity.ts`
