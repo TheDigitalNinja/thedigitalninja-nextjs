@@ -1,11 +1,46 @@
 describe('Home Page', () => {
-    it('Has correct layout.', () => {
+    it('Has correct layout, content, metadata, and schema.', () => {
+      cy.intercept('GET', '/api/microposts', [
+        {
+          id: 'home-test-1',
+          content: 'Home micropost smoke test content',
+          slug: 'home-micropost',
+          images: [],
+          tags: ['testing'],
+          date: '2024-07-01T00:00:00Z'
+        }
+      ]).as('microposts')
+
       cy.visit('/')
+      cy.wait('@microposts')
   
       // Layout
       cy.get('header').should('be.visible')
       cy.get('aside').should('be.visible')
       cy.contains('h1', 'The Digital Ninja').should('be.visible')
+
+      // Content
+      cy.contains('h2', 'Recent Blog Posts').should('be.visible')
+      cy.contains('h2', 'Recent Blog Posts').parent().find('article').should('have.length.at.least', 1)
+      cy.contains('Home micropost smoke test content').should('be.visible')
+      cy.contains('View all').should('have.attr', 'href', '/feed')
+
+      // Metadata
+      cy.title().should('eq', 'The Digital Ninja - Russell Perkins')
+      cy.get('meta[name="description"]').should(
+        'have.attr',
+        'content',
+        'Explore tech insights, software architecture, and AI with Russell Perkins, a seasoned Solutions Architect and IT consultant.'
+      )
+
+      // Schema.org data
+      cy.get('script[type="application/ld+json"]').should('exist')
+      cy.get('script[type="application/ld+json"]').then(($script) => {
+        const jsonData = JSON.parse($script.text())
+        expect(jsonData['@type']).to.equal('WebSite')
+        expect(jsonData.name).to.equal('The Digital Ninja')
+        expect(jsonData.mainEntity['@id']).to.equal('https://TheDigital.Ninja')
+      })
     })
 })
 
