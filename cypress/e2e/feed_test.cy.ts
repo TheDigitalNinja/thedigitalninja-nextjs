@@ -1,0 +1,39 @@
+describe('Feed Page', () => {
+    it('Has correct layout, content, and micropost navigation.', () => {
+      cy.visit('/feed')
+
+      // Feed layout
+      cy.get('header').should('be.visible')
+      cy.get('aside').should('be.visible')
+      cy.contains('h1', 'Feed').should('be.visible')
+
+      // Feed content
+      cy.get('article').should('exist')
+      cy.get('time').should('exist')
+
+      // Open the first micropost from feed
+      cy.contains('Permalink').first().click()
+
+      // Micropost layout
+      cy.get('header').should('be.visible')
+      cy.get('aside').should('be.visible')
+      cy.contains('Back to Feed')
+        .should('be.visible')
+        .and('have.attr', 'href', '/feed')
+
+      // Micropost content
+      cy.get('article').should('exist')
+      cy.get('article .text-lg').should('exist')
+      cy.get('time').should('exist')
+      cy.get('article').then($article => {
+        if ($article.find('span').length > 0) {
+          cy.get('span').contains('#').should('exist')
+        }
+      })
+
+      // Navigation back to feed
+      cy.contains('Back to Feed').click()
+      cy.url().should('include', '/feed')
+      cy.url().should('not.include', '/feed/')
+    })
+})
