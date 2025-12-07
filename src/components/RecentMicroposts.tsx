@@ -110,7 +110,7 @@ export default function RecentMicroposts() {
                       alt={`Thumbnail for post: ${post.content.substring(0, 30)}...`}
                       width={232}
                       height={80}
-                      quality={80}
+                      quality={85}
                       loading="eager"
                       className="rounded-lg object-cover w-full h-auto"
                     />
