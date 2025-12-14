@@ -12,7 +12,7 @@ og:
   description: "So I was watching the show Barry and in season 2 a certain character mentioned the book 'The Four Agreements'"
   type: "article" 
   image: "https://res.cloudinary.com/TheDigitalNinja/image/upload/c_scale,w_1200/the_four_agreements_hgyyc3"
-  url: "https://thedigital.ninja/blog/ai-clothing-assistant" 
+  url: "https://thedigital.ninja/blog/the-four-agreements" 
 ---
 So I was watching the show Barry and in season 2 a certain character mentioned the book "The Four Agreements” and I had to pause and look it up to see if it was real.  Sadly the book "Hit Your Mark and Say Your Lines” by Gene Cousineau isn't real but it turned out "The Four Agreements” by Don Miguel Ruiz is very much real so I went ahead and hit buy now. 
 
