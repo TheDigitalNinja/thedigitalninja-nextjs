@@ -61,6 +61,8 @@ export default function RecentMicroposts() {
             month: 'short',
             day: 'numeric'
           });
+
+          const primaryTag = post.tags?.[0];
           
           // Truncate content if needed
           let preview = post.content.substring(0, 150);
@@ -88,16 +90,13 @@ export default function RecentMicroposts() {
                       </span>
                     )}
                   </div>
-                  {post.tags && post.tags.length > 0 && (
-                    <div className="flex space-x-2">
-                      {post.tags.slice(0, 2).map(tag => (
-                        <span 
-                          key={tag}
-                          className="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded"
-                        >
-                          #{tag}
-                        </span>
-                      ))}
+                  {primaryTag && (
+                    <div className="flex">
+                      <span 
+                        className="text-xs bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded"
+                      >
+                        #{primaryTag}
+                      </span>
                     </div>
                   )}
                 </div>
