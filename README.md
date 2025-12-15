@@ -8,20 +8,18 @@
 [![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=thedigitalninja-nextjs)](https://thedigital.ninja)
 
 ## Project Overview
-
 Welcome to TheDigital.Ninja! This is a personal website and blog for Russell Perkins, showcasing technical skills and hosting blog posts on various topics. View the site live at [https://TheDigital.Ninja](https://TheDigital.Ninja)
 
 ## Main Features
-
-1. Home page with recent blog posts
-2. Blog with individual post pages
-3. Photo gallery with Sanity.io integration
-4. Responsive design with mobile-friendly navigation
-5. Authentication using Firebase (Google Sign-In, not currently used for anything)
-6. About page with my background
+- Home page with recent blog posts
+- Blog with individual post pages
+- Photo gallery with Sanity.io integration
+- Feed/Microposts a social media style feed with small life updates
+- Responsive design with mobile-friendly navigation
+- Authentication using Firebase (Google Sign-In, not currently used for anything)
+- About page with my background
 
 ## Project Structure
-
 - `src/`: Main application code
 - `src/app/`: Next.js app router pages
 - `src/components/`: React components
@@ -32,7 +30,6 @@ Welcome to TheDigital.Ninja! This is a personal website and blog for Russell Per
 - `sanity/`: Sanity.io schema and configuration, used for microposts/feed
 
 ## Getting Started
-
 1. Clone the repository
    ```Bash
    git clone https://github.com/TheDigitalNinja/thedigitalninja-nextjs.git
@@ -53,7 +50,6 @@ Welcome to TheDigital.Ninja! This is a personal website and blog for Russell Per
 6. Access Sanity Studio at [http://localhost:3000/studio](http://localhost:3000/studio)
 
 ## Scripts
-
 | Script                  | Description                                                                 |
 |-------------------------|-----------------------------------------------------------------------------|
 | `npm run dev`           | Start development server                                                    |
@@ -66,11 +62,9 @@ Welcome to TheDigital.Ninja! This is a personal website and blog for Russell Per
 | `npm run cypress:open`  | Open Cypress run tests interactively (assuming the development server is already running) |
 
 ## Cypress End-to-End Tests
-
 The project includes comprehensive end-to-end tests using Cypress to ensure the functionality and reliability of the website. The tests are located in the `cypress/e2e/` directory and are configured in `cypress.config.ts`.
 
 ### Running Tests
-
 To run the Cypress tests, use the following scripts:
 
 - `npm run test`: Start the development server and run all Cypress end-to-end tests.
@@ -79,11 +73,9 @@ To run the Cypress tests, use the following scripts:
 - `npm run cypress:open`: Open Cypress run tests interactively (assuming the development server is already running).
 
 ## Deployment
-
 The project is automatically deployed to Vercel upon pushes to the main branch and all tests passing.
 
 ## IndexNow CLI
-
 This project includes a simple CLI tool for submitting URLs to the [IndexNow API](https://www.bing.com/indexnow/), allowing quick indexing of new or updated content to all the major search engines.
 
 Usage:
@@ -97,9 +89,7 @@ node index-now.js https://TheDigital.Ninja/blog/your-new-post
 ```
 
 ## Contributing
-
 This is a personal project, but if you notice any issues or have suggestions, please feel free to open an issue or submit a pull request.
 
 ## License
-
 This project is released under the Unlicense. See the [LICENSE](LICENSE) file for details.
