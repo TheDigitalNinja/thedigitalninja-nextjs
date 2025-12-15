@@ -60,10 +60,11 @@ Refer to `README.md` for more detailed commands and setup steps.
 Notes:
 - `npm test` starts the dev server automatically; `cypress:run` assumes a running server.
 - `npm start` runs the production build locally for smoke checks.
+- Verification is mandatory: run, in this order, `npm run lint`, `npm test` (or npm test --spec … if scoped), then `npm run build`. Do not skip unless the user explicitly says to. Summarize results (pass/fail/omitted with reason) in your final message.
 
 ## Agent Usage
 - Do not run `git commit`, `git push`, or any other commands that change remote branches; leave committing/pushing to the user.
-- Verify changes by running `npm run lint`, `npm test`, and `npm run build` when feasible.
+- Always run npm run lint, npm test, and npm run build before handing off work, unless the user explicitly instructs otherwise.
 - If a verify command is skipped or fails, call it out clearly in your summary.
 - Do not edit `.env*` files or commit secrets; use `.env.local` locally if needed.
 
