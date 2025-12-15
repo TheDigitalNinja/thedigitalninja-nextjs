@@ -2,7 +2,7 @@
 
 ## Project Overview
 - **Name**: thedigitalninja-nextjs
-- **Purpose**: Personal website and blog for TheDigital.Ninja ([https://TheDigital.Ninja](https://TheDigital.Ninja))
+- **Purpose**: Personal website and blog for TheDigital.Ninja https://TheDigital.Ninja
 - **Framework**: Next.js 15.3.6 with App Router
 - **Language**: TypeScript 5.x
 - **Styling**: Tailwind CSS 3.4.1
@@ -34,6 +34,9 @@
 - Sanity.io (for photo gallery management)
 - gray-matter 4.0.3 (for parsing Markdown front matter)
 - marked 13.0.1 (for rendering Markdown)
+- PrismJS for code highlighting
+- @heroicons/react and react-icons for iconography
+- @tailwindcss/typography for Markdown styling
 
 ## Development Workflow & Commands
 - **Install**: `npm ci`
@@ -54,6 +57,16 @@ The development workflow is as follows:
 7. Never push directly - wait for manual review.
 Refer to `README.md` for more detailed commands and setup steps.
 
+Notes:
+- `npm test` starts the dev server automatically; `cypress:run` assumes a running server.
+- `npm start` runs the production build locally for smoke checks.
+
+## Agent Usage
+- Do not run `git commit`, `git push`, or any other commands that change remote branches; leave committing/pushing to the user.
+- Verify changes by running `npm run lint`, `npm test`, and `npm run build` when feasible.
+- If a verify command is skipped or fails, call it out clearly in your summary.
+- Do not edit `.env*` files or commit secrets; use `.env.local` locally if needed.
+
 ## Code Style & Conventions
 - Follow Next.js App Router conventions and maintain consistent indentation.
 - Use TypeScript with strict typing. Define interfaces/types for props and data structures.
@@ -66,12 +79,16 @@ Refer to `README.md` for more detailed commands and setup steps.
 
 ## Important Considerations
 - **Authentication**: Client-side Firebase auth is used. Check `AuthProvider.tsx` and `useAuth.ts`.
-- **Content Sources**: Blog posts from Markdown, Photos and Microposts from Sanity.io.
+- **Content Sources**: Blog posts from Markdown, Photos and Microposts/Feed from Sanity.io.
 - **Environment Variables**: Ensure `.env.local` is configured with Firebase and Sanity keys (see `.env.local.example`).
 - **Testing**: Prefer using existing Cypress commands in `cypress/support/commands.ts`. Ensure tests pass (`npm test`) before committing.
 - **State Management**: Primarily React context (`AuthProvider`) and component state. No complex state management library currently used.
 - **API Routes**: Located in `src/app/api/`.
 - **Image Handling**: Use Next.js `<Image>` component with Cloudinary or Sanity CDN configured in `next.config.mjs`.
+- **Runtime Config**: `reactStrictMode` enabled. Image remote patterns include Cloudinary, Google user avatars, and Sanity; update `next.config.mjs` when adding new hosts. `postbuild` runs `next-sitemap`.
+- **Type Definitions**: Keep `@types/react` and `@types/react-dom` aligned with the runtime React major version (currently 19).
+- **Indexing CLI**: `index-now.js` submits URLs to IndexNow for faster search indexing.
+- **Deployment**: Deployed via Vercel on pushes to `main` after tests pass.
 
 ## Task-Specific Instructions
 - **Adding a new page**: Create a new folder under `src/app/` with a `page.tsx` file. Update navigation/links if necessary.
