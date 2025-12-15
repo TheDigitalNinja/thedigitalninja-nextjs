@@ -65,6 +65,7 @@ Notes:
 ## Agent Usage
 - Do not run `git commit`, `git push`, or any other commands that change remote branches; leave committing/pushing to the user.
 - Always run npm run lint, npm test, and npm run build before handing off work, unless the user explicitly instructs otherwise.
+- Run verification commands exactly as written from the current working directory; do not prepend any `cd` or path changes (e.g., use `npm run lint`, not `cd path && npm run lint`).
 - If a verify command is skipped or fails, call it out clearly in your summary.
 - Do not edit `.env*` files or commit secrets; use `.env.local` locally if needed.
 
