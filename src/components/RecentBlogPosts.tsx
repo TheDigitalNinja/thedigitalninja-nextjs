@@ -20,13 +20,15 @@ interface RecentBlogPostsProps {
 }
 
 const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ limit = 3 }) => {
-  const posts = getSortedPostsData(limit);
+  const posts = getSortedPostsData();
+  const visiblePosts = posts.slice(0, limit);
+  const hasMorePosts = posts.length > limit;
 
   return (
     <section className="">
       <h2 className="text-2xl font-bold mb-4">Recent Blog Posts</h2>
       <div className="space-y-6">
-        {posts.map((post) => (
+        {visiblePosts.map((post) => (
           <Link key={post.slug} href={`/blog/${post.slug}`} className="group block mb-6">
             <article className="flex flex-col md:flex-row border rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
               {/* Image container */}
@@ -58,6 +60,18 @@ const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ limit = 3 }) => {
           </Link>
         ))}
       </div>
+      {hasMorePosts && (
+        <div className="mt-8">
+          <Link
+            href="/blog"
+            className="inline-flex items-center font-semibold text-blue-600 hover:text-blue-700 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded"
+            aria-label="See all blog posts"
+          >
+            See all blog posts
+            <span className="ml-2" aria-hidden="true">&rarr;</span>
+          </Link>
+        </div>
+      )}
     </section>
   );
 };
