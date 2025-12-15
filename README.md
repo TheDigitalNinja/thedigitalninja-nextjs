@@ -1,8 +1,5 @@
-# TheDigital.Ninja
+# [TheDigital.Ninja](https://TheDigital.Ninja)
 
-Welcome to TheDigital.Ninja! This is a personal website and blog for Russell Perkins, showcasing technical skills and hosting blog posts on various tech topics.
-
-[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
 [![Cypress E2E Tests](https://github.com/TheDigitalNinja/thedigitalninja-nextjs/actions/workflows/cypress.yml/badge.svg)](https://github.com/TheDigitalNinja/thedigitalninja-nextjs/actions/workflows/cypress.yml)
 [![Next.js](https://img.shields.io/badge/Next.js-15.3.6-blueviolet)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19.1.2-blue)](https://reactjs.org/)
@@ -12,21 +9,7 @@ Welcome to TheDigital.Ninja! This is a personal website and blog for Russell Per
 
 ## Project Overview
 
-- **Name**: thedigitalninja-nextjs
-- **Purpose**: Personal website and blog for TheDigital.Ninja
-- **Live Site**: [https://TheDigital.Ninja](https://TheDigital.Ninja)
-
-## Key Technologies
-
-- Next.js 15.3.6 with App Router
-- TypeScript 5.x
-- React 19.1.2
-- Tailwind CSS 3.4.1
-- Headless UI 2.2.2
-- Firebase Authentication
-- Sanity.io (for photo gallery management)
-- gray-matter 4.0.3 (for parsing Markdown front matter)
-- marked 13.0.1 (for rendering Markdown)
+Welcome to TheDigital.Ninja! This is a personal website and blog for Russell Perkins, showcasing technical skills and hosting blog posts on various topics. View the site live at [https://TheDigital.Ninja](https://TheDigital.Ninja)
 
 ## Main Features
 
@@ -34,9 +17,8 @@ Welcome to TheDigital.Ninja! This is a personal website and blog for Russell Per
 2. Blog with individual post pages
 3. Photo gallery with Sanity.io integration
 4. Responsive design with mobile-friendly navigation
-5. Authentication using Firebase (Google Sign-In)
+5. Authentication using Firebase (Google Sign-In, not currently used for anything)
 6. About page with my background
-7. Resume page
 
 ## Project Structure
 
@@ -47,7 +29,7 @@ Welcome to TheDigital.Ninja! This is a personal website and blog for Russell Per
 - `public/`: Static assets
 - `styles/`: Global CSS styles
 - `src/lib/`: Utility functions and hooks
-- `sanity/`: Sanity.io schema and configuration
+- `sanity/`: Sanity.io schema and configuration, used for microposts/feed
 
 ## Getting Started
 
@@ -82,7 +64,6 @@ Welcome to TheDigital.Ninja! This is a personal website and blog for Russell Per
 | `npm run cypress:run`   | Run Cypress end-to-end tests (assuming you have the dev server already running) |
 | `npm run cypress:dev`   | Open Cypress in development mode                                            |
 | `npm run cypress:open`  | Open Cypress run tests interactively (assuming the development server is already running) |
-| `npm run package-code`  | Create a copy of the code to be uploaded to a Claude ai project             |
 
 ## Cypress End-to-End Tests
 
@@ -99,11 +80,11 @@ To run the Cypress tests, use the following scripts:
 
 ## Deployment
 
-The project is automatically deployed to Vercel upon pushes to the main branch.
+The project is automatically deployed to Vercel upon pushes to the main branch and all tests passing.
 
 ## IndexNow CLI
 
-This project includes a simple CLI tool for submitting URLs to the [IndexNow API](https://www.bing.com/indexnow/), allowing quick indexing of new or updated content.
+This project includes a simple CLI tool for submitting URLs to the [IndexNow API](https://www.bing.com/indexnow/), allowing quick indexing of new or updated content to all the major search engines.
 
 Usage:
 ```Bash

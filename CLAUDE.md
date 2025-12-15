@@ -23,6 +23,18 @@
 - `CLAUDE.md`: Existing guidelines (potentially for another AI)
 - `README.md`: Project overview, setup, and scripts
 
+## Key Technologies
+
+- Next.js 15.3.6 with App Router
+- TypeScript 5.x
+- React 19.1.2
+- Tailwind CSS 3.4.1
+- Headless UI 2.2.2
+- Firebase Authentication
+- Sanity.io (for photo gallery management)
+- gray-matter 4.0.3 (for parsing Markdown front matter)
+- marked 13.0.1 (for rendering Markdown)
+
 ## Development Workflow & Commands
 - **Install**: `npm ci`
 - **Run Dev Server**: `npm run dev`

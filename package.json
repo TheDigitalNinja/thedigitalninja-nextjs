@@ -11,7 +11,6 @@
     "cypress:run": "cypress run",
     "cypress:dev": "start-server-and-test dev http://localhost:3000 cypress:open",
     "cypress:open": "cypress open",
-    "package-code": "node ai/package-code.js",
     "postbuild": "next-sitemap"
   },
   "dependencies": {
