@@ -68,6 +68,7 @@ Notes:
 - Run verification commands exactly as written from the current working directory; do not prepend any `cd` or path changes (e.g., use `npm run lint`, not `cd path && npm run lint`).
 - If a verify command is skipped or fails, call it out clearly in your summary.
 - Do not edit `.env*` files or commit secrets; use `.env.local` locally if needed.
+- Never run or suggest `cd`, `pwd`, or any command that changes or inspects the working directory; assume the correct root and only run the allowed npm scripts.
 
 ## Code Style & Conventions
 - Follow Next.js App Router conventions and maintain consistent indentation.
