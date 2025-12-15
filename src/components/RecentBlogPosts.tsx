@@ -64,7 +64,7 @@ const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ limit = 3 }) => {
         <div className="mt-8">
           <Link
             href="/blog"
-            className="inline-flex items-center font-semibold text-blue-600 hover:text-blue-700 focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded"
+            className="inline-flex items-center font-semibold text-blue-600 dark:text-blue-400 hover:underline focus:outline-none focus-visible:ring focus-visible:ring-blue-500 focus-visible:ring-offset-2 rounded"
             aria-label="See all blog posts"
           >
             See all blog posts
