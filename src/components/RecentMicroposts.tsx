@@ -5,6 +5,43 @@ import Link from 'next/link';
 import { MicropostData } from '@/lib/sanity-microposts';
 import Image from 'next/image';
 
+const FeedSkeleton = () => {
+  // Lightweight pulse animation; pure CSS to avoid runtime overhead.
+  const placeholderBase = 'bg-gray-200 dark:bg-gray-700';
+
+  return (
+    <section className="mt-4">
+      <div className="flex justify-center items-center">
+        <h2 className="text-2xl font-bold md:hidden mb-8">The Feed</h2>
+      </div>
+      <div className="space-y-4">
+        {[0, 1, 2].map((key) => (
+          <div
+            key={key}
+            className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg animate-pulse"
+          >
+            <div className="flex justify-between items-center mb-2">
+              <div className="flex items-center space-x-3">
+                <span className={`h-3 w-16 rounded ${placeholderBase}`} />
+                <span className={`h-3 w-20 rounded ${placeholderBase}`} />
+              </div>
+              <span className={`h-4 w-12 rounded ${placeholderBase}`} />
+            </div>
+
+            <div className={`mb-3 h-20 w-full rounded-lg ${placeholderBase}`} />
+
+            <div className="space-y-2">
+              <div className={`h-3 w-full rounded ${placeholderBase}`} />
+              <div className={`h-3 w-5/6 rounded ${placeholderBase}`} />
+              <div className={`h-3 w-2/3 rounded ${placeholderBase}`} />
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
 export default function RecentMicroposts() {
   const [recentMicroposts, setRecentMicroposts] = useState<MicropostData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -32,16 +69,7 @@ export default function RecentMicroposts() {
   }, []);
   
   if (loading) {
-    return (
-      <section className="mt-4">
-        <div className="flex justify-center items-center">
-          <h2 className="text-2xl font-bold md:hidden mb-8">The Feed</h2>
-        </div>
-        <div className="text-sm text-gray-500 dark:text-gray-400">
-          Loading...
-        </div>
-      </section>
-    );
+    return <FeedSkeleton />;
   }
   
   if (recentMicroposts.length === 0) {
