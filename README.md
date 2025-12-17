@@ -91,5 +91,12 @@ node index-now.js https://TheDigital.Ninja/blog/your-new-post
 ## Contributing
 This is a personal project, but if you notice any issues or have suggestions, please feel free to open an issue or submit a pull request.
 
+## Ticket Creation
+Utalize github co-pilot with the following prompt.
+
+```
+/create-issue in TheDigitalNinja/thedigitalninja-nextjs after reading "Ticket Creation" in `AGENTS.md`. 
+```
+
 ## License
 This project is released under the Unlicense. See the [LICENSE](LICENSE) file for details.

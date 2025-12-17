@@ -1,8 +1,9 @@
-# Copilot Instructions for The Digital Ninja Project
+# Agent Instructions for TheDigital.Ninja Website
 
 ## Project Overview
 - **Name**: thedigitalninja-nextjs
 - **Purpose**: Personal website and blog for TheDigital.Ninja https://TheDigital.Ninja
+- **Repo**: https://github.com/TheDigitalNinja/thedigitalninja-nextjs
 - **Framework**: Next.js 15.3.6 with App Router
 - **Language**: TypeScript 5.x
 - **Styling**: Tailwind CSS 3.4.1
@@ -24,7 +25,6 @@
 - `README.md`: Project overview, setup, and scripts
 
 ## Key Technologies
-
 - Next.js 15.3.6 with App Router
 - TypeScript 5.x
 - React 19.1.2
@@ -79,6 +79,13 @@ Notes:
 - Keep components modular and reusable.
 - Follow naming conventions (PascalCase for components/types, camelCase for functions/variables, kebab-case for filenames).
 - Implement proper error boundaries and type checking.
+
+## Ticket Creation
+Kanban Project URL: https://github.com/users/TheDigitalNinja/projects/3
+- Use a short, imperative title (8-10 words)
+- This is a solo project—don’t include meta lines like "let me know…" or questions aimed back at the user. Just state requirements and acceptance criteria.
+- Do not specify copy or exact UI text unless I provide it.
+- After drafting the issue, scan the repo and add a “Likely files to edit” section listing the main file paths/components involved (homepage recent posts + /blog index + data source), with a brief reason per path.
 
 ## Important Considerations
 - **Authentication**: Client-side Firebase auth is used. Check `AuthProvider.tsx` and `useAuth.ts`.
