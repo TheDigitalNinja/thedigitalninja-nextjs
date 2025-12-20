@@ -5,6 +5,21 @@ import Link from 'next/link';
 import { MicropostData, getSortedMicropostsData } from '@/lib/sanity-microposts';
 import Image from 'next/image';
 
+function getImageDimensions(url: string): { width: number; height: number } | null {
+  // Sanity asset URLs end with `-<width>x<height>.<ext>`
+  const match = url.match(/-(\d+)x(\d+)\.(?:jpe?g|png|webp|gif|avif)$/i);
+  if (!match) return null;
+
+  const width = Number.parseInt(match[1], 10);
+  const height = Number.parseInt(match[2], 10);
+
+  if (!Number.isFinite(width) || !Number.isFinite(height) || width === 0 || height === 0) {
+    return null;
+  }
+
+  return { width, height };
+}
+
 const FeedSkeleton = () => {
   // Lightweight pulse animation; pure CSS to avoid runtime overhead.
   const placeholderBase = 'bg-gray-200 dark:bg-gray-700';
@@ -92,6 +107,12 @@ export default function RecentMicroposts() {
           if (post.content.length > 150) {
             preview += '...';
           }
+
+          const firstImage = post.images?.[0];
+          const derivedDimensions = firstImage ? getImageDimensions(firstImage) : null;
+          const aspectRatio = derivedDimensions
+            ? `${derivedDimensions.width} / ${derivedDimensions.height}`
+            : '4 / 3';
           
           return (
             <Link
@@ -125,16 +146,19 @@ export default function RecentMicroposts() {
                 </div>
                 
                 {/* Image will be on top and full-width */}
-                {post.images && post.images.length > 0 && (
-                  <div className="mb-3"> {/* Margin below the image */}
+                {firstImage && (
+                  <div
+                    className="mb-3 relative w-full overflow-hidden rounded-lg"
+                    style={{ aspectRatio }}
+                  >
                     <Image 
-                      src={post.images[0]} 
+                      src={firstImage} 
                       alt={`Thumbnail for post: ${post.content.substring(0, 30)}...`}
-                      width={232}
-                      height={80}
                       quality={85}
                       loading="eager"
-                      className="rounded-lg object-cover w-full h-auto"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 232px"
                     />
                   </div>
                 )}
