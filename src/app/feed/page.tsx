@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { MicropostData } from '@/lib/sanity-microposts';
+import { MicropostData, getSortedMicropostsData } from '@/lib/sanity-microposts';
 import MicroPost from '@/components/MicroPost';
 
 export default function FeedPage() {
@@ -13,16 +13,13 @@ export default function FeedPage() {
     async function fetchMicroposts() {
       try {
         setLoading(true);
-        const response = await fetch('/api/microposts');
-        if (!response.ok) {
-          throw new Error('Failed to fetch microposts');
-        }
-        const data = await response.json();
+        const data = await getSortedMicropostsData();
         setMicroposts(data);
         setError(null);
       } catch (err) {
         console.error('Error fetching microposts:', err);
         setError('Failed to load microposts. Please try again later.');
+        setMicroposts([]);
       } finally {
         setLoading(false);
       }

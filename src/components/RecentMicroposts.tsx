@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { MicropostData } from '@/lib/sanity-microposts';
+import { MicropostData, getSortedMicropostsData } from '@/lib/sanity-microposts';
 import Image from 'next/image';
 
 const FeedSkeleton = () => {
@@ -50,13 +50,8 @@ export default function RecentMicroposts() {
     async function fetchMicroposts() {
       try {
         setLoading(true);
-        const response = await fetch('/api/microposts');
-        if (!response.ok) {
-          throw new Error('Failed to fetch microposts');
-        }
-        const data = await response.json();
-        // Get the 3 most recent microposts (limit on client side)
-        setRecentMicroposts(data.slice(0, 3));
+        const data = await getSortedMicropostsData(3);
+        setRecentMicroposts(data);
       } catch (err) {
         console.error('Error fetching microposts:', err);
         setRecentMicroposts([]);

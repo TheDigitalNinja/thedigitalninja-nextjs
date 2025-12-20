@@ -1,10 +1,6 @@
 describe('Feed Page', () => {
   it('Has correct layout, content, and micropost navigation.', () => {
-    // The API route can take a few seconds to compile on first hit.
-    cy.intercept('GET', '/api/microposts').as('microposts')
-
     cy.visit('/feed')
-    cy.wait('@microposts', { timeout: 20000 })
 
     // Feed layout
     cy.get('header').should('be.visible')
@@ -16,7 +12,7 @@ describe('Feed Page', () => {
     cy.get('time', { timeout: 20000 }).should('exist')
 
     // Open the first micropost from feed
-    cy.contains('Permalink').first().click()
+    cy.contains('Permalink', { timeout: 20000 }).first().click()
 
     // Micropost layout
     cy.get('header').should('be.visible')

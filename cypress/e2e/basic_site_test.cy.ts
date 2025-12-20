@@ -1,15 +1,24 @@
 describe('Home Page', () => {
     it('Has correct layout, content, metadata, and schema.', () => {
-      cy.intercept('GET', '/api/microposts', [
-        {
-          id: 'home-test-1',
-          content: 'Home micropost smoke test content',
-          slug: 'home-micropost',
-          images: [],
-          tags: ['testing'],
-          date: '2024-07-01T00:00:00Z'
-        }
-      ]).as('microposts')
+      const micropost = {
+        _id: 'home-test-1',
+        _createdAt: '2024-07-01T00:00:00Z',
+        content: 'Home micropost smoke test content',
+        slug: 'home-micropost',
+        images: [],
+        tags: ['testing'],
+        publishedAt: '2024-07-01T00:00:00Z',
+      };
+
+      cy.intercept(
+        'GET',
+        'https://*.api.sanity.io/**/data/query/**',
+        (req) => {
+          const isSlugRequest = req.url.includes('%24slug=');
+          const body = isSlugRequest ? { result: micropost } : { result: [micropost] };
+          req.reply({ statusCode: 200, body });
+        },
+      ).as('microposts');
 
       cy.visit('/')
       cy.wait('@microposts')

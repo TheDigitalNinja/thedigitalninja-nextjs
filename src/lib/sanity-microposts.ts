@@ -56,27 +56,26 @@ export type MicropostData = {
 
 // Get all microposts sorted by date (newest first)
 export async function getSortedMicropostsData(limit?: number): Promise<MicropostData[]> {
+  // Query to fetch microposts sorted by date
+  const query = groq`*[_type == "micropost"] | order(publishedAt desc) ${
+    limit ? `[0...${limit}]` : ''
+  } {
+    _id,
+    _createdAt,
+    content,
+    "slug": slug.current,
+    "images": images[].asset->{
+      url,
+      metadata {
+        dimensions
+      }
+    }.url,
+    tags,
+    location,
+    publishedAt
+  }`;
+
   try {
-    // Query to fetch microposts sorted by date
-    const query = groq`*[_type == "micropost"] | order(publishedAt desc) ${
-      limit ? `[0...${limit}]` : ''
-    } {
-      _id,
-      _createdAt,
-      content,
-      "slug": slug.current,
-      "images": images[].asset->{
-        url,
-        metadata {
-          dimensions
-        }
-      }.url,
-      tags,
-      location,
-      publishedAt
-    }`;
-    
-    // Fetch posts
     const microposts = await client.fetch<{
       _id: string;
       _createdAt: string;
@@ -87,11 +86,11 @@ export async function getSortedMicropostsData(limit?: number): Promise<Micropost
       location?: SanityLocation;
       publishedAt: string;
     }[]>(query);
-    
+
     if (!microposts || microposts.length === 0) {
       return [];
     }
-    
+
     return microposts.map(post => ({
       id: post._id,
       content: post.content || '',
@@ -103,7 +102,7 @@ export async function getSortedMicropostsData(limit?: number): Promise<Micropost
     }));
   } catch (error) {
     console.error('Error fetching microposts:', error);
-    return [];
+    throw error;
   }
 }
 
