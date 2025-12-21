@@ -14,7 +14,7 @@ export default function MicroPost({ post }: MicroPostProps) {
   });
 
   return (
-    <article className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+    <article className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6 break-inside-avoid">
       <div className="mb-4 flex justify-between items-center">
         <time dateTime={post.date} className="text-sm text-gray-500 dark:text-gray-400">
           {formattedDate}
