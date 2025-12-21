@@ -1,13 +1,12 @@
 /**
- * @file src/app/photos/page.tsx
+ * @file src/app/(main)/photos/page.tsx
  * @fileoverview Photos page that displays all albums
  */
 
 import { Metadata } from 'next';
-import Header from "../../components/Header";
-import Sidebar from "../../components/Sidebar";
-import AlbumGrid from "../../components/AlbumGrid";
-import { getAlbums } from "../../lib/sanity";
+import AlbumGrid from '@/components/AlbumGrid';
+import PageLayout from '@/components/PageLayout';
+import { getAlbums } from '@/lib/sanity';
 
 export const metadata: Metadata = {
   title: 'Photos - The Digital Ninja',
@@ -32,18 +31,13 @@ export default async function PhotosPage() {
   const albums = await getAlbums();
 
   return (
-    <div className="min-h-screen md:flex">
-      <Sidebar />
-      <div className="flex flex-col w-full md:pl-64">
-        <Header title="Photos" />
-        <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold mb-4">Photo Albums</h2>
-          </div>
-          
-          <AlbumGrid albums={albums} />
-        </main>
+    <PageLayout title="Photos">
+      <div className="mb-8">
+        <h2 className="text-3xl font-bold mb-4">Photo Albums</h2>
       </div>
-    </div>
+
+      <AlbumGrid albums={albums} />
+    </PageLayout>
   );
 }
+

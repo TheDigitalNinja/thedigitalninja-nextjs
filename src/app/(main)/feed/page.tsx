@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import PageLayout from '@/components/PageLayout';
 import { MicropostData, getSortedMicropostsData } from '@/lib/sanity-microposts';
 import MicroPost from '@/components/MicroPost';
 
@@ -29,7 +30,7 @@ export default function FeedPage() {
   }, []);
   
   return (
-    <main className="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <PageLayout title="Feed">
       {loading ? (
         <div className="flex justify-center items-center py-12">
           <p className="text-lg text-gray-600 dark:text-gray-400">
@@ -53,6 +54,7 @@ export default function FeedPage() {
           </p>
         </div>
       )}
-    </main>
+    </PageLayout>
   );
 }
+

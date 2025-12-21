@@ -29,6 +29,11 @@ Welcome to TheDigital.Ninja! This is a personal website and blog for Russell Per
 - `src/lib/`: Utility functions and hooks
 - `sanity/`: Sanity.io schema and configuration, used for microposts/feed
 
+### Routing & Layouts
+- `(main)` route group (`src/app/(main)/layout.tsx`) renders the sidebar once for all primary pages. Individual pages call `PageLayout` (`src/components/PageLayout.tsx`) to set header text and whether it renders as `<h1>` or `<p>`, keeping SEO-safe single-`<h1>` pages.
+- `(clean)` route group (`src/app/(clean)/layout.tsx`) omits sidebar/header for minimalist pages like `resume` and `privacy`.
+- `PageLayout` wraps content in a standard `<main>` container by default.
+
 ## Getting Started
 1. Clone the repository
    ```Bash
