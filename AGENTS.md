@@ -5,34 +5,30 @@
 - **Purpose**: Personal website and blog for TheDigital.Ninja https://TheDigital.Ninja
 - **Repo**: https://github.com/TheDigitalNinja/thedigitalninja-nextjs
 - **Framework**: Next.js 15.3.6 with App Router
-- **Language**: TypeScript 5.x
-- **Styling**: Tailwind CSS 3.4.1
-- **UI Components**: Headless UI 2.2.2
-- **Authentication**: Firebase Authentication (Google Sign-In) - See `src/lib/firebase.ts` and `src/hooks/useAuth.ts`
-- **CMS (Photos)**: Sanity.io - See `sanity/` directory and `src/lib/sanity.ts`
 - **Blog Content**: Markdown files in `posts/` parsed with `gray-matter` (4.0.3) and `marked` (13.0.1)
-- **Microblog Content**: Sanity.io - See `src/lib/sanity-microposts.ts`
+- **CMS (Photos & Microposts)**: Sanity.io - See `sanity/` directory and `src/lib/sanity.ts`
+- **Feed / Micropost Content**: A social media type section using Sanity.io - See `src/lib/sanity-microposts.ts`
 - **Testing**: Cypress for E2E tests - See `cypress/` directory and `cypress.config.ts`
 
 ## Key Files & Directories
 - `src/app/`: Next.js App Router pages and layouts
+- `src/app/(main)`: Most pages and using the main layout with sidebar
+- `src/app/(clean)`: resume and privacy page using a basic layout without a sidebar
 - `src/components/`: Reusable React components
 - `src/lib/`: Utility functions, Firebase/Sanity clients, content fetching logic
 - `posts/`: Markdown blog posts
 - `sanity/`: Sanity schema and configuration
 - `cypress/`: End-to-end tests
-- `CLAUDE.md`: Existing guidelines (potentially for another AI)
-- `README.md`: Project overview, setup, and scripts
-- `scripts/`: Utility scripts (e.g., `scripts/index-now.js` for IndexNow submissions)
+- `scripts/`: Utility scripts (`index-now.js` for IndexNow submissions, `generate-posts-readme.cjs` for auto generating the posts/README.md)
 
 ## Key Technologies
 - Next.js 15.3.6 with App Router
 - TypeScript 5.x
 - React 19.1.2
 - Tailwind CSS 3.4.1
-- Headless UI 2.2.2
-- Firebase Authentication
-- Sanity.io (for photo gallery management)
+- Headless UI 2.2.2 for UI Components
+- Firebase Authentication (Google Sign-In) - See `src/lib/firebase.ts` and `src/hooks/useAuth.ts`
+- Sanity.io (for photo gallery & micropost management)
 - gray-matter 4.0.3 (for parsing Markdown front matter)
 - marked 13.0.1 (for rendering Markdown)
 - PrismJS for code highlighting
@@ -40,27 +36,14 @@
 - @tailwindcss/typography for Markdown styling
 
 ## Development Workflow & Commands
-- **Install**: `npm ci`
-- **Run Dev Server**: `npm run dev`
-- **Build**: `npm run build`
-- **Lint**: `npm run lint`
-- **Run All Tests**: `npm test` (Starts dev server + runs Cypress)
-- **Run Cypress Interactively**: `npm run cypress:open` (Assumes dev server is running)
-- **Run Specific Test**: `npx cypress run --spec cypress/e2e/specific_test.cy.ts`
-
-The development workflow is as follows:
 1. Complete feature implementation.
 2. Test manually to verify functionality.
-3. Run `npm run build` to ensure it builds successfully.
+3. Run `npm run lint`
 4. Run `npm test` to execute all Cypress tests.
-5. Stage changes with `git add`.
-6. Commit changes with a descriptive message.
-7. Never push directly - wait for manual review.
-Refer to `README.md` for more detailed commands and setup steps.
+5. Run `npm run build` to ensure it builds successfully.
 
 Notes:
 - `npm test` starts the dev server automatically; `cypress:run` assumes a running server.
-- `npm start` runs the production build locally for smoke checks.
 - Verification is mandatory: run, in this order, `npm run lint`, `npm test` (or npm test --spec … if scoped), then `npm run build`. Do not skip unless the user explicitly says to. Summarize results (pass/fail/omitted with reason) in your final message.
 
 ## Agent Usage
@@ -94,12 +77,9 @@ Kanban Project URL: https://github.com/users/TheDigitalNinja/projects/3
 - **Environment Variables**: Ensure `.env.local` is configured with Firebase and Sanity keys (see `.env.local.example`).
 - **Testing**: Prefer using existing Cypress commands in `cypress/support/commands.ts`. Ensure tests pass (`npm test`) before committing.
 - **State Management**: Primarily React context (`AuthProvider`) and component state. No complex state management library currently used.
-- **API Routes**: Located in `src/app/api/`.
 - **Image Handling**: Use Next.js `<Image>` component with Cloudinary or Sanity CDN configured in `next.config.mjs`.
 - **Runtime Config**: `reactStrictMode` enabled. Image remote patterns include Cloudinary, Google user avatars, and Sanity; update `next.config.mjs` when adding new hosts. `postbuild` runs `next-sitemap`.
 - **Type Definitions**: Keep `@types/react` and `@types/react-dom` aligned with the runtime React major version (currently 19).
-- **API Health**: The `/api/healthcheck` route and `openapi.yaml` spec have been removed.
-- **Indexing CLI**: `scripts/index-now.js` submits URLs to IndexNow for faster search indexing.
 - **Deployment**: Deployed via Vercel on pushes to `main` after tests pass.
 - **Routing & Layouts**: Route groups split layout concerns—`(main)` wraps primary pages with the sidebar, and individual pages call `PageLayout` (`src/components/PageLayout.tsx`) to set header text/`useH1`; `(clean)` omits sidebar/header for minimalist pages like resume and privacy.
 
