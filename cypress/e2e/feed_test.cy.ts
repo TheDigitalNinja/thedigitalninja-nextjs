@@ -11,8 +11,9 @@ describe('Feed Page', () => {
     cy.get('article', { timeout: 20000 }).should('exist')
     cy.get('time', { timeout: 20000 }).should('exist')
 
-    // Open the first micropost from feed
-    cy.contains('Permalink', { timeout: 20000 }).first().click()
+    // Open the first micropost from feed by clicking the card
+    cy.get('a > article', { timeout: 20000 }).first().click()
+    cy.url().should('match', /\/feed\/[^/]+$/)
 
     // Micropost layout
     cy.get('header').should('be.visible')
