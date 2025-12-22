@@ -5,6 +5,12 @@ const matter = require('gray-matter')
 const POSTS_DIR = path.join(process.cwd(), 'posts')
 const OUTPUT_FILE = path.join(POSTS_DIR, 'README.md')
 const SITE_BASE_URL = 'https://TheDigital.Ninja/Blog'
+const EXCLUDED_FILES = new Set(['readme.md', 'example.md'])
+
+function isPostFile(fileName) {
+  const lowerName = fileName.toLowerCase()
+  return lowerName.endsWith('.md') && !EXCLUDED_FILES.has(lowerName)
+}
 
 function normalizeExcerpt(rawExcerpt) {
   if (typeof rawExcerpt !== 'string') return ''
@@ -18,7 +24,7 @@ function loadPosts() {
 
   return fs
     .readdirSync(POSTS_DIR)
-    .filter((fileName) => fileName.toLowerCase().endsWith('.md') && fileName.toLowerCase() !== 'readme.md')
+    .filter(isPostFile)
     .map((fileName) => {
       const slug = fileName.replace(/\.md$/i, '')
       const fullPath = path.join(POSTS_DIR, fileName)

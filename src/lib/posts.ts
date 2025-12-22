@@ -10,6 +10,12 @@ import path from 'path'
 import matter from 'gray-matter'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
+const EXCLUDED_POST_FILES = new Set(['readme.md', 'example.md'])
+
+const isPostMarkdownFile = (fileName: string): boolean => {
+  const lowerName = fileName.toLowerCase()
+  return lowerName.endsWith('.md') && !EXCLUDED_POST_FILES.has(lowerName)
+}
 
 // Define a type for the post metadata
 type PostMetadata = {
@@ -32,7 +38,7 @@ type FullPostData = PostData & {
 
 export function getSortedPostsData(limit?: number): PostData[] {
   // Get file names under /posts
-  const fileNames = fs.readdirSync(postsDirectory)
+  const fileNames = fs.readdirSync(postsDirectory).filter(isPostMarkdownFile)
   const allPostsData = fileNames.map(fileName => {
     // Remove ".md" from file name to get id
     const slug = fileName.replace(/\.md$/, '')
