@@ -31,17 +31,17 @@ jobs:
     - name: Run Cypress tests
       run: npm test
 
-    - name: Upload Cypress screenshots
-      uses: actions/upload-artifact@v4
-      if: failure()
-      with:
-        name: cypress-screenshots
-        path: cypress/screenshots
+#    - name: Upload Cypress screenshots
+#      uses: actions/upload-artifact@v4
+#      if: failure()
+#      with:
+#        name: cypress-screenshots
+#        path: cypress/screenshots
 
-    - name: Upload Cypress videos
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: cypress-videos
-        path: cypress/videos
-        retention-days: 14
+#    - name: Upload Cypress videos
+#      uses: actions/upload-artifact@v4
+#      if: always()
+#      with:
+#        name: cypress-videos
+#        path: cypress/videos
+#        retention-days: 14
