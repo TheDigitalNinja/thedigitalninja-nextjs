@@ -81,16 +81,16 @@ To run the Cypress tests, use the following scripts:
 The project is automatically deployed to Vercel upon pushes to the main branch and all tests passing.
 
 ## IndexNow CLI
-This project includes a simple CLI tool for submitting URLs to the [IndexNow API](https://www.bing.com/indexnow/), allowing quick indexing of new or updated content to all the major search engines.
+This project includes a simple CLI tool for submitting URLs to the [IndexNow API](https://www.bing.com/indexnow/), allowing quick indexing of new or updated content to all the major search engines. The script now lives at `scripts/index-now.js`.
 
 Usage:
 ```Bash
-node index-now.js <url>
+node scripts/index-now.js <url>
 ```
 
 Example:
 ```Bash
-node index-now.js https://TheDigital.Ninja/blog/your-new-post
+node scripts/index-now.js https://TheDigital.Ninja/blog/your-new-post
 ```
 
 ## Contributing

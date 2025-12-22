@@ -23,6 +23,7 @@
 - `cypress/`: End-to-end tests
 - `CLAUDE.md`: Existing guidelines (potentially for another AI)
 - `README.md`: Project overview, setup, and scripts
+- `scripts/`: Utility scripts (e.g., `scripts/index-now.js` for IndexNow submissions)
 
 ## Key Technologies
 - Next.js 15.3.6 with App Router
@@ -97,7 +98,8 @@ Kanban Project URL: https://github.com/users/TheDigitalNinja/projects/3
 - **Image Handling**: Use Next.js `<Image>` component with Cloudinary or Sanity CDN configured in `next.config.mjs`.
 - **Runtime Config**: `reactStrictMode` enabled. Image remote patterns include Cloudinary, Google user avatars, and Sanity; update `next.config.mjs` when adding new hosts. `postbuild` runs `next-sitemap`.
 - **Type Definitions**: Keep `@types/react` and `@types/react-dom` aligned with the runtime React major version (currently 19).
-- **Indexing CLI**: `index-now.js` submits URLs to IndexNow for faster search indexing.
+- **API Health**: The `/api/healthcheck` route and `openapi.yaml` spec have been removed.
+- **Indexing CLI**: `scripts/index-now.js` submits URLs to IndexNow for faster search indexing.
 - **Deployment**: Deployed via Vercel on pushes to `main` after tests pass.
 - **Routing & Layouts**: Route groups split layout concerns—`(main)` wraps primary pages with the sidebar, and individual pages call `PageLayout` (`src/components/PageLayout.tsx`) to set header text/`useH1`; `(clean)` omits sidebar/header for minimalist pages like resume and privacy.
 
