@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "generate:posts-readme": "node scripts/generate-posts-readme.cjs",
+    "prebuild": "npm run generate:posts-readme",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
