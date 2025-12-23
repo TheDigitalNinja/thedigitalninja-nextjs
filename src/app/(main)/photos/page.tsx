@@ -6,7 +6,7 @@
 import { Metadata } from 'next';
 import AlbumGrid from '@/components/AlbumGrid';
 import PageLayout from '@/components/PageLayout';
-import { getAlbums } from '@/lib/sanity';
+import { getAlbums } from '@/lib/sanity-photo-albums';
 
 export const metadata: Metadata = {
   title: 'Photos - The Digital Ninja',

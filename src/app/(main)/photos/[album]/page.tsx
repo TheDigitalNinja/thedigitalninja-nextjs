@@ -8,7 +8,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import PageLayout from '@/components/PageLayout';
 import PhotoGrid from '@/components/PhotoGrid';
-import { getAlbumPhotos, getAlbums } from '@/lib/sanity';
+import { getAlbumPhotos, getAlbums } from '@/lib/sanity-photo-albums';
 
 export async function generateMetadata({
   params,

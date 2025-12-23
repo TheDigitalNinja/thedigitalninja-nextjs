@@ -22,7 +22,7 @@ import PageLayout from '@/components/PageLayout';
 import FollowMeWidget from '@/components/FollowMeWidget';
 import AboutAuthor from '@/components/AboutAuthor';
 import { getPostData, getSortedPostsData } from '@/lib/posts';
-import { getSanityImageUrlFromId } from '@/lib/sanity';
+import { getSanityImageUrlFromId } from '@/lib/sanity-client';
 import { OpenGraphType } from '@/types/openGraphType';
 import { Metadata } from 'next';
 

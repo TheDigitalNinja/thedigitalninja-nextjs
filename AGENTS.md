@@ -6,7 +6,7 @@
 - **Repo**: https://github.com/TheDigitalNinja/thedigitalninja-nextjs
 - **Framework**: Next.js 15.3.6 with App Router
 - **Blog Content**: Markdown files in `posts/` parsed with `gray-matter` (4.0.3) and `marked` (13.0.1)
-- **CMS (Photos & Microposts)**: Sanity.io - See `sanity/` directory and `src/lib/sanity.ts`
+- **CMS (Photos & Microposts)**: Sanity.io - See `sanity/` directory, shared client in `src/lib/sanity-client.ts`, photo helpers in `src/lib/sanity-photo-albums.ts`
 - **Feed / Micropost Content**: A social media type section using Sanity.io - See `src/lib/sanity-microposts.ts`
 - **Testing**: Cypress for E2E tests - See `cypress/` directory and `cypress.config.ts`
 
@@ -88,4 +88,4 @@ Kanban Project URL: https://github.com/users/TheDigitalNinja/projects/3
 - **Modifying a component**: Locate the component in `src/components/`. Ensure props types are updated if changed.
 - **Writing tests**: Add new `.cy.ts` files in `cypress/e2e/`. Utilize existing custom commands or add new ones to `cypress/support/commands.ts`.
 - **Updating dependencies**: Use `npm update <package>` or `npm install <package>@latest`. Run `npm test` after updates.
-- **Working with Sanity**: Schema changes in `sanity/schema.ts`. Test content fetching logic in `src/lib/sanity.ts` or `src/lib/sanity-microposts.ts`. Access Studio via `/studio`.
+- **Working with Sanity**: Schema changes in `sanity/schema.ts`. Test content fetching logic in `src/lib/sanity-photo-albums.ts` or `src/lib/sanity-microposts.ts`. Access Studio via `/studio`.

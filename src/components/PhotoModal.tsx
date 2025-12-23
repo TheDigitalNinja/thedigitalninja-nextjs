@@ -8,7 +8,7 @@
 import { useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { XMarkIcon, ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
-import { urlFor } from '../lib/sanity';
+import { urlFor } from '@/lib/sanity-photo-albums';
 
 interface SanityPhotoExtended {
   _id: string;

@@ -3,8 +3,8 @@
  * @fileoverview Provides functions to retrieve and process micropost data from Sanity CMS.
  */
 
-import { sanityClient as client } from './sanity';
 import { groq } from 'next-sanity';
+import { sanityClient } from './sanity-client';
 
 // Define types for Sanity micropost data
 export type SanityMicropostImage = {
@@ -76,7 +76,7 @@ export async function getSortedMicropostsData(limit?: number): Promise<Micropost
   }`;
 
   try {
-    const microposts = await client.fetch<{
+    const microposts = await sanityClient.fetch<{
       _id: string;
       _createdAt: string;
       content: string;
@@ -124,7 +124,7 @@ export async function getMicropostBySlug(slug: string): Promise<MicropostData | 
     publishedAt
   }`;
 
-  const post = await client.fetch<any | null>(query, { slug });
+  const post = await sanityClient.fetch<any | null>(query, { slug });
   
   if (!post) return null;
   
@@ -157,7 +157,7 @@ export async function getMicropostById(id: string): Promise<MicropostData | null
     publishedAt
   }`;
 
-  const post = await client.fetch<any | null>(query, { id });
+  const post = await sanityClient.fetch<any | null>(query, { id });
   
   if (!post) return null;
   
@@ -178,7 +178,7 @@ export async function getAllMicropostSlugs() {
     "slug": slug.current
   }`;
 
-  const slugs = await client.fetch<{ slug: string }[]>(query);
+  const slugs = await sanityClient.fetch<{ slug: string }[]>(query);
   
   return slugs.map(({ slug }) => ({
     id: slug

@@ -12,7 +12,7 @@ import Link from 'next/link';
 import { FiClock, FiTag } from 'react-icons/fi';
 import PageLayout from '@/components/PageLayout';
 import { getSortedPostsData } from '@/lib/posts';
-import { getSanityImageUrlFromId } from '@/lib/sanity';
+import { getSanityImageUrlFromId } from '@/lib/sanity-client';
 
 export default function BlogPage() {
   const posts = getSortedPostsData();

@@ -7,8 +7,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Album } from '../lib/sanity';
-import { urlFor } from '../lib/sanity';
+import { Album, urlFor } from '@/lib/sanity-photo-albums';
 
 interface AlbumGridProps {
   albums: Album[];

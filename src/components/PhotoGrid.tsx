@@ -8,7 +8,7 @@
 import { useState, useMemo } from 'react';
 import Image from 'next/image';
 import PhotoModal from './PhotoModal';
-import { Photo, urlFor } from '../lib/sanity';
+import { Photo, urlFor } from '@/lib/sanity-photo-albums';
 
 interface SanityPhotoExtended extends Photo {
   imageUrl: string;

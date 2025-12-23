@@ -26,7 +26,7 @@ Welcome to TheDigital.Ninja! This is a personal website and blog for Russell Per
 - `posts/`: Markdown files for blog posts
 - `public/`: Static assets
 - `styles/`: Global CSS styles
-- `src/lib/`: Utility functions and hooks
+- `src/lib/`: Utility functions and hooks (Sanity client config in `src/lib/sanity-client.ts`, photo gallery helpers in `src/lib/sanity-photo-albums.ts`, feed helpers in `src/lib/sanity-microposts.ts`)
 - `sanity/`: Sanity.io schema and configuration, used for microposts/feed
 
 ## Blog Post Frontmatter

@@ -13,7 +13,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { getSortedPostsData } from '../lib/posts';
-import { getSanityImageUrlFromId } from '@/lib/sanity';
+import { getSanityImageUrlFromId } from '@/lib/sanity-client';
 import { FiClock, FiTag } from 'react-icons/fi';
 
 interface RecentBlogPostsProps {
