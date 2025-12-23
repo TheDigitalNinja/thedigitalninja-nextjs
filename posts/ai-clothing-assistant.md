@@ -1,18 +1,13 @@
 ---
 title: "AI Clothing Assistant" 
 date: "2025-05-06"
-author: "Russell Perkins" 
 excerpt: "So I have had an idea bouncing around in my head for a few months now. I moved recently and also rearranged my closet and both times I thought, man I really should catalog all this while I'm touching each one."
-cloudinaryImageId: "PXL_20250503_210504645_ct7h8t"
+sanityImageId: "image-f52de950ec751a7f245fb3c97feb7446c37fef8a-1255x945-jpg"
 readTime: 8
 tags: ["ai", "prompts", "ChatGPT", "Gemnini"]
 # OpenGraph metadata
 og:
-  title: "AI Clothing Assistant"
   description: "Ever wished for a personal stylist? This post details my journey in building an AI clothing assistant, from image-based cataloging with ChatGPT to intelligent wardrobe analysis."
-  type: "article" 
-  image: "https://res.cloudinary.com/TheDigitalNinja/image/upload/c_scale,w_1200/PXL_20250503_210504645_ct7h8t"
-  url: "https://thedigital.ninja/blog/ai-clothing-assistant" 
 ---
 
 ![Google Sheet on Laptop](https://res.cloudinary.com/TheDigitalNinja/image/upload/c_scale,w_1200/PXL_20250503_210504645_ct7h8t)

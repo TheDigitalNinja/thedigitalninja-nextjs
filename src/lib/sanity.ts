@@ -25,6 +25,44 @@ export function urlFor(source: SanityImageSource) {
   return builder.image(source)
 }
 
+type SanityImageFit =
+  | 'clip'
+  | 'crop'
+  | 'fill'
+  | 'fillmax'
+  | 'max'
+  | 'scale'
+  | 'min'
+
+type SanityImageTransformOptions = {
+  width?: number
+  height?: number
+  fit?: SanityImageFit
+}
+
+export function getSanityImageUrlFromId(
+  imageId?: string,
+  { width, height, fit = 'crop' }: SanityImageTransformOptions = {}
+): string {
+  if (!imageId) return ''
+
+  let imageBuilder = builder.image(imageId)
+
+  if (width) {
+    imageBuilder = imageBuilder.width(width)
+  }
+
+  if (height) {
+    imageBuilder = imageBuilder.height(height)
+  }
+
+  if (fit) {
+    imageBuilder = imageBuilder.fit(fit)
+  }
+
+  return imageBuilder.url()
+}
+
 export interface SanityImage {
   _type: 'image'
   asset: {
