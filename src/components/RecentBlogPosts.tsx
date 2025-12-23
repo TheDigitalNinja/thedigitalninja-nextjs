@@ -13,6 +13,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { getSortedPostsData } from '../lib/posts';
+import { getSanityImageUrlFromId } from '@/lib/sanity';
 import { FiClock, FiTag } from 'react-icons/fi';
 
 interface RecentBlogPostsProps {
@@ -33,14 +34,16 @@ const RecentBlogPosts: React.FC<RecentBlogPostsProps> = ({ limit = 3 }) => {
             <article className="flex flex-col md:flex-row border rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
               {/* Image container */}
               <div className="relative w-full md:w-1/3 h-48 md:h-auto">
-                <Image
-                  src={`https://res.cloudinary.com/TheDigitalNinja/image/upload/c_fill,w_400,h_300,g_auto/${post.cloudinaryImageId}`}
-                  alt={post.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  style={{ objectFit: 'cover' }}
-                  className="rounded-l-lg"
-                />
+                {post.sanityImageId && (
+                  <Image
+                    src={getSanityImageUrlFromId(post.sanityImageId, { width: 400, height: 300 })}
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    style={{ objectFit: 'cover' }}
+                    className="rounded-l-lg"
+                  />
+                )}
               </div>
               {/* Text content container */}
               <div className="w-full md:w-2/3 p-4 flex flex-col justify-between">

@@ -22,6 +22,7 @@ import PageLayout from '@/components/PageLayout';
 import FollowMeWidget from '@/components/FollowMeWidget';
 import AboutAuthor from '@/components/AboutAuthor';
 import { getPostData, getSortedPostsData } from '@/lib/posts';
+import { getSanityImageUrlFromId } from '@/lib/sanity';
 import { OpenGraphType } from '@/types/openGraphType';
 import { Metadata } from 'next';
 
@@ -32,24 +33,33 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const resolvedParams = await params;
   const post = getPostData(resolvedParams.slug);
-  const ogType: OpenGraphType = ['article', 'website', 'book', 'profile', 'music.song', 'music.album', 'music.playlist', 'music.radio_station', 'video.movie', 'video.episode', 'video.tv_show', 'video.other'].includes(post.og.type as OpenGraphType) ? (post.og.type as OpenGraphType) : 'article';
+  const canonicalUrl = `https://TheDigital.Ninja/blog/${post.slug}`;
+  const allowedOgTypes: OpenGraphType[] = ['article', 'website', 'book', 'profile', 'music.song', 'music.album', 'music.playlist', 'music.radio_station', 'video.movie', 'video.episode', 'video.tv_show', 'video.other'];
+  const ogType: OpenGraphType = post.og?.type && allowedOgTypes.includes(post.og.type as OpenGraphType)
+    ? (post.og.type as OpenGraphType)
+    : 'article';
+  const ogImage = post.og?.image || getSanityImageUrlFromId(post.sanityImageId, { width: 1200, height: 630 });
+  const ogTitle = post.og?.title || post.title;
+  const ogDescription = post.og?.description || post.excerpt;
 
   return {
     title: post.title,
     description: post.excerpt,
     openGraph: {
-      title: post.og.title,
-      description: post.og.description,
+      title: ogTitle,
+      description: ogDescription,
       type: ogType,
-      url: `https://TheDigital.Ninja/blog/${post.slug}`,
-      images: [
-        {
-          url: post.og.image,
-          width: 1200,
-          height: 630,
-          alt: post.title,
-        },
-      ],
+      url: post.og?.url || canonicalUrl,
+      images: ogImage
+        ? [
+            {
+              url: ogImage,
+              width: 1200,
+              height: 630,
+              alt: post.title,
+            },
+          ]
+        : undefined,
     },
   };
 }
@@ -68,6 +78,8 @@ export default function PostPage({
 }): JSX.Element {
   const resolvedParams = use(params);
   const post = getPostData(resolvedParams.slug);
+  const canonicalUrl = `https://TheDigital.Ninja/blog/${post.slug}`;
+  const primaryImage = getSanityImageUrlFromId(post.sanityImageId, { width: 1200, height: 630 });
 
   const renderer = new marked.Renderer();
   renderer.code = ({ text, lang }) => {
@@ -99,12 +111,12 @@ export default function PostPage({
         "https://youtube.com/TheDigitalNinja"
       ]
     },
-    "image": `https://res.cloudinary.com/TheDigitalNinja/image/upload/${post.cloudinaryImageId}`,
-    "url": `https://TheDigital.Ninja/blog/${post.slug}`,
+    "image": primaryImage || undefined,
+    "url": canonicalUrl,
     "description": post.excerpt,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://TheDigital.Ninja/blog/${post.slug}`
+      "@id": canonicalUrl
     },
     "publisher": {
       "@type": "Organization",
@@ -120,7 +132,7 @@ export default function PostPage({
   return (
     <PageLayout title="The Digital Ninja" useH1={false}>
       <Head>
-        <link rel="canonical" href={`https://TheDigital.Ninja/blog/${post.slug}`} />
+        <link rel="canonical" href={canonicalUrl} />
       </Head>
 
       <Script id="schema-org-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />

@@ -1,18 +1,13 @@
 ---
 title: "The Four Agreements" 
 date: "2025-12-14"
-author: "Russell Perkins" 
 excerpt: "So I was watching the show Barry and in season 2 a certain character mentioned the book 'The Four Agreements' and I had to pause and look it up to see if it was real.  Sadly the book 'Hit Your Mark and Say Your Lines' by Gene Cousineau isn't real but it turned out 'The Four Agreements' by Don Miguel Ruiz is very much real so I went ahead and hit buy now. "
-cloudinaryImageId: "the_four_agreements_hgyyc3"
+sanityImageId: "image-a4d76cf0635fbfbbd2c29d8d01d569a7c1675476-690x1000-jpg"
 readTime: 8
 tags: ["books", "review", "self-help"]
 # OpenGraph metadata
 og:
-  title: "The Four Agreements"
   description: "So I was watching the show Barry and in season 2 a certain character mentioned the book 'The Four Agreements'"
-  type: "article" 
-  image: "https://res.cloudinary.com/TheDigitalNinja/image/upload/c_scale,w_1200/the_four_agreements_hgyyc3"
-  url: "https://thedigital.ninja/blog/the-four-agreements" 
 ---
 So I was watching the show Barry and in season 2 a certain character mentioned the book "The Four Agreements” and I had to pause and look it up to see if it was real.  Sadly the book "Hit Your Mark and Say Your Lines” by Gene Cousineau isn't real but it turned out "The Four Agreements” by Don Miguel Ruiz is very much real so I went ahead and hit buy now. 
 

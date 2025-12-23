@@ -1,18 +1,10 @@
 ---
 title: "Atomic Habits - Book Review" 
 date: "2025-05-03"
-author: "Russell Perkins" 
 excerpt: "I was at the Tattered Cover store in Union Station looking at books with the kids when I saw a copy of Atomic Habits on the shelf."
-cloudinaryImageId: "atomic_habits_fubgk9"
+sanityImageId: "image-005e2e4a53a024c8403b7176ec45b3c38c09d993-1001x1001-png"
 readTime: 5
 tags: ["books", "review"]
-# OpenGraph metadata
-og:
-  title: "Atomic Habits - Book Review"
-  description: "I was at the Tattered Cover store in Union Station looking at books with the kids when I saw a copy of Atomic Habits on the shelf."
-  type: "article" 
-  image: "https://cdn.sanity.io/images/nx08bxy1/production/005e2e4a53a024c8403b7176ec45b3c38c09d993-1001x1001.png?fit=max&w=600&h=600"
-  url: "https://thedigital.ninja/blog/atomic-habits" 
 ---
 I was at the Tattered Cover store in Union Station looking at books with the kids when I saw a copy of Atomic Habits on the shelf. I had heard this book mentioned in many a Reddit thread, so I thought I would give it a go.
 

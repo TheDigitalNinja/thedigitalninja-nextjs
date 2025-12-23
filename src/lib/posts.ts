@@ -18,14 +18,22 @@ const isPostMarkdownFile = (fileName: string): boolean => {
 }
 
 // Define a type for the post metadata
-type PostMetadata = {
+export type OpenGraphMetadata = {
+  title?: string;
+  description?: string;
+  image?: string;
+  url?: string;
+  type?: string;
+}
+
+export type PostMetadata = {
   date: string;
   title: string;
   excerpt: string;
-  cloudinaryImageId: string;
+  sanityImageId: string;
   tags: string[];
   readTime: number;
-  og: Record<string, string>;
+  og?: OpenGraphMetadata;
 }
 
 type PostData = PostMetadata & {

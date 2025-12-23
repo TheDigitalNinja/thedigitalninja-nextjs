@@ -29,6 +29,15 @@ Welcome to TheDigital.Ninja! This is a personal website and blog for Russell Per
 - `src/lib/`: Utility functions and hooks
 - `sanity/`: Sanity.io schema and configuration, used for microposts/feed
 
+## Blog Post Frontmatter
+- `title` (string): Post title.
+- `date` (YYYY-MM-DD): Publish date.
+- `excerpt` (string): Short summary used for SEO/meta descriptions.
+- `sanityImageId` (string): Sanity asset ID for the featured image; used for cards, OG, and schema defaults.
+- `readTime` (number): Estimated read time in minutes.
+- `tags` (string[]): Tags for filtering/display.
+- `og` (optional object): Overrides for OpenGraph data (`title`, `description`, `image`, `url`, `type`). When omitted, OG metadata defaults to the post title, excerpt, canonical URL, a 1200x630 image derived from `sanityImageId`, and type `article`.
+
 ### Routing & Layouts
 - `(main)` route group (`src/app/(main)/layout.tsx`) renders the sidebar once for all primary pages. Individual pages call `PageLayout` (`src/components/PageLayout.tsx`) to set header text and whether it renders as `<h1>` or `<p>`, keeping SEO-safe single-`<h1>` pages.
 - `(clean)` route group (`src/app/(clean)/layout.tsx`) omits sidebar/header for minimalist pages like `resume` and `privacy`.
