@@ -12,6 +12,7 @@ import Link from 'next/link';
 import { FiClock, FiTag } from 'react-icons/fi';
 import PageLayout from '@/components/PageLayout';
 import { getSortedPostsData } from '@/lib/posts';
+import { getSanityImageUrlFromId } from '@/lib/sanity';
 
 export default function BlogPage() {
   const posts = getSortedPostsData();
@@ -24,13 +25,15 @@ export default function BlogPage() {
           <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
             <article className="flex flex-col md:flex-row mb-4 border rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
               <div className="md:w-1/3 relative h-48 md:h-auto">
-                <Image
-                  src={`https://res.cloudinary.com/TheDigitalNinja/image/upload/c_scale,w_400/${post.cloudinaryImageId}`}
-                  alt={post.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  style={{ objectFit: 'cover' }}
-                />
+                {post.sanityImageId && (
+                  <Image
+                    src={getSanityImageUrlFromId(post.sanityImageId, { width: 400, height: 300 })}
+                    alt={post.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    style={{ objectFit: 'cover' }}
+                  />
+                )}
               </div>
               <div className="md:w-2/3 p-4 md:p-6">
                 <h2 className="text-xl font-semibold mb-2 group-hover:text-blue-600 transition-colors duration-300">{post.title}</h2>
