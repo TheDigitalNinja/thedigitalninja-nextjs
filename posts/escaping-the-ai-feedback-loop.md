@@ -1,17 +1,10 @@
 ---
 title: "Escaping the AI Feedback Loop: Tips for Devs"
 date: "2024-07-17"
-author: "Russell Perkins"
 excerpt: "Discover strategies to break free from repetitive AI coding loops and learn when to leverage traditional resources for efficient problem-solving."
-cloudinaryImageId: "Claude_AI_edit_message_c1xfbu"
+sanityImageId: "image-412b26e0c6e0c23a0de0f16b4a28276091b595dc-750x527-png"
 readTime: 5
 tags: ["ai", "coding", "troubleshooting", "best-practices", "programming"]
-og:
-  title: "Escaping the AI Feedback Loop: Tips for Developers"
-  description: "Learn how to handle AI tools getting stuck in repetitive coding loops, when to edit your prompts, and why sometimes Google is still your best friend."
-  type: "article"
-  image: "https://res.cloudinary.com/TheDigitalNinja/image/upload/c_scale,w_1200/Claude_AI_edit_message_c1xfbu"
-  url: "https://thedigital.ninja/blog/escaping-ai-feedback-loop"
 ---
 
 I wanted to write a post about a common theme when coding with AI tools such as Claude, Gemini, or ChatGPT. That is the AI sometimes gets stuck in a repetitive loop where the AI gives you wrong code and when you correct it, it gives you the same code again that you originally gave it. Often this kinda snowballs and poisons your context window. 
