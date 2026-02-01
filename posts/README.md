@@ -2,6 +2,9 @@
 
 _Auto-generated during build. Do not edit manually._
 
+## [My Agentic AI Development Workflow](my-agentic-AI-development-workflow.md)
+> Nobody ever asks me how I use agentic AI development in my day to day life so I thought I would just write it all down and put it out into the world anyways.
+
 ## [The Four Agreements](the-four-agreements.md)
 > So I was watching the show Barry and in season 2 a certain character mentioned the book 'The Four Agreements' and I had to pause and look it up to see if it was real. Sadly the book 'Hit Your Mark and Say Your Lines' by Gene Cousineau isn't real but it turned out 'The Four Agreements' by Don Miguel Ruiz is very much real so I went ahead and hit buy now.
 
