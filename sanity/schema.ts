@@ -173,6 +173,104 @@ export const micropost = {
   }
 }
 
+// Event schema for conferences, meetups, talks, etc.
+export const event = {
+  name: 'event',
+  title: 'Event',
+  type: 'document',
+  fields: [
+    {
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: 'description',
+      title: 'Description',
+      type: 'text',
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: 'date',
+      title: 'Date',
+      type: 'date',
+      description: 'Event date (required). Use the Time field if needed.',
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: 'time',
+      title: 'Time',
+      type: 'string',
+      description: 'Optional. Example: "6:30 PM" or "18:30".',
+    },
+    {
+      name: 'locationName',
+      title: 'Location Name',
+      type: 'string',
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: 'locationUrl',
+      title: 'Location URL',
+      type: 'url',
+      description: 'Optional. Link to venue website or Google Maps.',
+    },
+    {
+      name: 'picture',
+      title: 'Picture',
+      type: 'image',
+      options: { hotspot: true },
+    },
+    {
+      name: 'eventUrl',
+      title: 'Event URL',
+      type: 'url',
+    },
+    {
+      name: 'ticketsUrl',
+      title: 'Tickets URL',
+      type: 'url',
+    },
+  ],
+  preview: {
+    select: {
+      title: 'title',
+      date: 'date',
+      location: 'locationName',
+      media: 'picture',
+    },
+    prepare({
+      title,
+      date,
+      location,
+      media,
+    }: {
+      title?: string;
+      date?: string;
+      location?: string;
+      media?: any;
+    }) {
+      const parts = [date, location].filter(Boolean);
+      return {
+        title: title || 'Event',
+        subtitle: parts.join(' • '),
+        media,
+      };
+    },
+  },
+};
+
 // Keep the original photo schema for backward compatibility
 export const photo = {
   name: 'photo',
@@ -223,5 +321,5 @@ export const photo = {
 }
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [album, photo, micropost],
+  types: [album, photo, micropost, event],
 }
