@@ -18,6 +18,12 @@ const nextConfig = {
       ],
     qualities: [50, 75, 85, 90, 100],
     },
+    // Ensure filesystem-backed markdown content is present in serverless runtime.
+    // Vercel serverless bundles only traced files; `fs.readdirSync(process.cwd() + '/posts')`
+    // won't be automatically included without an explicit trace include.
+    outputFileTracingIncludes: {
+      '/*': ['./posts/**/*'],
+    },
     redirects: async () => {
       return [
         {
