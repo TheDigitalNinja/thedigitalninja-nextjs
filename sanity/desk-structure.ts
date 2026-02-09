@@ -25,9 +25,14 @@ export const structure = (S: StructureBuilder) =>
       S.listItem()
         .title('Microposts')
         .child(S.documentTypeList('micropost')),
+
+      // Events Section
+      S.listItem()
+        .title('Events')
+        .child(S.documentTypeList('event')),
       
       // Show all document types
       ...S.documentTypeListItems().filter(
-        (listItem) => !['album', 'photo', 'micropost'].includes(listItem.getId() || '')
+        (listItem) => !['album', 'photo', 'micropost', 'event'].includes(listItem.getId() || '')
       ),
     ]);
