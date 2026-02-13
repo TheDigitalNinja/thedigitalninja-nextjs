@@ -4,7 +4,7 @@
 - **Name**: thedigitalninja-nextjs
 - **Purpose**: Personal website and blog for TheDigital.Ninja https://TheDigital.Ninja
 - **Repo**: https://github.com/TheDigitalNinja/thedigitalninja-nextjs
-- **Framework**: Next.js 15.3.6 with App Router
+- **Framework**: Next.js 16.1.6 with App Router
 - **Blog Content**: Markdown files in `posts/` parsed with `gray-matter` (4.0.3) and `marked` (13.0.1)
 - **CMS (Photos & Microposts)**: Sanity.io - See `sanity/` directory, shared client in `src/lib/sanity-client.ts`, photo helpers in `src/lib/sanity-photo-albums.ts`
 - **Feed / Micropost Content**: A social media type section using Sanity.io - See `src/lib/sanity-microposts.ts`
@@ -22,9 +22,9 @@
 - `scripts/`: Utility scripts (`index-now.js` for IndexNow submissions, `generate-posts-readme.cjs` for auto generating the posts/README.md)
 
 ## Key Technologies
-- Next.js 15.3.6 with App Router
+- Next.js 16.1.6 with App Router
 - TypeScript 5.x
-- React 19.1.2
+- React 19.2.4
 - Tailwind CSS 3.4.1
 - Headless UI 2.2.2 for UI Components
 - Firebase Authentication (Google Sign-In) - See `src/lib/firebase.ts` and `src/hooks/useAuth.ts`

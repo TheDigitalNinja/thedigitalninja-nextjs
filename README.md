@@ -1,8 +1,8 @@
 # [TheDigital.Ninja](https://TheDigital.Ninja)
 
 [![Cypress E2E Tests](https://github.com/TheDigitalNinja/thedigitalninja-nextjs/actions/workflows/cypress.yml/badge.svg)](https://github.com/TheDigitalNinja/thedigitalninja-nextjs/actions/workflows/cypress.yml)
-[![Next.js](https://img.shields.io/badge/Next.js-15.3.6-blueviolet)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19.1.2-blue)](https://reactjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16.1.6-blueviolet)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.2.4-blue)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.1-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=thedigitalninja-nextjs)](https://thedigital.ninja)

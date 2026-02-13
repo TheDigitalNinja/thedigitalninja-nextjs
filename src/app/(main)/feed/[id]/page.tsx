@@ -58,7 +58,7 @@ export default function MicropostPage({
   params,
 }: {
   params: Promise<{ id: string }>;
-}): JSX.Element {
+}) {
   const resolvedParams = use(params);
   const micropost = use(getMicropostBySlug(resolvedParams.id));
 
