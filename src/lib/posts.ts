@@ -10,7 +10,10 @@ import path from 'path'
 import matter from 'gray-matter'
 
 const postsDirectory = path.join(process.cwd(), 'posts')
+const normalizedPostsDirectory = path.resolve(postsDirectory)
+const normalizedPostsDirectoryWithSeparator = `${normalizedPostsDirectory}${path.sep}`
 const EXCLUDED_POST_FILES = new Set(['readme.md', 'example.md'])
+const BLOG_SLUG_PATTERN = /^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/
 
 const isPostMarkdownFile = (fileName: string): boolean => {
   const lowerName = fileName.toLowerCase()
@@ -42,6 +45,29 @@ type PostData = PostMetadata & {
 
 type FullPostData = PostData & {
   content: string;
+}
+
+export const isValidPostSlug = (slug: string): boolean => BLOG_SLUG_PATTERN.test(slug)
+
+const getSafePostPathFromSlug = (slug: string): string | null => {
+  if (!isValidPostSlug(slug)) {
+    return null
+  }
+
+  const resolvedPostPath = path.resolve(postsDirectory, `${slug}.md`)
+  const normalizedResolvedPostPath = path.resolve(resolvedPostPath)
+  const normalizedResolvedPostPathLower = normalizedResolvedPostPath.toLowerCase()
+  const normalizedPostsDirectoryLower = normalizedPostsDirectory.toLowerCase()
+  const normalizedPostsDirectoryWithSeparatorLower = normalizedPostsDirectoryWithSeparator.toLowerCase()
+
+  if (
+    normalizedResolvedPostPathLower !== normalizedPostsDirectoryLower
+    && !normalizedResolvedPostPathLower.startsWith(normalizedPostsDirectoryWithSeparatorLower)
+  ) {
+    return null
+  }
+
+  return normalizedResolvedPostPath
 }
 
 export function getSortedPostsData(limit?: number): PostData[] {
@@ -77,9 +103,22 @@ export function getSortedPostsData(limit?: number): PostData[] {
   return limit ? sortedPosts.slice(0, limit) : sortedPosts
 }
 
-export function getPostData(slug: string): FullPostData {
-  const fullPath = path.join(postsDirectory, `${slug}.md`)
-  const fileContents = fs.readFileSync(fullPath, 'utf8')
+export function getPostData(slug: string): FullPostData | null {
+  const fullPath = getSafePostPathFromSlug(slug)
+
+  if (!fullPath) {
+    return null
+  }
+
+  let fileContents: string
+  try {
+    fileContents = fs.readFileSync(fullPath, 'utf8')
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+      return null
+    }
+    throw error
+  }
 
   // Use gray-matter to parse the post metadata section
   const matterResult = matter(fileContents)

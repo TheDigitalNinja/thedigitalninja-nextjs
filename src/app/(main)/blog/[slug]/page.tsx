@@ -24,6 +24,7 @@ import { getPostData, getSortedPostsData } from '@/lib/posts';
 import { getSanityImageUrlFromId } from '@/lib/sanity-client';
 import { OpenGraphType } from '@/types/openGraphType';
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 export async function generateMetadata({
   params,
@@ -32,6 +33,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const resolvedParams = await params;
   const post = getPostData(resolvedParams.slug);
+  if (!post) {
+    notFound();
+  }
   const canonicalUrl = `https://TheDigital.Ninja/blog/${post.slug}`;
   const allowedOgTypes: OpenGraphType[] = ['article', 'website', 'book', 'profile', 'music.song', 'music.album', 'music.playlist', 'music.radio_station', 'video.movie', 'video.episode', 'video.tv_show', 'video.other'];
   const ogType: OpenGraphType = post.og?.type && allowedOgTypes.includes(post.og.type as OpenGraphType)
@@ -80,6 +84,9 @@ export default function PostPage({
 }) {
   const resolvedParams = use(params);
   const post = getPostData(resolvedParams.slug);
+  if (!post) {
+    notFound();
+  }
   const canonicalUrl = `https://TheDigital.Ninja/blog/${post.slug}`;
   const primaryImage = getSanityImageUrlFromId(post.sanityImageId, { width: 1200, height: 630 });
 
