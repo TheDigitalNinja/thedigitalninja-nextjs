@@ -109,12 +109,12 @@ This project includes a simple CLI tool for submitting URLs to the [IndexNow API
 
 Usage:
 ```Bash
-node scripts/index-now.js <url>
+node --env-file=.env.local scripts/index-now.js <url>
 ```
 
 Example:
 ```Bash
-node scripts/index-now.js https://TheDigital.Ninja/blog/your-new-post
+node --env-file=.env.local scripts/index-now.js https://TheDigital.Ninja/blog/your-new-post
 ```
 
 ## Contributing

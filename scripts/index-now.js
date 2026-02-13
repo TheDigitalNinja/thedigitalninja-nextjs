@@ -14,7 +14,7 @@
  * - axios: for making HTTP requests
  *
  * Configuration:
- * - API_KEY: Your IndexNow API key
+ * - INDEXNOW_API_KEY: Your IndexNow API key
  * - KEY_LOCATION: URL where your API key file is hosted
  */
 
@@ -22,7 +22,11 @@ const { program } = require('commander');
 const axios = require('axios');
 const { URL } = require('url');
 
-const API_KEY = 'd86aa2e7f75e44ca93ca7dbb94cca2d3';
+const API_KEY = process.env.INDEXNOW_API_KEY?.trim();
+if (!API_KEY) {
+  console.error('Missing required environment variable: INDEXNOW_API_KEY');
+  process.exit(1);
+}
 const KEY_LOCATION = `https://TheDigital.Ninja/${API_KEY}.txt`;
 const INDEX_NOW_API = 'https://api.indexnow.org/IndexNow';
 
