@@ -55,6 +55,8 @@ Welcome to TheDigital.Ninja! This is a personal website and blog for Russell Per
 3. Configure environment variables:
    - Copy `.env.local.example` to `.env.local`
    - Add your Firebase and Sanity credentials
+   - For Sanity, set `NEXT_PUBLIC_SANITY_PROJECT_ID` and `NEXT_PUBLIC_SANITY_DATASET`
+   - Optional: set `SANITY_STUDIO_PROJECT_ID` and `SANITY_STUDIO_DATASET` to the same values if you want Studio-specific env names
 
 4. Run the development server:
    ```Bash
@@ -62,6 +64,19 @@ Welcome to TheDigital.Ninja! This is a personal website and blog for Russell Per
    ```
 5. Open [http://localhost:3000](http://localhost:3000) in your browser
 6. Access Sanity Studio at [http://localhost:3000/studio](http://localhost:3000/studio)
+
+## Sanity Configuration
+- `src/lib/sanity-config.ts` is the single source of truth for Sanity project and dataset values used by both:
+  - App runtime client (`src/lib/sanity-client.ts`)
+  - Studio config (`sanity/sanity.config.ts`)
+- Configuration resolution rules:
+  - `NEXT_PUBLIC_SANITY_PROJECT_ID` / `NEXT_PUBLIC_SANITY_DATASET` are the canonical shared values
+  - `SANITY_STUDIO_PROJECT_ID` / `SANITY_STUDIO_DATASET` are optional aliases for Studio
+  - If both shared and Studio-specific values are set, they must match exactly
+  - Missing or mismatched values throw a startup error to prevent app/Studio drift
+- CI setup:
+  - Define `NEXT_PUBLIC_SANITY_PROJECT_ID` and `NEXT_PUBLIC_SANITY_DATASET` in the CI environment
+  - If you also define `SANITY_STUDIO_PROJECT_ID` and `SANITY_STUDIO_DATASET`, they must be identical to the `NEXT_PUBLIC_*` values
 
 ## Scripts
 | Script                  | Description                                                                 |
