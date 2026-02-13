@@ -8,7 +8,6 @@
  */
 
 import { use } from 'react';
-import Head from 'next/head';
 import Script from 'next/script';
 import { FiClock, FiCalendar } from 'react-icons/fi';
 import { marked } from 'marked';
@@ -45,6 +44,9 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title: ogTitle,
       description: ogDescription,
@@ -131,10 +133,6 @@ export default function PostPage({
 
   return (
     <PageLayout title="The Digital Ninja" useH1={false}>
-      <Head>
-        <link rel="canonical" href={canonicalUrl} />
-      </Head>
-
       <Script id="schema-org-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
 
       <article className="prose dark:prose-invert w-full max-w-none lg:prose-xl mx-auto py-12">
