@@ -75,7 +75,7 @@ export default function PostPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
-}): JSX.Element {
+}) {
   const resolvedParams = use(params);
   const post = getPostData(resolvedParams.slug);
   const canonicalUrl = `https://TheDigital.Ninja/blog/${post.slug}`;

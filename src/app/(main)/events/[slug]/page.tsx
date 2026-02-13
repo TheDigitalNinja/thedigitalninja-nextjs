@@ -67,7 +67,7 @@ export default function EventDetailPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
-}): JSX.Element {
+}) {
   const resolvedParams = use(params);
   const event = use(getEventBySlug(resolvedParams.slug));
 

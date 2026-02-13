@@ -56,7 +56,7 @@ export default function AlbumPage({
   params,
 }: {
   params: Promise<{ album: string }>;
-}): JSX.Element {
+}) {
   const resolvedParams = use(params);
   const albums = use(getAlbums());
   const album = albums.find((entry) => entry.slug.current === resolvedParams.album);
