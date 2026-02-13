@@ -181,6 +181,6 @@ export async function getAllMicropostSlugs() {
   const slugs = await sanityClient.fetch<{ slug: string }[]>(query);
   
   return slugs.map(({ slug }) => ({
-    id: slug
+    slug
   }));
 }
