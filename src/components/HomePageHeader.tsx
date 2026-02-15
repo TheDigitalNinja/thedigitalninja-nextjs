@@ -8,7 +8,6 @@
  * @returns {JSX.Element} The rendered home page header
  */
 
-import React from 'react';
 import Image from 'next/image';
 
 export default function HomePageHeader() {
@@ -26,13 +25,11 @@ export default function HomePageHeader() {
         </div>
         <div className="w-full md:w-3/4">
           <p>
-            Looks like you&apos;ve stumbled upon TheDigital.Ninja - welcome to my corner of the web! 
-            I&apos;m Russell Perkins, a Solutions Architect with a passion for all things tech. 
-            Feel free to dive into my blog posts for insights on software architecture, AI, and 
-            the latest in tech innovations. Or, if you&apos;re feeling social, check out my links 
-            and let&apos;s connect!
+            I&apos;m Russell Perkins. I work in tech, do improv, sometimes act, and have too many opinions about self-help books.
+            This site is basically a look into my life with blog posts, upcoming events, book reviews, photos, and whatever random
+            thoughts I felt like putting on the internet that day. If you&apos;re feeling social, check out my links and let&apos;s connect!
           </p>
-        </div>
+        </div>        
       </div>
     </article>
   );
