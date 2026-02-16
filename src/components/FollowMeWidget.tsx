@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaGithub, FaLinkedin, FaFacebook, FaInstagram, FaDiscord, FaYoutube } from 'react-icons/fa';
 import { Inter } from "next/font/google";
 
@@ -6,7 +5,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 const FollowMeWidget = () => {
   return (
-    <div className={`${inter.className} mb-12`}>
+    <div className={`${inter.className}`}>
       <h3 className="text-2xl font-bold mb-4 text-center">Stay Connected</h3>
       <p className="text-center mb-6 text-gray-600 dark:text-gray-400">
         Follow me on social media for more tech insights and updates!

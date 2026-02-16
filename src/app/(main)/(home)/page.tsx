@@ -13,6 +13,7 @@ import PageLayout from '@/components/PageLayout';
 import RecentBlogPosts from '@/components/RecentBlogPosts';
 import RecentMicroposts from '@/components/RecentMicroposts';
 import HomePageHeader from '@/components/HomePageHeader';
+import FollowMeWidget from '@/components/FollowMeWidget';
 
 export const metadata: Metadata = {
   title: 'The Digital Ninja - Russell Perkins',
@@ -75,6 +76,7 @@ export default function Home() {
           <RecentMicroposts />
         </div>
       </div>
+      <FollowMeWidget />
     </PageLayout>
   );
 }
