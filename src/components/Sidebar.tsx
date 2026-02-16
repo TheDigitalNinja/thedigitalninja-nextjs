@@ -31,7 +31,7 @@ const Sidebar: React.FC = () => {
         {/* Navigation */}
         <nav className="mb-8">
           <ul className="space-y-2">
-            {['Home', 'Feed', 'Photos', 'Events', 'Blog', 'About'].map((item) => (
+            {['Home', 'Feed', 'Events', 'Photos', 'Blog', 'About'].map((item) => (
               <li key={item}>
                 <Link 
                   href={item === 'Home' ? '/' : `/${item.toLowerCase()}`} 
