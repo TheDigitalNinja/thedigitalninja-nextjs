@@ -3,9 +3,9 @@ import Link from 'next/link';
 
 const AboutAuthor = () => {
   const authorName = "Russell Perkins";
-  const authorTitle = "Engineeer, Father, Foodie, Traveler";
+  const authorTitle = "Engineer, Father, Foodie, Traveler";
   const authorImage = "https://cdn.sanity.io/images/nx08bxy1/production/d0fec3e55f52e54353851f8129a986c384ee5baa-2048x3071.jpg?w=500&q=85&auto=format"; 
-  const authorBio = "I'm Russell Perkins, a Solutions Architect with a passion for all things tech. Feel free to dive into my blog posts for insights on software architecture, AI, and the latest in tech innovations.";
+  const authorBio = "I'm Russell Perkins, a Principal Technical Consultant and Solutions Architect with a passion for all things tech. Feel free to dive into my blog posts for insights on software architecture, AI, my life, books, travel, and the latest in tech innovations.";
   const aboutPageUrl = "/about";
 
   return (
