@@ -12,8 +12,14 @@
 import { initializeApp, getApps, FirebaseApp } from "firebase/app";
 import { getAuth, Auth } from "firebase/auth";
 
+const firebaseApiKey = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
+
+if (!firebaseApiKey) {
+  throw new Error('Missing NEXT_PUBLIC_FIREBASE_API_KEY environment variable.');
+}
+
 const firebaseConfig = {
-  apiKey: "AIzaSyCGYRT5XFt3i2ZMhusQlv76d72BJ7NVnKc",
+  apiKey: firebaseApiKey,
   authDomain: "thedigitalninja.firebaseapp.com",
   projectId: "thedigitalninja",
   storageBucket: "thedigitalninja.appspot.com",
