@@ -29,9 +29,11 @@ describe('Feed Page', () => {
     cy.get('article', { timeout: 20000 }).should('exist')
     cy.get('article .text-lg', { timeout: 20000 }).should('exist')
     cy.get('time', { timeout: 20000 }).should('exist')
-    cy.get('article').then($article => {
-      if ($article.find('span').length > 0) {
-        cy.get('span').contains('#').should('exist')
+    cy.get('article').then(($article) => {
+      if ($article.find('[data-testid="micropost-tag"]').length > 0) {
+        cy.get('[data-testid="micropost-tag"]').each(($tag) => {
+          cy.wrap($tag).should('contain.text', '#')
+        })
       }
     })
 

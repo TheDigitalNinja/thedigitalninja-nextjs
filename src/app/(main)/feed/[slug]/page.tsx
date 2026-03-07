@@ -147,11 +147,12 @@ export default function MicropostPage({
         )}
 
         {micropost.tags && micropost.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mt-6">
+          <div className="flex flex-wrap gap-2 mt-6" data-testid="micropost-tags">
             {micropost.tags.map((tag) => (
               <span
                 key={tag}
                 className="px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-sm"
+                data-testid="micropost-tag"
               >
                 #{tag}
               </span>
