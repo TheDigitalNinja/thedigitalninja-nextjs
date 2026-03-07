@@ -39,12 +39,17 @@ export type PostMetadata = {
   og?: OpenGraphMetadata;
 }
 
-type PostData = PostMetadata & {
+export type PostData = PostMetadata & {
   slug: string;
 }
 
 type FullPostData = PostData & {
   content: string;
+}
+
+export type AdjacentPosts = {
+  previousPost: PostData | null;
+  nextPost: PostData | null;
 }
 
 export const isValidPostSlug = (slug: string): boolean => BLOG_SLUG_PATTERN.test(slug)
@@ -101,6 +106,23 @@ export function getSortedPostsData(limit?: number): PostData[] {
 
   // Return limited number of posts if limit is provided
   return limit ? sortedPosts.slice(0, limit) : sortedPosts
+}
+
+export function getAdjacentPosts(slug: string): AdjacentPosts {
+  const posts = getSortedPostsData()
+  const currentPostIndex = posts.findIndex((post) => post.slug === slug)
+
+  if (currentPostIndex === -1) {
+    return {
+      previousPost: null,
+      nextPost: null,
+    }
+  }
+
+  return {
+    previousPost: posts[currentPostIndex + 1] ?? null,
+    nextPost: posts[currentPostIndex - 1] ?? null,
+  }
 }
 
 export function getPostData(slug: string): FullPostData | null {

@@ -20,7 +20,8 @@ import 'prismjs/components/prism-jsx';
 import PageLayout from '@/components/PageLayout';
 import FollowMeWidget from '@/components/FollowMeWidget';
 import AboutAuthor from '@/components/AboutAuthor';
-import { getPostData, getSortedPostsData } from '@/lib/posts';
+import PostNavigation from '@/components/PostNavigation';
+import { getAdjacentPosts, getPostData, getSortedPostsData } from '@/lib/posts';
 import { getSanityImageUrlFromId } from '@/lib/sanity-client';
 import { OpenGraphType } from '@/types/openGraphType';
 import { Metadata } from 'next';
@@ -89,6 +90,7 @@ export default function PostPage({
   }
   const canonicalUrl = `https://TheDigital.Ninja/blog/${post.slug}`;
   const primaryImage = getSanityImageUrlFromId(post.sanityImageId, { width: 1200, height: 630 });
+  const { previousPost, nextPost } = getAdjacentPosts(post.slug);
 
   const renderer = new marked.Renderer();
   renderer.code = ({ text, lang }) => {
@@ -168,6 +170,7 @@ export default function PostPage({
         <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
 
         <AboutAuthor />
+        <PostNavigation previousPost={previousPost} nextPost={nextPost} />
       </article>
       <FollowMeWidget />
     </PageLayout>
