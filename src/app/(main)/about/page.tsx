@@ -10,6 +10,7 @@
 import { Metadata } from 'next';
 import PageLayout from '@/components/PageLayout';
 import Script from 'next/script';
+import { serializeJsonForHtml } from '@/lib/content-sanitizer';
 
 export const metadata: Metadata = {
   title: 'About Russell Perkins - The Digital Ninja',
@@ -48,7 +49,7 @@ export default function About() {
 
   return (
     <PageLayout title="About" useH1={false}>
-      <Script id="schema-org-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
+      <Script id="schema-org-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonForHtml(schemaData) }} />
 
       <article>
         <h1 className="text-4xl font-bold mb-6">About Russell Perkins</h1>

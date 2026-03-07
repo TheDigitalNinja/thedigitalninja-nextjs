@@ -14,6 +14,7 @@ import RecentBlogPosts from '@/components/RecentBlogPosts';
 import RecentMicroposts from '@/components/RecentMicroposts';
 import HomePageHeader from '@/components/HomePageHeader';
 import FollowMeWidget from '@/components/FollowMeWidget';
+import { serializeJsonForHtml } from '@/lib/content-sanitizer';
 
 export const metadata: Metadata = {
   title: 'The Digital Ninja - Russell Perkins',
@@ -65,7 +66,7 @@ export default function Home() {
 
   return (
     <PageLayout title="The Digital Ninja" useH1>
-      <Script id="schema-org-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
+      <Script id="schema-org-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonForHtml(schemaData) }} />
       <div className="flex flex-col md:flex-row md:gap-8">
         <div className="w-full md:w-3/4">
           <HomePageHeader />

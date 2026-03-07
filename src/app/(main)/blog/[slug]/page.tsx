@@ -21,6 +21,7 @@ import PageLayout from '@/components/PageLayout';
 import FollowMeWidget from '@/components/FollowMeWidget';
 import AboutAuthor from '@/components/AboutAuthor';
 import PostNavigation from '@/components/PostNavigation';
+import { sanitizeRenderedHtml, serializeJsonForHtml } from '@/lib/content-sanitizer';
 import { getAdjacentPosts, getPostData, getSortedPostsData } from '@/lib/posts';
 import { getSanityImageUrlFromId } from '@/lib/sanity-client';
 import { OpenGraphType } from '@/types/openGraphType';
@@ -99,7 +100,7 @@ export default function PostPage({
     const highlightedCode = Prism.highlight(text, grammar, language);
     return `<pre><code class="language-${language}">${highlightedCode}</code></pre>`;
   };
-  const contentHtml = marked(post.content, { renderer }) as string;
+  const contentHtml = sanitizeRenderedHtml(marked(post.content, { renderer }) as string);
 
   const schemaData = {
     "@context": "https://schema.org",
@@ -142,7 +143,7 @@ export default function PostPage({
 
   return (
     <PageLayout title="The Digital Ninja" useH1={false}>
-      <Script id="schema-org-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
+      <Script id="schema-org-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonForHtml(schemaData) }} />
 
       <article className="prose dark:prose-invert w-full max-w-none lg:prose-xl mx-auto py-12">
         <h1 className='not-prose text-4xl font-bold mb-4'>{post.title}</h1>

@@ -6,6 +6,7 @@ import { FiCalendar, FiMapPin } from 'react-icons/fi';
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import PageLayout from '@/components/PageLayout';
+import { serializeJsonForHtml } from '@/lib/content-sanitizer';
 import { getMicropostBySlug, getAllMicropostSlugs } from '@/lib/sanity-microposts';
 
 // Mark page as dynamic for data fetching - always render the page on the server
@@ -106,7 +107,7 @@ export default function MicropostPage({
 
   return (
     <PageLayout title="Feed">
-      <Script id="schema-org-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
+      <Script id="schema-org-data" type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonForHtml(schemaData) }} />
 
       <article className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
         <div className="mb-6 flex flex-wrap items-center gap-4">

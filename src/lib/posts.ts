@@ -54,6 +54,11 @@ export type AdjacentPosts = {
 
 export const isValidPostSlug = (slug: string): boolean => BLOG_SLUG_PATTERN.test(slug)
 
+const getValidatedSlugFromFileName = (fileName: string): string | null => {
+  const slug = fileName.replace(/\.md$/i, '')
+  return isValidPostSlug(slug) ? slug : null
+}
+
 const getSafePostPathFromSlug = (slug: string): string | null => {
   if (!isValidPostSlug(slug)) {
     return null
@@ -78,9 +83,12 @@ const getSafePostPathFromSlug = (slug: string): string | null => {
 export function getSortedPostsData(limit?: number): PostData[] {
   // Get file names under /posts
   const fileNames = fs.readdirSync(postsDirectory).filter(isPostMarkdownFile)
-  const allPostsData = fileNames.map(fileName => {
-    // Remove ".md" from file name to get id
-    const slug = fileName.replace(/\.md$/, '')
+  const allPostsData = fileNames.flatMap(fileName => {
+    const slug = getValidatedSlugFromFileName(fileName)
+
+    if (!slug) {
+      return []
+    }
 
     // Read markdown file as string
     const fullPath = path.join(postsDirectory, fileName)
