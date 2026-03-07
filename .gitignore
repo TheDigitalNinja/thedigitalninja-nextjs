@@ -47,3 +47,5 @@ sitemap*.xml
 next-env.d.ts
 
 .env.local
+
+.cursor/
